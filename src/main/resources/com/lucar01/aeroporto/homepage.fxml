@@ -199,15 +199,33 @@
                </font>
             </Label>
          </children></Pane>
-      <ImageView fx:id="btnClose" fitHeight="24.0" fitWidth="24.0" layoutX="970.0" layoutY="8.0" onMouseClicked="#handleCloseButton" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icons/close_window_48px.png" />
-         </image>
-      </ImageView>
-      <Label graphicTextGap="12.0" layoutX="239.0" layoutY="32.0" text="Gestisci i tuoi Aeroporti" textFill="#030303">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="14.0" />
-         </font>
-      </Label>
+      <HBox alignment="TOP_RIGHT" layoutX="228.0" prefHeight="100.0" prefWidth="772.0" style="-fx-background-color: #0e2d82;" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Pane prefHeight="0.0" prefWidth="772.0" style="-fx-background-color: #0e2d82;">
+               <children>
+                  <Label graphicTextGap="12.0" layoutX="22.0" layoutY="40.0" text="Gestisci i tuoi Aeroporti" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="btnClose" fitHeight="24.0" fitWidth="24.0" layoutX="746.0" layoutY="2.0" onMouseClicked="#handleCloseButton" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/close_window_48px.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnMaximize" fitHeight="24.0" fitWidth="24.0" layoutX="714.0" layoutY="2.0" onMouseClicked="#handleMaximizeButton" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/maximize_button_24px.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnMinimize" fitHeight="24.0" fitWidth="24.0" layoutX="679.0" layoutY="2.0" onMouseClicked="#handleMinimizeButton" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/minimize_window_48px.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

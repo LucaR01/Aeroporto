@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,6 +46,12 @@ public class HomePageController implements Initializable {
     private Label lblStatusTitle;
 
     @FXML
+    private ImageView btnMaximize; //TODO: i don't even need to work with the image view, i believe.
+
+    @FXML
+    private ImageView btnMinimize;
+
+    @FXML
     private ImageView btnClose;
 
     @FXML
@@ -65,7 +73,7 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
-    private void handleButtonsClick(ActionEvent event){
+    private void handleButtonsClick(ActionEvent event){ //TODO: rename in handleMenuButtons?
         //TODO: try to use a switch if possible
         if(event.getSource() == btnOverview){
             lblStatusTitle.setText("Overview");
@@ -98,10 +106,27 @@ public class HomePageController implements Initializable {
         }
     }
 
+    //TODO: fix icons positions when stage is set fullscreen
     @FXML
     private void handleCloseButton(MouseEvent event){
-        if(event.getSource() == btnClose){
+        /*if(event.getSource() == btnClose){ //TODO: either keep this one or the other.
             System.exit(0);
-        }
+        }*/
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //TODO: this one is faster than the first way
+        stage.close();
+
+        //javafx.application.Platform.exit(); //TODO: or keep this one
+    }
+
+    @FXML
+    private void handleMaximizeButton(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setFullScreen(!stage.isFullScreen());
+    }
+
+    @FXML
+    private void handleMinimizeButton(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
     }
 }
