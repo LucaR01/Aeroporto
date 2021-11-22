@@ -1,0 +1,279 @@
+% ================= INTRODUZIONE ===============================================
+
+\newpage
+
+\section{Introduzione}
+
+\textsf{\small L'obiettivo del progetto è la realizzazione di una base di dati che gestisca tutte le operazioni necessarie per il corretto funzionamento ed il normale svolgimento delle attività aeroportuali.}\\
+\textsf{\small Pertanto essa dovrà contenere tutti gli attori (entità) principali, quali: Passeggeri, Addetti di scalo, Addetti alla sicurezza, Equipaggi degli aerei, Controllori, Tecnici della manutenzione e coordinare le loro relazioni.}\\
+
+% ================= ANALISI DEI REQUISITI ======================================
+
+\section{Analisi dei Requisiti}
+
+\subsection{Intervista}
+
+%TODO: riorganizzare in che ordine dire le cose!
+%TODO: e magari aggiungere qualcosa sia sui controllori sia sui radar e..
+
+%TODO: magari aggiungere qualcos'altro
+
+\textsf{\small Si vuole tenere traccia di tutte le \textbf{persone} che si trovano in Aeroporto sia per lavoro che per usufruire di un servizio, memorizzando i loro Codici Fiscali, Nomi, Cognomi, Età.}\break % usufruire dei servizi
+
+\textsf{\small Degli operatori addetti alle quotidiane attività aeroportuali, ci sono gli \textbf{Addetti di scalo}, ovvero l'\textbf{Agente di Rampa}, l'\textbf{Addetto al Check-In}, l'\textbf{Addetto all'imbarco}, l'\textbf{Addetto al Lost\&Found}, l'\textbf{Addetto al Weight and Balance}.}\break
+
+%TODO: uncomment these e sistemarle.
+
+\textsf{\small I \textbf{passeggeri} sono ritenuti tali solamente quando si trovano all'interno dell'\textbf{aereo}, altrimenti vengono considerati semplicemente \textbf{persone}.}\\
+\textsf{\small Questi possono visitare i \textbf{negozi}, le \textbf{lounge}, comprare biglietti per il \textbf{volo}, essere controllati dagli \textbf{addetti alla sicurezza} e recarsi al \textbf{gate} per aspettare di salire sull'\textbf{aereo}.}\break
+
+\textsf{\small Ogni \textbf{aereo} è di proprietà di una \textbf{compagnia aerea}, ha un \textbf{equipaggio}, viene mantenuto dai \textbf{tecnici della manutenzione}; viene curato dal \textbf{Ground Support Equipment}, ovvero da tutto il personale di terra che si occupa di caricare/scaricare il \textbf{cargo}, i bagagli, di rifornire di carburante, di elettricità, di cibo e bevande, di apparecchi igienico sanitari,ecc.. }\\
+
+\textsf{\small E' necessario tenere in considerazione tutte le componenti di un \textbf{aereo}: \textbf{fusoliera}, \textbf{motori}, \textbf{ali}, \textbf{carrello}, \textbf{flaps}, \textbf{impennaggio}, \textbf{cabina},ec.. per assicurare la sicurezza dei \textbf{passeggeri} e si possa procedere con il decollo.}\\
+
+\textsf{\small Inoltre è di vitale importanza per la sicurezza e il corretto svolgimento delle operazioni tenere traccia della posizione degli \textbf{Aerei}, se sono fermi, in \textbf{manutenzione}, in partenza sulla \textbf{pista}.}\break
+
+\textsf{\small Ogni \textbf{volo} riguarda il \textbf{tragitto} dall'aeroporto di \textbf{partenza} alla \textbf{destinazione} che deve fare un determinato \textbf{aereo} in un determinato \textbf{lasso di tempo}.Questo deve essere, in ogni singolo momento, tenuto sotto stretta osservazione e controllo da parte dei \textbf{Controllori} presso la \textbf{Torre di Controllo}.}\\
+
+\textsf{\small Questi attraverso i \textbf{Radar}, devono continuamente coordinare il corretto flusso di navigazione degli \textbf{aerei}.}\\
+
+\newpage
+
+\subsection{Estrazione dei concetti principali}
+
+\subsection{\textcolor{black}{Glossario dei Termini}}
+
+\begin{comment}
+\begin{tabular}{|c|c|c|}
+	\textbf{Termine} & \textbf{Breve descrizione} & \textbf{Sinonimi} \\
+	%\hline
+	\textsf{\small Aereoporto} & \textsf{\small  è un'infrastruttura attrezzata per il decollo e l'atterraggio di aeromobili, per il transito dei relativi passeggeri e del loro bagaglio, per il ricovero e il rifornimento dei velivoli.} & \textsf{\small Aerodromo} \\
+	
+	\textsf{\small Aereoplano} & \textsf{\small velivolo impiegato come mezzo di trasporto, fornito di ali, motori e strutture che gli consentono di viaggiare nell’aria e di partire e atterrare su superfici idonee} & \textsf{\small Aereomobile, Aereo} \\
+	
+	\textsf{\small Pilota} & \textsf{\small Persona legalmente abilitata, con regolare brevetto, a guidare un aeromobile} & \textsf{\small } \\
+	
+	\textsf{\small Copilota} & \textsf{\small Chi, a bordo di un velivolo, può svolgere tutte le funzioni del pilota, fuorché quelle di pilota comandante} & \textsf{\small } \\
+	
+	\textsf{\small Assistente di Volo} & \textsf{\small chi assiste i passeggeri sugli aerei civili} & \textsf{\small (Hostess, Steward)} \\
+	
+	\textsf{\small Passeggero} & \textsf{\small Chi viaggia su nave, treno, aereo o altro mezzo di trasporto: navi da carico e per passeggeri;} & \textsf{\small } \\
+	
+	\textsf{\small Compagnia Aerea} & \textsf{\small è un'impresa la cui attività istituzionale consiste nel trasporto di persone o di merci mediante l'utilizzo di aeromobili.} & \textsf{\small } \\
+	
+	\textsf{\small Torre di Controllo} & \textsf{\small  è una struttura sopraelevata usata per le operazioni di controllo del traffico di una determinata area: controlla il traffico aereo a terra e quello che sta per atterrare.} & \textsf{\small } \\
+	
+	\textsf{\small Controllori del traffico aereo} & \textsf{\small sono professionisti che si occupano della fornitura dei servizi del traffico aereo negli spazi aerei di tutto il mondo, con lo scopo di mantenere un sicuro spedito e ordinato flusso del traffico aereo.} & \textsf{\small } \\
+	
+	\textsf{\small Pista} & \textsf{\small è una striscia di superficie di un aerodromo specificatamente attrezzata e adibita al decollo e all'atterraggio di un velivolo.} & \textsf{\small } \\
+	
+	\textsf{\small Via di rullaggio - taxiway} & \textsf{\small è una superficie delimitata all'interno di un aeroporto che identifica il percorso che gli aeromobili debbono percorrere per spostarsi da un punto ad un altro. Una via di rullaggio collega ad esempio le piste con l'area di stazionamento, due diverse parti dell'area di parcheggio, le piazzole di sosta e altre strutture} & \textsf{\small } \\
+	
+	\textsf{\small Addetto di scalo} & \textsf{\small può svolgere il compito di agente di rampa, Weight and balance più comunemente chiamato centrista, addetto al Check-In, addetto all'imbarco o addetto al Lost \& Found.} & \textsf{\small } \\
+	
+	\textsf{\small Agente di rampa} & \textsf{\small  svolge compiti da tramite fra l'aeromobile e tutto il resto dell'organizzazione aeroportuale, coordinando e supervisionando tutte le attività al suolo. (è un addetto di scalo)} & \textsf{\small } \\
+	
+	\textsf{\small Weight and Balance} & \textsf{\small  anche conosciuto con il termine W/B o Centraggio, è quel dipartimento che si occupa di bilanciare un aeromobile, sia utilizzando supporti informatici, tecnicamente definiti DCS (Departure Control System), oppure, in caso di inattività di questi sistemi, operando manualmente tale bilanciamento tramite dei documenti cartacei chiamati Loadmessage e Trimsheet, che uniti tra loro creano un Loadsheet.} & \textsf{\small } \\
+	
+	\textsf{\small Addetto all'accettazione / Addetto al Check-in} & \textsf{\small Ha il compito di registrare i passeggeri all'accettazione, controllare la validità dei loro documenti e visti, emettere le carte di imbarco, registrare ed etichettare i bagagli da imbarcare. Inoltre si occupa anche dell'imbarco dei passeggeri all'uscita ed è dotato di uno speciale tesserino (lasciapassare) che gli consente di entrare nelle zone sterili dell'aeroporto per compiere il suo lavoro (soprattutto al gate e sul piazzale nel caso di assistenze particolari). (è un addetto di scalo che è un impiegato)} & \textsf{\small } \\
+	
+	\textsf{\small Flight Dispatcher - Flight Operations Officer} & \textsf{\small  è una figura professionale designata da un operatore aeronautico, impegnato nel controllo e supervisione delle operazioni di volo, con licenza oppure no, (opportunamente qualificato in accordo all'Annesso I ICAO,) che sostiene, dà istruzioni e/o assiste l'equipaggio nella condotta sicura del volo.} & \textsf{\small } \\
+	
+	\textsf{\small Terminal Aeroportuale} & \textsf{\small è un edificio dell'aeroporto che permette il trasferimento dei passeggeri dal sistema di trasporto terrestre a quello aeronautico e viceversa.} & \textsf{\small } \\
+	
+	\textsf{\small Trattore aeroportuale - trattore aragosta} & \textsf{\small è un veicolo usato negli aeroporti per la movimentazione degli aeromobili; è usato in particolare per il pushback, cioè per spingere un aereo parcheggiato con il muso rivolto verso il terminal nel piazzale, dove potrà iniziare il suo rullaggio autonomamente.} & \textsf{\small } \\
+	
+	\textsf{\small Uscita aeroportuale - gate} & \textsf{\small Un'uscita aeroportuale o gate (pron. /geit/, in inglese significa letteralmente "varco") indica, in un aeroporto, la porta attraverso cui passare per imbarcarsi su un aeroplano.} & \textsf{\small } \\
+	
+	\textsf{\small Faro Aerodromo} & \textsf{\small ] è un faro rotante posto in prossimità di un aeroporto per facilitare ai piloti in avvicinamento l'individuazione della sua posizione.} & \textsf{\small } \\
+	
+	\textsf{\small Manicotto d'imbarco} & \textsf{\small detto anche passerella telescopica o pontile d'imbarco (a volte chiamato col termine inglese finger, letteralmente "dito"), è un connettore mobile chiuso, che collega un gate di un terminal aeroportuale ad un aereo.} & \textsf{\small } \\
+	
+	\textsf{\small } & \textsf{\small } & \textsf{\small } \\
+	
+	\textsf{\small } & \textsf{\small } & \textsf{\small } \\
+	
+\end{tabular}
+\end{comment}
+%\newpage
+\begin{comment}
+\begin{tabular}{|c|c|c|}
+	\textbf{Termine} & \textbf{Breve descrizione} & \textbf{Sinonimi} \\
+	\textsf{\small Aereoporto} & \textsf{\small  è un'infrastruttura attrezzata per il decollo e l'atterraggio di aeromobili, per il transito dei relativi passeggeri e del loro bagaglio, per il ricovero e il rifornimento dei velivoli.} & \textsf{\small Aerodromo} \\
+\end{tabular}
+\end{comment}
+%\newpage
+
+\begin{comment}
+\begin{table}[htp]
+	\centering
+	%\caption{My caption}
+	%\label{my-label}
+	{\small %
+		\begin{tabular}{p{.18\textwidth}p{.22\textwidth}p{.2\textwidth}p{.2\textwidth}p{.2\textwidth}}
+			Detection\par Methods & Supervised/\par Semi-supervised/\par Unsupervised & Technique Used & Applications & Technology \\
+			Statistical & & Gaussian-based detection & Online anomaly detection & Conventional data centres \\
+			Statistical & & Gaussian-based detection & General & General \\
+			Statistical & & Regression\par analysis & Globally-distributed commercial applications & Distributed, Web-based, Application \&\par System metrics \\
+			Statistical & & Regression\par analysis & Web applications & Enterprise web applications and conventional data centre \\
+			Statistical & & Correlation & Complex\par enterprise online applications & Distributed\par System \\
+			Statistical & & Correlation & Orleans system and distributed cloud computing services & Virtualized, cloud computing and distributed system (Orleans system) \\
+			Statistical & & Correlation & Hadoop,\par Olio and RUBiS & Virtualized cloud computing and distributed systems. \\
+			ĘMachine\par learning & Supervised & Bayesian\par classification & Online\par application & IBM system S-distributed stream\par processing\par cluster \\
+			Machine\par learning & Unsupervised & Neighbour-based technique (Local Outlier Factor algorithm) & General & Cloud\par Computing\par system \\
+			Machine\par learning & Semi-supervised & Principle component analysis and Semi-supervised Decision-tree\_ & Institute-wide cloud computing environment & Cloud\par Computing \\
+			Statistical & & Regression curve fitting the service time-adapted cumulative distributed function & Online\par application service & Platform and configuration agnostic \\
+			& & & & 
+		\end{tabular}%
+	}%
+\end{table}
+\end{comment}
+%\newpage
+
+\begin{table}[htp]
+	\centering
+	%\caption{My caption}
+	%\label{my-label}
+	{\small %
+		\begin{tabular}{p{.18\textwidth}|p{.8\textwidth}|p{.18\textwidth}}
+		\textbf{Termine} & \textbf{Breve descrizione} & \textbf{Sinonimi} \\
+		\hline
+		\textsf{\small Aereoporto} & \textsf{\small  è un'infrastruttura attrezzata per il decollo e l'atterraggio di aeromobili, per il transito dei relativi passeggeri e del loro bagaglio, per il ricovero e il rifornimento dei velivoli.} & \textsf{\small Aerodromo} \\
+		\hline
+		\textsf{\small Aereoplano} & \textsf{\small velivolo impiegato come mezzo di trasporto, fornito di ali, motori e strutture che gli consentono di viaggiare nell’aria e di partire e atterrare su superfici idonee} & \textsf{\small Aereomobile, Aereo} \\
+		\hline
+		\textsf{\small Pilota} & \textsf{\small Persona legalmente abilitata, con regolare brevetto, a guidare un aeromobile} & \textsf{\small } \\
+		\hline
+		\textsf{\small Copilota} & \textsf{\small Chi, a bordo di un velivolo, può svolgere tutte le funzioni del pilota, fuorché quelle di pilota comandante} & \textsf{\small } \\
+		\hline
+		\textsf{\small Assistente di Volo} & \textsf{\small chi assiste i passeggeri sugli aerei civili} & \textsf{\small (Hostess, Steward)} \\
+		\hline
+		\textsf{\small Passeggero} & \textsf{\small Chi viaggia su nave, treno, aereo o altro mezzo di trasporto: navi da carico e per passeggeri;} & \textsf{\small } \\
+		\hline
+		\textsf{\small Compagnia Aerea} & \textsf{\small è un'impresa la cui attività istituzionale consiste nel trasporto di persone o di merci mediante l'utilizzo di aeromobili.} & \textsf{\small } \\
+		\hline
+		\textsf{\small Torre di Controllo} & \textsf{\small  è una struttura sopraelevata usata per le operazioni di controllo del traffico di una determinata area: controlla il traffico aereo a terra e quello che sta per atterrare.} & \textsf{\small } \\
+		\hline
+		\textsf{\small Controllori del traffico aereo} & \textsf{\small sono professionisti che si occupano della fornitura dei servizi del traffico aereo negli spazi aerei di tutto il mondo, con lo scopo di mantenere un sicuro spedito e ordinato flusso del traffico aereo.} & \textsf{\small } \\
+		\hline
+		\textsf{\small Pista} & \textsf{\small è una striscia di superficie di un aerodromo specificatamente attrezzata e adibita al decollo e all'atterraggio di un velivolo.} & \textsf{\small } \\
+		\hline
+		\textsf{\small Via di rullaggio - taxiway} & \textsf{\small è una superficie delimitata all'interno di un aeroporto che identifica il percorso che gli aeromobili debbono percorrere per spostarsi da un punto ad un altro. Una via di rullaggio collega ad esempio le piste con l'area di stazionamento, due diverse parti dell'area di parcheggio, le piazzole di sosta e altre strutture} & \textsf{\small } \\
+		\hline
+		\textsf{\small Addetto di scalo} & \textsf{\small può svolgere il compito di agente di rampa, Weight and balance più comunemente chiamato centrista, addetto al Check-In, addetto all'imbarco o addetto al Lost \& Found.} & \textsf{\small } \\
+		\hline
+		\textsf{\small Agente di rampa} & \textsf{\small  svolge compiti da tramite fra l'aeromobile e tutto il resto dell'organizzazione aeroportuale, coordinando e supervisionando tutte le attività al suolo. (è un addetto di scalo)} & \textsf{\small } \\
+		\hline
+		\textsf{\small Weight and Balance} & \textsf{\small  anche conosciuto con il termine W/B o Centraggio, è quel dipartimento che si occupa di bilanciare un aeromobile, sia utilizzando supporti informatici, tecnicamente definiti DCS (Departure Control System), oppure, in caso di inattività di questi sistemi, operando manualmente tale bilanciamento tramite dei documenti cartacei chiamati Loadmessage e Trimsheet, che uniti tra loro creano un Loadsheet.} & \textsf{\small } \\
+		\hline
+		\textsf{\small Addetto all'accettazione / Addetto al Check-in} & \textsf{\small Ha il compito di registrare i passeggeri all'accettazione, controllare la validità dei loro documenti e visti, emettere le carte di imbarco, registrare ed etichettare i bagagli da imbarcare. Inoltre si occupa anche dell'imbarco dei passeggeri all'uscita ed è dotato di uno speciale tesserino (lasciapassare) che gli consente di entrare nelle zone sterili dell'aeroporto per compiere il suo lavoro (soprattutto al gate e sul piazzale nel caso di assistenze particolari). (è un addetto di scalo che è un impiegato)} & \textsf{\small } \\
+		%\hline
+		\end{tabular}%
+	}%
+\end{table}
+
+\newpage
+
+\begin{table}[htp]
+	\centering
+	%\caption{My caption}
+	%\label{my-label}
+	{\small %
+		\begin{tabular}{p{.27\textwidth}p{.8\textwidth}p{.06\textwidth}}
+			\textbf{Termine} & \textbf{Breve descrizione} & \textbf{Sinonimi} \\
+			\hline			
+			\textsf{\small Flight Dispatcher - Flight Operations Officer} & \textsf{\small è una figura professionale designata da un operatore aeronautico, impegnato nel controllo e supervisione delle operazioni di volo, con licenza oppure no, (opportunamente qualificato in accordo all'Annesso I ICAO,) che sostiene, dà istruzioni e/o assiste l'equipaggio nella condotta sicura del volo.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Terminal Aeroportuale} & \textsf{\small è un edificio dell'aeroporto che permette il trasferimento dei passeggeri dal sistema di trasporto terrestre a quello aeronautico e viceversa.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Trattore aeroportuale - trattore aragosta} & \textsf{\small è un veicolo usato negli aeroporti per la movimentazione degli aeromobili; è usato in particolare per il pushback, cioè per spingere un aereo parcheggiato con il muso rivolto verso il terminal nel piazzale, dove potrà iniziare il suo rullaggio autonomamente.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Uscita aeroportuale - gate} & \textsf{\small Un'uscita aeroportuale o gate (pron. /geit/, in inglese significa letteralmente "varco") indica, in un aeroporto, la porta attraverso cui passare per imbarcarsi su un aeroplano.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Faro Aerodromo} & \textsf{\small è un faro rotante posto in prossimità di un aeroporto per facilitare ai piloti in avvicinamento l'individuazione della sua posizione.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Manicotto d'imbarco} & \textsf{\small detto anche passerella telescopica o pontile d'imbarco (a volte chiamato col termine inglese finger, letteralmente "dito"), è un connettore mobile chiuso, che collega un gate di un terminal aeroportuale ad un aereo.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Flight Engineer (Ingegnere di volo)} & \textsf{\small E' un membro dell'equipaggio responsabile di garantire il corretto funzionamento di tutti i componenti dell'aereo. Inoltre hanno anche il compito di interpretare complicati indicatori e strumenti di volo.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Purser | In-Flight Service Manager (Commissario di bordo)} & \textsf{\small E' responsabile della gestione del denaro a bordo. } & \textsf{\small } \\
+			\hline
+			\textsf{\small Flight medic/paramedic} & \textsf{\small Si occupa delle persone malate e ferite a bordo dell'aereo.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Loadmaster} & \textsf{\small Si occupa di caricare e scaricare i cargo degli aerei, in sicurezza.} & \textsf{\small } \\
+			\hline
+		\end{tabular}%
+	}%
+\end{table}
+
+% ---------------- GROUND SUPPORT EQUIPMENT (GSE) -----------------------------
+
+\subsubsection{Ground Support Equipment [GSE]}
+
+\textsf{\small E' l'attrezzatura che si trova in Aeroporto, di solito, nell'area di stazionamento ed è usata per sostenere le operazioni degli aerei mentre sono a terra. }
+
+\begin{table}[htp]
+	\centering
+	%\caption{My caption}
+	%\label{my-label}
+	{\small %
+		\begin{tabular}{p{.27\textwidth}p{.8\textwidth}p{.06\textwidth}}
+			\textbf{Termine} & \textbf{Breve descrizione} & \textbf{Sinonimi} \\
+			\hline			
+			\textsf{\small Dollies} & \textsf{\small E' un pallet o container per il carico/scarico di bagagli, merci e posta sugli aeromobili.} & \textsf{\small Unit Load Device} \\
+			\hline
+			\textsf{\small Chocks} & \textsf{\small Usati per evitare che l'aereo si muova quando è parcheggiato in un gate o in un hangar.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Aircraft Tripod Jack} & \textsf{\small Usati per prevenire la caduta della coda dell'aereo.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Aircraft Service Stairs} & \textsf{\small Per permettere ai tecnici della manutenzione di raggiungere il fondo dell'aereo.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Refuelers} & \textsf{\small Usati per rifornire un aereo di carburante.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Tugs \& Tractors} & \textsf{\small Usati per muovere l'equipaggiamento che non può muoversi da solo.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Ground Power Unit} & \textsf{\small Serve per rifornire l'aereo di elettricità.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Buses} & \textsf{\small Usati per spostare i passeggeri da un terminale ad un aereo oppure ad un altro terminale.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Contain Loader} & \textsf{\small Usati per caricare/scaricare containers in/da un aereo.} & \textsf{\small Cargo Loaders} \\
+			\hline
+			\textsf{\small Transporters} & \textsf{\small Usati non solo per caricare/scaricare containers, ma anche per il trasporto del cargo.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Air Start Unit} & \textsf{\small E' un dispositivo usato per metter in moto i motori di un aereo quando non è equipaggiato con una APU (Auxiliary Power Unit, fornisce energia ausiliaria all'aereo) o quando l'APU non è operativa.} & \textsf{\small start cart} \\
+			\hline
+			\textsf{\small Non-potable Water Trucks} & \textsf{\small Sono autocarri che fornisco d'acqua l'aereo. L'acqua è non potabile.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Lavatory Service Vehicle} & \textsf{\small Veicoli addetti al ricambio degli apparecchi igienici, tipicamente vaso sanitario (water) e lavabo.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Catering Vehicle} & \textsf{\small Si occupa dello scarico/carico di cibo e bevande.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Belt loaders} & \textsf{\small Veicoli con nastri trasportatori per il carico/scarico di bagagli e cargo.} & \textsf{\small } \\
+		\end{tabular}%
+	}%
+\end{table}
+
+\begin{table}[htp]
+	\centering
+	%\caption{My caption}
+	%\label{my-label}
+	{\small %
+		\begin{tabular}{p{.27\textwidth}p{.8\textwidth}p{.06\textwidth}}
+			\textsf{\small Passenger boarding steps/stairs} & \textsf{\small Permette ai passeggeri di salire/scendere sull'/dall'aereo.} & \textsf{\small boarding ramps} \\
+			\hline
+			\textsf{\small Pushback tugs \& tractors} & \textsf{\small Usati per \emph{spingere} un aereo via dal gate quando è pronto per uscire.} & \textsf{\small } \\
+			\hline
+			\textsf{\small De/anti-icing vehicles} & \textsf{\small E' un veicolo addetto a rimuovere il ghiaccio che si è formato su un aereo. Fa questo, attraverso una pompa che spruzza una speciale miscela in grado di sciogliere il ghiaccio dall'aereo.} & \textsf{\small } \\
+			\hline
+			\textsf{\small Aircraft rescue and firefighting} & \textsf{\small E' una speciale categoria di pompieri addetti all'evacuazione, al salvataggio dei passeggeri coinvolti in una emergenza aeroportuale.} & \textsf{\small } \\
+			\hline
+			%\textsf{\small } & \textsf{\small } & \textsf{\small } \\
+			%\hline
+			%\textsf{\small } & \textsf{\small } & \textsf{\small } \\
+			%\hline
+			%\textsf{\small } & \textsf{\small } & \textsf{\small } \\
+			%\hline
+		\end{tabular}%
+}%
+\end{table}
+

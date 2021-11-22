@@ -1,0 +1,295 @@
+% --- Progetto Basi di Dati ---
+\documentclass[a4paper, 12pt]{article} % Qui era 12pt
+
+% --- PACKAGES ---
+
+\usepackage[italian]{babel}
+\usepackage{comment}
+
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\usepackage{amsmath}
+
+%\usepackage{paralist} % SE ATTIVO PARALIST, ITEMIZE ED ENUMERATE NON FUNZIONANO!!!
+
+\usepackage{amsthm}
+% it introduces the \newtheorem command
+\usepackage{amssymb}
+% new mathematical symbols
+\usepackage{eucal}
+% other mathematical symbols
+\usepackage{gensymb}
+% \degree \celsius \micro \ohm \perthousand
+\usepackage{mathptmx}
+% other mathematical symbols
+\usepackage{latexsym}
+% other mathematical symbols
+\usepackage{mathtools}
+% supplements amsmath
+\usepackage{textcomp}
+% extra symbols arrows like \textrightarrow, \texteuro, \textcelsius
+
+\usepackage[utf8]{inputenc}
+%\usepackage[utf8x]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{listingsutf8}
+%\usepackage[overload]{textcase}
+
+\usepackage{multicol}
+% Per le colonne
+
+%\usepackage{xcolor}
+% Per colorare il testo
+
+\usepackage[table, dvipsnames]{xcolor}
+% Per ulteriori colori
+% Quel table serve invece per colorare le righe in tabular
+
+\usepackage[document]{ragged2e}
+
+\usepackage{blindtext}
+
+\usepackage[scaled=.92]{helvet}
+
+\usepackage{tikz}
+
+%\usepackage{floatrow}
+
+%\usepackage{makecell}
+
+\usepackage[T1]{fontenc}
+%\usepackage{fourier, erewhon}
+\usepackage{geometry}
+%\usepackage[landscape]{geometry}
+\usepackage{array, caption, floatrow, tabularx, makecell, booktabs}%
+
+\usepackage{amsfonts}
+
+%\graphicspath{ {./images/} }
+% graphicspath dice a LaTex la path della cartella dove si trovano le immagini.
+
+\usepackage{float}
+
+\usepackage{etoc}
+
+\usepackage{titlesec}
+%\titleformat{\section}{\normalfont\Large\bfseries\center}{}{0pt}{} % Questo serve per togliere il numero dalla section ; Qui ho aggiunto \center e ora sono centrati
+
+%\usetikzlibrary{snakes}
+
+\usepackage[most]{tcolorbox}
+
+\usepackage{wasysym} % per il Checkmark boxed
+
+\usepackage{hyperref} % per i link e i checkbox
+
+%\usepackage{pict2e}
+
+
+%\begin{comment}
+
+\titleformat
+{\section} % command
+[display] % shape
+{\normalfont\Large\bfseries\center} % format
+{} % label
+{-2ex} % sep %0.5ex
+{
+	\rule{\textwidth}{1pt} % 1 pt
+	\vspace{-2pt} % 1ex
+	\centering
+} % before-code
+[
+\vspace{-2ex}% -0.5ex valori originari
+\rule{\textwidth}{0.3pt} % 0.3pt
+] % after-code
+
+%\end{comment}
+
+\begin{comment}
+\titleformat{\section}[block]
+{\titlerule\addvspace{4pt}\normalfont\Large\bfseries\center}
+{\thesection\enspace}{0pt}{}[\vspace{2pt}\titlerule]
+\end{comment}
+
+\titleformat{\subsection}{\normalfont\large\bfseries\center}{}{0pt}{} % Questo l'ho copiato da sopra ed ho aggiunto center e ora sono centrati
+\titleformat{\subsubsection}{\normalfont\large\bfseries\center\color{red}}{}{0pt}{} % Questo l'ho copiato da sopra ed ho aggiunto center e ora sono centrati
+\setcounter{secnumdepth}{2} % levels under \subsection are not numbered
+% secnumdepth 1 è \section 2 è \subsection
+\setcounter{tocdepth}{3}    % levels under \subsubsection are not listed in the TOC
+% tocdepth 1 è section 2 è subsection e 3 è subsubsection
+
+%\usepackage{sectsty} % Se lo attivo mi metti i numerini nella section
+%\sectionfont{\centering}
+%\allsectionsfont{\centering}
+
+\usepackage{diffcoeff} % per le derivate
+
+\usepackage{pagecolor,lipsum} %pagecolor per colorare la pagina (il background)
+% lo sfondo in italiano
+\usepackage{ltablex}
+
+\usepackage{multirow}
+
+%\usepackage{systeme}
+
+\usetikzlibrary{arrows.meta, angles}
+
+\usetikzlibrary{chains,decorations.pathreplacing}
+
+\usepackage[normalem]{ulem} % serve per sbarrare il testo (strikethrough), usare \sout
+
+\usetikzlibrary{tikzmark} % per circondare gli elementi di una tabella (tabular)
+
+\usetikzlibrary{shapes}
+
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc}
+
+\tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
+
+\usepackage{subfig} % serve per avere immagini una accanto all'altra
+
+\usepackage{cancel} 
+
+\usetikzlibrary{matrix}
+
+\usepackage{soul}
+
+%\usepackage{emerald}% per dalla 1-4 firma (questo mi da errore, not found)
+
+\usepackage{frcursive}% serve per la firma finale (nelle Conclusioni)
+
+\usepackage{inslrmin}% per la 6 firma
+
+%\theoremstyle{definition}
+%\newtheorem{definition}{\textcolor{red}{\underline{Def}:}}[section]
+%\newtheorem{definition}{Def}[section]
+
+%\theoremstyle{theorem}
+%\newtheorem{theorem}{$\boxed{\text{Teorema}}$}[section] 
+%\newtheorem* non accetta valori opzionali, per quelli usare newtheorem senza *
+% è per questo che da errore
+% se si mantiene l'errore, nella prima pagina prima del titolo verrà
+% mostrato [section]
+
+%\newtheorem{theorem}{Teorema}[section]
+%\newtheoremstyle{theorem}{}{}{}{}{\color{red}\bfseries}{}{ }{}
+
+\usepackage{pict2e}
+%\usepackage{titling}
+
+\usepackage{pdflscape}
+
+\usepackage{alltt}
+\usepackage{fancyvrb}
+\usepackage{url}
+
+\usepackage{lscape}
+
+\usepackage{rotating} % per le figure sideways
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black, %blue
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={Sharelatex Example},
+	bookmarks=true,
+	pdfpagemode=FullScreen,
+}
+
+
+% --- FINE USEPACKAGES ---
+
+% ============================ COMMANDS =========================================
+
+
+
+% !TeX root = ../Relazione_Basi_di_Dati_main.tex
+
+% ============= FINE CUSTOM COMMANDS ============================================
+
+\makeindex
+% sembra che con il documentclass: report non vada, mentre con article si!
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{}
+\fancyhead[C]{ % o fancyhead o fancyfoot
+	\includegraphics[width=5cm]{alma_mater_studiorum_cesena_logo.png}
+}
+\pagestyle{plain}
+
+\begin{document}
+	
+	\definecolor{blackbackground}{RGB}{45,45,45}
+	\definecolor{greybackground}{RGB}{60,60,60}
+	%\pagecolor{black!30!white}
+	%\pagecolor{gray!30}
+	%\pagecolor{blackbackground}
+	%\pagecolor{greybackground}
+	%\pagecolor{white!50!gray}
+	%\pagecolor{white!10!gray}
+	%\pagecolor{white!20!gray}
+	%\pagecolor{white!30!gray}
+	
+	\begin{comment}
+	\pretitle{\begin{center}
+			\includegraphics[width=2in,height=2in]{alma_mater_studiorum_cesena_logo.jpg}\LARGE\\}
+	\posttitle{\end{center}}
+	\end{comment}
+	
+	%\begin{comment}
+	\title{%
+	\huge Relazione per il corso di Basi di dati \\
+	A.A 2019/2020 \\
+	\large Progetto di una base di dati per la gestione di un Aeroporto\\
+	%\flushright \normalsize Luca Rengo \\
+	%Matricola: 0000936177 \\
+	%7, Maggio 2021
+	}
+
+	\author{Luca Rengo}
+	
+	\date{Maggio | Giugno | Luglio | Agosto 2021} % se non metto niente, mi rimuove la data di default
+	%\end{comment}
+	\maketitle
+	
+	\thispagestyle{fancy}
+	
+	\pagebreak
+	
+	% INIZIO: TABLEOFCONTENTS
+	
+	\let\cleardoublepage\clearpage
+	\tableofcontents
+	\pagenumbering{arabic}
+	\setcounter{page}{2}
+	%\etocsettocstyle{\subsection*{This Chapter contains:}}{\noindent\rule{\linewidth}{.4pt}}
+	% C'è bisogno del package etoc
+	%\chapter{Extinct Species}
+	%\localtableofcontents
+	
+	% FINE: TABLEOFCONTENTS
+	
+	\fancyhf{}
+	\begin{comment}
+	\renewcommand{\headrulewidth}{2pt}
+	\renewcommand{\footrulewidth}{1pt}
+	\fancyhead[LE]{\leftmark}
+	\fancyhead[RO]{\nouppercase{\rightmark}}
+	\fancyfoot[LE, RO]{\thepage}
+	\end{comment}
+	
+	\input{Relazione_di_Basi_di_Dati1}
+	
+	\input{Relazione_Basi_di_Dati_Progettazione_Concettuale}
+	
+	\input{Relazione_Basi_di_Dati_Progettazione_Logica}
+	
+	%TODO: \input{Relazione_Basi_di_Dati_Applicativo} 
+	%oppure chiamarlo Progettazione dell'Applicativo (la section, non il nome del file).
+	
+\end{document}
