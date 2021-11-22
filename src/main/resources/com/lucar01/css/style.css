@@ -1,20 +1,20 @@
 .button {
--fx-background-color :  #0d7bf2;
--fx-background-radius : 0px;
+    -fx-background-color :  #0d7bf2;
+    -fx-background-radius : 0px;
 }
 
 .button:hover{
--fx-background-color: #2070ab;
+    -fx-background-color: #2070ab;
 }
 
 .button:pressed{
--fx-background-color: #052d58;
+    -fx-background-color: #052d58;
 }
 
 .button:focused{
--fx-background-color: #37c3c8;
--fx-border-color: #1aa7e5;
--fx-border-width: 0px 0px 0px 3px;
+    -fx-background-color: #37c3c8;
+    -fx-border-color: #1aa7e5;
+    -fx-border-width: 0px 0px 0px 3px;
 }
 
 
