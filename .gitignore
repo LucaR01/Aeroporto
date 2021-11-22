@@ -16,3 +16,10 @@ buildNumber.properties
 # IntelliJ
 .idea/
 *.iml
+
+# LaTeX
+*.aux
+*.toc
+*.out
+*.idx
+*.syntex
