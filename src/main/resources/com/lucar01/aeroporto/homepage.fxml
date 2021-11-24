@@ -158,9 +158,9 @@
                 <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="357.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="401.0" prefWidth="743.0" stylesheets="@../css/style.css" GridPane.rowIndex="1">
+                  <TableView fx:id="table" prefHeight="401.0" prefWidth="743.0" stylesheets="@../css/style.css" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
                       <TableColumn prefWidth="75.0" text="C2" />
                         <TableColumn prefWidth="75.0" text="C2" />
                         <TableColumn prefWidth="75.0" text="C2" />
@@ -178,8 +178,8 @@
                            </image>
                         </ImageView>
                         <TextField prefHeight="25.0" prefWidth="223.0" style="-fx-border-color: #12a2ed;" />
-                        <ComboBox prefWidth="150.0" style="-fx-border-color: #12a2ed; -fx-background-color: #fff;" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" stylesheets="@../css/style.css" text="Persona" textFill="WHITE" />
+                        <ComboBox fx:id="combo_tables" onAction="#handleTableSelection" prefWidth="150.0" style="-fx-border-color: #12a2ed; -fx-background-color: #fff;" />
+                        <Button fx:id="btnSelectedTable" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" stylesheets="@../css/style.css" text="Persona" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
