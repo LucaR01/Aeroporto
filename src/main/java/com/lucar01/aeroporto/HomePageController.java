@@ -1,5 +1,7 @@
 package com.lucar01.aeroporto;
 
+import com.lucar01.aeroporto.controllers.DatabaseController;
+import com.lucar01.aeroporto.table.Persona;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,8 +11,8 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 
-import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -18,9 +20,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.Time;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class HomePageController implements Initializable {
+public class HomePageController implements Initializable { //TODO: mettere nel package controllers
 
     @FXML
     private Button btnAddTable;
@@ -67,11 +71,25 @@ public class HomePageController implements Initializable {
     @FXML
     private GridPane paneSettings;
 
-    @FXML
-    private TableView<?> table;
+    //TODO: le cose riguardanti la tabella sono da mettere in un altro controller
 
     @FXML
-    private TableColumn<?, ?> col_id;
+    private TableView<Persona> table; //TODO: da modificare e mostrare diversi dati.
+
+    @FXML
+    private TableColumn<Persona, String> col_id;
+
+    @FXML
+    private TableColumn<Persona, String> col1;
+
+    @FXML
+    private TableColumn<Persona, String> col2;
+
+    @FXML
+    private TableColumn<Persona, Integer> col3;
+
+    @FXML
+    private TableColumn<Persona, Optional<String>> col4;
 
     @FXML
     private ComboBox<String> combo_tables;
@@ -79,11 +97,46 @@ public class HomePageController implements Initializable {
     @FXML
     private Button btnSelectedTable;
 
+    @FXML
+    ObservableList<Persona> personaObservableList;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> tablesList = FXCollections.observableArrayList("Persona", "Aereo"); //TODO: li prendo da un enum tables del database
         this.combo_tables.setItems(tablesList);
+
+        //TODO: col_id.setCellValueFactory(new PropertyValueFactory<Persona, String>("CodiceFiscale"));
+        //TODO: aggiungere anche le altre colonne.
+
+        // Devono essere scritti come in Persona.
+        this.col_id.setCellValueFactory(new PropertyValueFactory<Persona, String>("codiceFiscale"));
+        this.col1.setCellValueFactory(new PropertyValueFactory<Persona, String>("nome"));
+        this.col2.setCellValueFactory(new PropertyValueFactory<Persona, String>("cognome"));
+        this.col3.setCellValueFactory(new PropertyValueFactory<Persona, Integer>("age")); // se metto Età non va. Credo che debbano essere come in Persona
+        this.col4.setCellValueFactory(new PropertyValueFactory<Persona, Optional<String>>("ruolo"));
+
+        TableColumn ora_inizio = new TableColumn("Ora_inizio");
+        table.getColumns().add(ora_inizio);
+        TableColumn ora_fine = new TableColumn("Ora_fine");
+        table.getColumns().add(ora_fine);
+
+        //ora_inizio.setCellValueFactory(new PropertyValueFactory<Persona, Optional<Time>>("oraInizio")); // se metto Età non va. Credo che debbano essere come in Persona
+        //ora_fine.setCellValueFactory(new PropertyValueFactory<Persona, Optional<Time>>("oraFine"));
+
+        //table.getColumns().addAll(ora_inizio, ora_fine);
+
+        // Questo funziona
+        this.col_id.setText("CodiceFiscale"); //TODO: remove
+        this.col1.setText("Nome");
+
+        personaObservableList = DatabaseController.getPersone();
+        this.table.setItems(personaObservableList);
+
+        /*TableColumn id = new TableColumn("ID"); // "ID" nome della colonna //TODO: remove
+        table.getColumns().add(id);
+
+        table.getColumns().removeAll(col_id);*/ //TODO: remove
     }
 
     @FXML
@@ -149,5 +202,7 @@ public class HomePageController implements Initializable {
         //TODO: quando seleziona una tabella diversa, deve cambiare la tabella nella schermata di table, deve mostrare i dati della tabella nelle colonne.
         String selectedTable = this.combo_tables.getSelectionModel().getSelectedItem().toString();
         this.btnSelectedTable.setText(selectedTable);
+
+        //TODO: switch o if
     }
 }
