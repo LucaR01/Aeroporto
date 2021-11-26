@@ -15,6 +15,20 @@ public class Persona { //TODO: lasciare un singolo costruttore, quando si sarà 
     private Optional<Time> oraInizio;
     private Optional<Time> oraFine;
 
+    //FOREIGN KEYS
+    private int codCentro;
+    private int codLogistica;
+    private int codMantenimento;
+    private int codNegozio;
+    private int codServizio;
+    private int codTerminal;
+    private int codTorre;
+    private int codVolo;
+    private int codCompagnia;
+    private int codAereo;
+    private int codRadar;
+    private  int codSoccorso;
+
     //TODO: con optional non va, usare semplicemente string
     public Persona(String codiceFiscale, String nome, String cognome, int age, Optional<String> ruolo, Optional<Time> oraInizio, Optional<Time> oraFine){
         this.codiceFiscale = codiceFiscale;
