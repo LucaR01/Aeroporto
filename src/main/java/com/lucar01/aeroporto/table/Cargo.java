@@ -2,7 +2,7 @@ package com.lucar01.aeroporto.table;
 
 import java.sql.Time;
 
-public class Cargo {
+public class Cargo implements Tables{
 
     private int codCargo;
     private int numDipendenti;

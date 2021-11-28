@@ -1,6 +1,6 @@
 package com.lucar01.aeroporto.table;
 
-public class Bagaglio {
+public class Bagaglio implements Tables{
 
     private int codBagaglio;
     private int peso;
