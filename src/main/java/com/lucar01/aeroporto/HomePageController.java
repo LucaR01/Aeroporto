@@ -1,7 +1,11 @@
 package com.lucar01.aeroporto;
 
+import com.lucar01.aeroporto.controllers.DataController;
 import com.lucar01.aeroporto.controllers.DatabaseController;
+import com.lucar01.aeroporto.controllers.TableController;
 import com.lucar01.aeroporto.table.Persona;
+import com.lucar01.aeroporto.table.Table;
+import com.lucar01.aeroporto.table.Tables;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 
 import javafx.scene.control.Label;
@@ -21,6 +26,8 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -74,7 +81,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     //TODO: le cose riguardanti la tabella sono da mettere in un altro controller
 
     @FXML
-    private TableView<Persona> table; //TODO: da modificare e mostrare diversi dati.
+    //private TableView<Persona> table; //TODO: da modificare e mostrare diversi dati.
+    private TableView<Tables> table;
 
     @FXML
     private TableColumn<Persona, String> col_id;
@@ -110,7 +118,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         //TODO: aggiungere anche le altre colonne.
 
         // Devono essere scritti come in Persona.
-        this.col_id.setCellValueFactory(new PropertyValueFactory<Persona, String>("codiceFiscale"));
+        /*this.col_id.setCellValueFactory(new PropertyValueFactory<Persona, String>("codiceFiscale")); //TODO: uncomment
         this.col1.setCellValueFactory(new PropertyValueFactory<Persona, String>("nome"));
         this.col2.setCellValueFactory(new PropertyValueFactory<Persona, String>("cognome"));
         this.col3.setCellValueFactory(new PropertyValueFactory<Persona, Integer>("age")); // se metto Età non va. Credo che debbano essere come in Persona
@@ -119,7 +127,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         TableColumn ora_inizio = new TableColumn("Ora_inizio");
         table.getColumns().add(ora_inizio);
         TableColumn ora_fine = new TableColumn("Ora_fine");
-        table.getColumns().add(ora_fine);
+        table.getColumns().add(ora_fine);*/
 
         //ora_inizio.setCellValueFactory(new PropertyValueFactory<Persona, Optional<Time>>("oraInizio")); // se metto Età non va. Credo che debbano essere come in Persona
         //ora_fine.setCellValueFactory(new PropertyValueFactory<Persona, Optional<Time>>("oraFine"));
@@ -127,16 +135,33 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         //table.getColumns().addAll(ora_inizio, ora_fine);
 
         // Questo funziona
-        this.col_id.setText("CodiceFiscale"); //TODO: remove
-        this.col1.setText("Nome");
+        /*this.col_id.setText("CodiceFiscale"); //TODO: remove
+        this.col1.setText("Nome");*/
 
-        personaObservableList = DatabaseController.getPersone();
-        this.table.setItems(personaObservableList);
+        //this.table = TableController.createTablePersona();
+        //createTablePersona();
+
+        //personaObservableList = DatabaseController.getPersone(); //TODO: uncomment
+        //this.table.setItems(personaObservableList);
 
         /*TableColumn id = new TableColumn("ID"); // "ID" nome della colonna //TODO: remove
         table.getColumns().add(id);
 
         table.getColumns().removeAll(col_id);*/ //TODO: remove
+
+        System.out.println("number of columns: " + DatabaseController.getNumberOfColumnsPersona());
+        System.out.println("names and datatypes: " + DatabaseController.getNamesOfColumnsPersona());
+
+        System.out.println("number of columns generico: " + DataController.getNumberOfColumns("persona"));
+        System.out.println("number of columns generico: " + DataController.getNamesOfColumns("persona"));
+
+        System.out.println("DataController aereo: " + DataController.getTableData(Table.AEREO));
+        System.out.println("DataController hangar: " + DataController.getTableData(Table.HANGAR));
+
+        ArrayList<String> bagaglioList = new ArrayList<>(Arrays.asList("CodBagaglio", "peso", "CodiceFiscale"));
+        System.out.println("TableController: " + TableController.createTable(Table.BAGAGLIO, 3, bagaglioList));
+
+        this.table = TableController.createTable(Table.BAGAGLIO, 3, bagaglioList);
     }
 
     @FXML
@@ -205,4 +230,20 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         //TODO: switch o if
     }
+
+    /*private void createTablePersona(){ //TODO: uncomment
+        ArrayList<String> personaList = new ArrayList<>();
+
+        personaList.add("codiceFiscale");
+        personaList.add("nome");
+        personaList.add("cognome");
+
+        for(int i = 0; i < 3; i++) {
+            TableColumn<Persona, String> column = new TableColumn<>("COL" + i);
+            column.setCellValueFactory(new PropertyValueFactory<Persona, String>(personaList.get(i)));
+            this.table.getColumns().add(column);
+
+        }
+    }*/
+
 }
