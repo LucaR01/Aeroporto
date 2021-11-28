@@ -1,6 +1,6 @@
 package com.lucar01.aeroporto.table;
 
-public class Hangar {
+public class Hangar extends AbstractTable {
 
     private int codHangar;
     private int numAerei;
