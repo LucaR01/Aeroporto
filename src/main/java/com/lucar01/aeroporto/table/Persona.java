@@ -3,7 +3,7 @@ package com.lucar01.aeroporto.table;
 import java.sql.Time;
 import java.util.Optional;
 
-public class Persona { //TODO: lasciare un singolo costruttore, quando si sarà fixato tutto.
+public class Persona implements Tables{ //TODO: lasciare un singolo costruttore, quando si sarà fixato tutto.
 
     private String codiceFiscale;
 

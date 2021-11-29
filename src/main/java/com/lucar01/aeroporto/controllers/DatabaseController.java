@@ -2,6 +2,7 @@ package com.lucar01.aeroporto.controllers;
 
 import com.lucar01.aeroporto.Database;
 import com.lucar01.aeroporto.table.Persona;
+import com.lucar01.aeroporto.table.Table;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -13,64 +14,63 @@ import java.util.Optional;
 
 public class DatabaseController {  //TODO: generalizzare questi metodi, altrimenti ci metterei troppo tempo e farei troppi metodi per fare la stessa cosa!
     //TODO: metodi generali: getTable(String tableName), getNumberOfColumns(String tableName), getNamesOfColumns(String tableName);
+    //TODO: al posto di una stringa per il table name posso usare un enum.
+    //TODO: oppure potrei direttamente mettere nell'enum il numero di colonne, i loro nomi, e la loro tipologia ecc..
 
-    //private static final Database database = new Database();
     private final static Connection CONNECTION = Database.getConnection();
 
-    public void showTable(){
-        //TODO:
-    }
-
-    public static ObservableList<Persona> getPersone(){ //TODO: or getPersona
-        Connection connection = Database.getConnection();
-        ObservableList<Persona> personaObservableList = FXCollections.observableArrayList();
+    public static int getNumberOfColumns(Table table){
+        int numberOfColumns = 0;
 
         try{
-            PreparedStatement ps = connection.prepareStatement("SELECT CodiceFiscale, Nome, Cognome, Età, Ruolo, Ora_inizio, Ora_fine FROM persona"); //TODO: forse aggiungere aeroporto.persona
-            ResultSet resultSet = ps.executeQuery();
+            String query = "SELECT COUNT(*) AS NUM_OF_COLUMNS FROM information_schema.columns WHERE TABLE_NAME = '" + table.getTableName() + "'";
+            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
-                /*personaObservableList.add(new Persona(resultSet.getString("CodiceFiscale"), resultSet.getString("Nome"), resultSet.getString("Cognome"),
-                        Integer.parseInt(resultSet.getString("Età")), Optional.of(resultSet.getString("Ruolo")), Optional.of(resultSet.getTime("Ora_inizio")),
-                        Optional.of(resultSet.getTime("Ora_fine"))));*/ //TODO: to fix and uncomment
-                personaObservableList.add(new Persona(resultSet.getString("CodiceFiscale"), resultSet.getString("Nome"), resultSet.getString("Cognome"),
-                        Integer.parseInt(resultSet.getString("Età")), Optional.of(resultSet.getString("Ruolo"))));
+                numberOfColumns = resultSet.getInt("NUM_OF_COLUMNS");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return numberOfColumns;
+    }
+
+    public static ObservableList<String> getNamesOfColumnsAndDataTypes(Table table){
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+
+        try{
+            String query = "SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
+            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            //TODO: for number of column put column_name.
+            while(resultSet.next()){
+                observableList.add(resultSet.getString("COLUMN_NAME"));
+                observableList.add(resultSet.getString("DATA_TYPE"));
             }
 
         }catch(Exception e){
             e.printStackTrace();
         }
 
-        return personaObservableList;
+        return observableList;
     }
 
-    public static int getNumberOfColumnsPersona(){ //TODO: fix numberOfColumns.
-        Connection connection = Database.getConnection();
-
-        int numberOfColumns = 0;
+    public static ObservableList<String> getNamesOfColumns(Table table){
+        ObservableList<String> observableList = FXCollections.observableArrayList();
 
         try{
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS NUM_OF_COLUMNS FROM information_schema.columns WHERE TABLE_NAME = 'persona' ");
+            String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
+            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
-            numberOfColumns = Integer.parseInt(resultSet.getString("NUM_OF_COLUMNS"));
+            while(resultSet.next()){
+                observableList.add(resultSet.getString("COLUMN_NAME"));
+            }
+
         }catch(Exception e){
             e.printStackTrace();
         }
 
-        return numberOfColumns;
-        //return 0;
-    }
-
-    public static String[] getNamesOfColumnsPersona(){
-        //Connection connection = Database.getConnection();
-        try{
-            PreparedStatement preparedStatement = DatabaseController.CONNECTION.prepareStatement("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'persona' ");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            //TODO: for number of column put column_name.
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return null;
+        return observableList;
     }
 }

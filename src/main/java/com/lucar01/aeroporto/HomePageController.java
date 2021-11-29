@@ -106,7 +106,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     private Button btnSelectedTable;
 
     @FXML
-    ObservableList<Persona> personaObservableList;
+    //ObservableList<Persona> personaObservableList;
+    ObservableList<Tables> personaObservableList;
 
 
     @Override
@@ -114,54 +115,33 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         ObservableList<String> tablesList = FXCollections.observableArrayList("Persona", "Aereo"); //TODO: li prendo da un enum tables del database
         this.combo_tables.setItems(tablesList);
 
-        //TODO: col_id.setCellValueFactory(new PropertyValueFactory<Persona, String>("CodiceFiscale"));
-        //TODO: aggiungere anche le altre colonne.
+        // NON VA
+        //ArrayList<String> aereoList = new ArrayList<>(Arrays.asList("CodBagaglio", "peso", "CodiceFiscale"));
+        //this.table = TableController.createTable(Table.BAGAGLIO, 3, aereoList);
 
-        // Devono essere scritti come in Persona.
-        /*this.col_id.setCellValueFactory(new PropertyValueFactory<Persona, String>("codiceFiscale")); //TODO: uncomment
-        this.col1.setCellValueFactory(new PropertyValueFactory<Persona, String>("nome"));
-        this.col2.setCellValueFactory(new PropertyValueFactory<Persona, String>("cognome"));
-        this.col3.setCellValueFactory(new PropertyValueFactory<Persona, Integer>("age")); // se metto Età non va. Credo che debbano essere come in Persona
-        this.col4.setCellValueFactory(new PropertyValueFactory<Persona, Optional<String>>("ruolo"));
-
-        TableColumn ora_inizio = new TableColumn("Ora_inizio");
-        table.getColumns().add(ora_inizio);
-        TableColumn ora_fine = new TableColumn("Ora_fine");
-        table.getColumns().add(ora_fine);*/
-
-        //ora_inizio.setCellValueFactory(new PropertyValueFactory<Persona, Optional<Time>>("oraInizio")); // se metto Età non va. Credo che debbano essere come in Persona
-        //ora_fine.setCellValueFactory(new PropertyValueFactory<Persona, Optional<Time>>("oraFine"));
-
-        //table.getColumns().addAll(ora_inizio, ora_fine);
-
-        // Questo funziona
-        /*this.col_id.setText("CodiceFiscale"); //TODO: remove
-        this.col1.setText("Nome");*/
-
+        // NON VA
         //this.table = TableController.createTablePersona();
+
+        //col_id.setCellValueFactory(new PropertyValueFactory<Persona, String>("codiceFiscale"));
+
+        // NON VA
+        //this.table = createTablePersona();
+
+        // VA
         //createTablePersona();
 
-        //personaObservableList = DatabaseController.getPersone(); //TODO: uncomment
-        //this.table.setItems(personaObservableList);
+        //QUESTO VA
+        ObservableList<String> personaList = FXCollections.observableArrayList();
+        personaList.addAll("codiceFiscale", "nome", "cognome", "age");
+        final int numOfColumns = DatabaseController.getNumberOfColumns(Table.PERSONA) - 15;
+        //final ObservableList<String> personaList = DatabaseController.getNamesOfColumns(Table.PERSONA); //TODO: questo va bene, ma me li prende tutti
 
-        /*TableColumn id = new TableColumn("ID"); // "ID" nome della colonna //TODO: remove
-        table.getColumns().add(id);
+        System.out.println("numOfColumns: " + numOfColumns);
+        System.out.println("personaList: " + personaList);
+        createTable(Table.PERSONA, numOfColumns, personaList); //TODO: Il numero di colonne le devo prendere dal metodo in DatabaseController e anche il nome delle colonne
 
-        table.getColumns().removeAll(col_id);*/ //TODO: remove
-
-        System.out.println("number of columns: " + DatabaseController.getNumberOfColumnsPersona());
-        System.out.println("names and datatypes: " + DatabaseController.getNamesOfColumnsPersona());
-
-        System.out.println("number of columns generico: " + DataController.getNumberOfColumns("persona"));
-        System.out.println("number of columns generico: " + DataController.getNamesOfColumns("persona"));
-
-        System.out.println("DataController aereo: " + DataController.getTableData(Table.AEREO));
-        System.out.println("DataController hangar: " + DataController.getTableData(Table.HANGAR));
-
-        ArrayList<String> bagaglioList = new ArrayList<>(Arrays.asList("CodBagaglio", "peso", "CodiceFiscale"));
-        System.out.println("TableController: " + TableController.createTable(Table.BAGAGLIO, 3, bagaglioList));
-
-        this.table = TableController.createTable(Table.BAGAGLIO, 3, bagaglioList);
+        personaObservableList = DataController.getTableData2(Table.PERSONA);
+        this.table.setItems(personaObservableList);
     }
 
     @FXML
@@ -231,7 +211,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         //TODO: switch o if
     }
 
-    /*private void createTablePersona(){ //TODO: uncomment
+    public void createTablePersona(){
         ArrayList<String> personaList = new ArrayList<>();
 
         personaList.add("codiceFiscale");
@@ -239,11 +219,36 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         personaList.add("cognome");
 
         for(int i = 0; i < 3; i++) {
-            TableColumn<Persona, String> column = new TableColumn<>("COL" + i);
-            column.setCellValueFactory(new PropertyValueFactory<Persona, String>(personaList.get(i)));
+            TableColumn<Tables, String> column = new TableColumn<>(personaList.get(i)); //TODO: personaList.get(i); , prima c'era "COL" + i
+            column.setCellValueFactory(new PropertyValueFactory<Tables, String>(personaList.get(i)));
             this.table.getColumns().add(column);
 
         }
-    }*/
+
+    }
+
+    public void createTable(Table table, int numOfColumns, ObservableList<String> columnsName){
+
+        for(int i = 0; i < numOfColumns; i++){
+            switch(table){
+                case BAGAGLIO:
+                    TableColumn<Tables, String> columnBagaglio = new TableColumn<>();
+                    columnBagaglio.setCellValueFactory(new PropertyValueFactory<Tables, String>(columnsName.get(i)));
+                    this.table.getColumns().add(columnBagaglio);
+                    break;
+                case CARGO:
+                    TableColumn<Tables, String> columnCargo = new TableColumn<>();
+                    columnCargo.setCellValueFactory(new PropertyValueFactory<Tables, String>(columnsName.get(i)));
+                    this.table.getColumns().add(columnCargo);
+                    break;
+                case PERSONA:
+                    TableColumn<Tables, String> columnPersona = new TableColumn<>();
+                    columnPersona.setText(columnsName.get(i).toUpperCase());
+                    columnPersona.setCellValueFactory(new PropertyValueFactory<Tables, String>(columnsName.get(i)));
+                    this.table.getColumns().add(columnPersona);
+                    break;
+            }
+        }
+    }
 
 }
