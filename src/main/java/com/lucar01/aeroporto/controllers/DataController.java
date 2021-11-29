@@ -1,16 +1,14 @@
 package com.lucar01.aeroporto.controllers;
 
 import com.lucar01.aeroporto.Database;
-import com.lucar01.aeroporto.table.AbstractTable;
-import com.lucar01.aeroporto.table.Aereo;
-import com.lucar01.aeroporto.table.Hangar;
-import com.lucar01.aeroporto.table.Table;
+import com.lucar01.aeroporto.table.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Optional;
 
 public class DataController<T> {
 
@@ -63,6 +61,41 @@ public class DataController<T> {
                 case HANGAR:
                     while(resultSet.next()){
                         observableList.add(new Hangar(resultSet.getInt("CodHangar"), resultSet.getInt("Num_aerei")));
+                    }
+                    break;
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return observableList;
+    }
+
+    public static ObservableList<Tables> getTableData2(Table tableName){
+        ObservableList<Tables> observableList = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT * FROM " + tableName.getTableName();
+            PreparedStatement ps = CONNECTION.prepareStatement(query);
+            ResultSet resultSet = ps.executeQuery();
+
+            switch(tableName){ //TODO: uncomment
+                /*case AEREO:
+                    while(resultSet.next()){
+                        observableList.add(new Aereo(resultSet.getInt("CodAereo"), resultSet.getString("nome"), resultSet.getInt("Num_equipaggio"), resultSet.getInt("peso"), resultSet.getString("Tipologia"),
+                                resultSet.getInt("Num_passeggeri"), resultSet.getInt("Num_merci"), resultSet.getBoolean("Commerciale")));
+                    }
+                    break;
+                case HANGAR:
+                    while(resultSet.next()){
+                        observableList.add(new Hangar(resultSet.getInt("CodHangar"), resultSet.getInt("Num_aerei")));
+                    }
+                    break;*/
+                case PERSONA:
+                    while(resultSet.next()){
+                        observableList.add(new Persona(resultSet.getString("CodiceFiscale"), resultSet.getString("Nome"), resultSet.getString("Cognome"),
+                                Integer.parseInt(resultSet.getString("Età")), Optional.of(resultSet.getString("Ruolo"))));
                     }
                     break;
             }
