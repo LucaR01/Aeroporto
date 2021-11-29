@@ -133,14 +133,15 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         //QUESTO VA
         ObservableList<String> personaList = FXCollections.observableArrayList();
         personaList.addAll("codiceFiscale", "nome", "cognome", "age");
-        final int numOfColumns = DatabaseController.getNumberOfColumns(Table.PERSONA) - 15;
-        //final ObservableList<String> personaList = DatabaseController.getNamesOfColumns(Table.PERSONA); //TODO: questo va bene, ma me li prende tutti
+        final int numOfColumns = DatabaseController.getNumberOfColumns(Table.PERSONA); // -15 solo perchè voglio le prime 4
+        //final ObservableList<String> personaList = DatabaseController.getNamesOfColumns(Table.PERSONA); //TODO: funziona, ma in quella sotto, la getTableData non ottengo tutti i dati
+        // di tutte le colonne.
 
         System.out.println("numOfColumns: " + numOfColumns);
         System.out.println("personaList: " + personaList);
         createTable(Table.PERSONA, numOfColumns, personaList); //TODO: Il numero di colonne le devo prendere dal metodo in DatabaseController e anche il nome delle colonne
 
-        personaObservableList = DataController.getTableData2(Table.PERSONA);
+        personaObservableList = DataController.getTableData2(Table.PERSONA); // Da qui non recupera tutti i dati, per il momento
         this.table.setItems(personaObservableList);
     }
 
