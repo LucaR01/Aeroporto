@@ -1,6 +1,6 @@
 package com.lucar01.aeroporto.table;
 
-public class Terminal {
+public class Terminal implements Tables{
 
     private int codTerminal;
 
