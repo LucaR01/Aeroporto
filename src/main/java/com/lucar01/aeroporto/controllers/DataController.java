@@ -137,7 +137,7 @@ public class DataController<T> {
             PreparedStatement ps = CONNECTION.prepareStatement(query);
             ResultSet resultSet = ps.executeQuery();
 
-            while(resultSet.next()){
+            while(resultSet.next()){ //TODO: aggiungere le altre tabelle.
                 switch(tableName){
                     case PERSONA:
                         observableList.add(new Persona(resultSet.getString("CodiceFiscale"), resultSet.getString("Nome"), resultSet.getString("Cognome"),
@@ -145,6 +145,9 @@ public class DataController<T> {
                         break;
                     case BAGAGLIO:
                         observableList.add(new Bagaglio(resultSet.getInt("CodBagaglio"), resultSet.getInt("peso"), resultSet.getString("CodiceFiscale")));
+                        break;
+                    case TERMINAL:
+                        observableList.add(new Terminal(resultSet.getInt("CodTerminal")));
                         break;
                 }
             }
