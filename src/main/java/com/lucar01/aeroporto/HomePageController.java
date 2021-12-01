@@ -112,7 +112,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<String> tablesList = FXCollections.observableArrayList("Persona", "Aereo"); //TODO: li prendo da un enum tables del database, oppure li prendo con una query.
+        ObservableList<String> tablesList = FXCollections.observableArrayList("Persona", "Aereo", "Bagaglio", ""); //TODO: li prendo da un enum tables del database, oppure li prendo con una query.
         this.combo_tables.setItems(tablesList);
 
         // NON VA
@@ -152,28 +152,27 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         // TEST BAGAGLIO
         // VA
 
-        ObservableList<String> bagaglioColumnsNameList = FXCollections.observableArrayList();
+        /*ObservableList<String> bagaglioColumnsNameList = FXCollections.observableArrayList();
         bagaglioColumnsNameList = DatabaseController.getNamesOfColumns(Table.BAGAGLIO);
 
         final int bagaglioNumOfColumns = DatabaseController.getNumberOfColumns(Table.BAGAGLIO);
 
-        ObservableList<Tables> bagaglioDataList;
+        final ObservableList<Tables> bagaglioDataList = DataController.getTableData3(Table.BAGAGLIO);;
 
         System.out.println("bagaglioNumOfColumns: " + bagaglioNumOfColumns);
         System.out.println("bagaglioColumnsNameList: " + bagaglioColumnsNameList);
         //createTable(Table.BAGAGLIO, bagaglioNumOfColumns, bagaglioColumnsNameList); //ANCHE QUESTO FUNZIONA
         createTable2(bagaglioNumOfColumns, bagaglioColumnsNameList); //QUESTO FUNZIONA
 
-        bagaglioDataList = DataController.getTableData2(Table.BAGAGLIO);
-        this.table.setItems(bagaglioDataList);
+        this.table.setItems(bagaglioDataList);*/
 
         //this.table.getSelectionModel().getSelectedItem();  // OTTIENE L'ELEMENTO SELEZIONATO.
         //this.table.getItems().clear(); // RIMUOVE GLI ITEMS E FUNZIONA.
-        this.table.getColumns().clear(); // RIMUOVE LE COLONNE.
+        /*this.table.getColumns().clear(); // RIMUOVE LE COLONNE.
 
         TableColumn<Tables, String> column = new TableColumn<>();
         column.setText("Ciao");
-        this.table.getColumns().add(column);
+        this.table.getColumns().add(column);*/
 
         // =============================================================================================================
     }
@@ -242,7 +241,75 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         String selectedTable = this.combo_tables.getSelectionModel().getSelectedItem().toString();
         this.btnSelectedTable.setText(selectedTable);
 
-        //TODO: switch o if
+        switch(this.combo_tables.getSelectionModel().getSelectedItem()){
+            case "Persona":
+                showTable(Table.PERSONA);
+                break;
+            case "Bagaglio":
+                showTable(Table.BAGAGLIO);
+                break;
+            default:
+                this.table.getColumns().clear();
+                break;
+        }
+
+        // ANCHE QUESTO FUNZIONA
+
+        /*switch(this.combo_tables.getSelectionModel().getSelectedItem()){
+            case "Persona":
+                this.table.getColumns().clear();
+
+                final ObservableList<String> personaList = DatabaseController.getNamesOfColumns(Table.PERSONA);
+                final int numOfColumns = DatabaseController.getNumberOfColumns(Table.PERSONA) - 15; // -15 solo perchè voglio le prime 4
+                personaObservableList = DataController.getTableData3(Table.PERSONA);
+
+                System.out.println("numOfColumns: " + numOfColumns); //TODO: remove
+                System.out.println("personaList: " + personaList); //TODO: remove
+                createTable2(numOfColumns, personaList);
+
+                this.table.setItems(personaObservableList);
+                break;
+            case "Bagaglio":
+                this.table.getColumns().clear();
+
+                final ObservableList<String> bagaglioColumnsNameList = DatabaseController.getNamesOfColumns(Table.BAGAGLIO);
+                final int bagaglioNumOfColumns = DatabaseController.getNumberOfColumns(Table.BAGAGLIO);
+                final ObservableList<Tables> bagaglioDataList = DataController.getTableData3(Table.BAGAGLIO);
+
+                createTable2(bagaglioNumOfColumns, bagaglioColumnsNameList);
+
+                this.table.setItems(bagaglioDataList);
+                break;
+        }*/
+
+        // FUNZIONA ANCHE QUESTO QUA SOTTO
+
+        /*if(this.combo_tables.getSelectionModel().getSelectedItem().equals("Bagaglio")){
+            this.table.getColumns().clear();
+
+            final ObservableList<String> bagaglioColumnsNameList = DatabaseController.getNamesOfColumns(Table.BAGAGLIO);
+            final int bagaglioNumOfColumns = DatabaseController.getNumberOfColumns(Table.BAGAGLIO);
+            final ObservableList<Tables> bagaglioDataList = DataController.getTableData3(Table.BAGAGLIO);
+
+            System.out.println("bagaglioNumOfColumns: " + bagaglioNumOfColumns); //TODO: remove
+            System.out.println("bagaglioColumnsNameList: " + bagaglioColumnsNameList); //TODO: remove
+            createTable2(bagaglioNumOfColumns, bagaglioColumnsNameList);
+
+            this.table.setItems(bagaglioDataList);
+        }
+        else if(this.combo_tables.getSelectionModel().getSelectedItem().equals("Persona")){
+            this.table.getColumns().clear();
+
+            final ObservableList<String> personaList = DatabaseController.getNamesOfColumns(Table.PERSONA);
+            final int numOfColumns = DatabaseController.getNumberOfColumns(Table.PERSONA) - 15; // -15 solo perchè voglio le prime 4
+            personaObservableList = DataController.getTableData3(Table.PERSONA);
+
+            System.out.println("numOfColumns: " + numOfColumns); //TODO: remove
+            System.out.println("personaList: " + personaList); //TODO: remove
+            createTable2(numOfColumns, personaList);
+
+            this.table.setItems(personaObservableList);
+        }*/
     }
 
     public void createTablePersona(){
@@ -294,6 +361,20 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             column.setCellValueFactory(new PropertyValueFactory<>(columnsName.get(i)));
             this.table.getColumns().add(column);
         }
+    }
+
+    public void showTable(Table table){
+        this.table.getColumns().clear();
+
+        final ObservableList<String> namesOfColumnsList = DatabaseController.getNamesOfColumns(table);
+        final int numOfColumns = DatabaseController.getNumberOfColumns(table);
+        final ObservableList<Tables> tableDataList = DataController.getTableData3(table);
+
+        System.out.println("numOfColumns: " + numOfColumns); //TODO: remove
+        System.out.println("personaList: " + tableDataList); //TODO: remove
+        createTable2(numOfColumns, namesOfColumnsList);
+
+        this.table.setItems(tableDataList);
     }
 
 }

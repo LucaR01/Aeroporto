@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class DataController<T> {
@@ -80,6 +81,22 @@ public class DataController<T> {
             PreparedStatement ps = CONNECTION.prepareStatement(query);
             ResultSet resultSet = ps.executeQuery();
 
+            /*boolean b = resultSet.last();
+            int numberOfRecords; // = 0
+            if(b){
+                numberOfRecords = resultSet.getRow();
+                System.out.println("numberOfRecords: " + numberOfRecords);
+            }*/
+
+            /*while(resultSet.next()){
+                boolean b = resultSet.last();
+                int numberOfRecords = 0;
+                if(b){
+                    numberOfRecords = resultSet.getRow();
+                    System.out.println("numberOfRecords: " + numberOfRecords);
+                }
+            }*/
+
             switch(tableName){ //TODO: uncomment
                 /*case AEREO:
                     while(resultSet.next()){
@@ -103,6 +120,33 @@ public class DataController<T> {
                         observableList.add(new Bagaglio(resultSet.getInt("CodBagaglio"), resultSet.getInt("peso"), resultSet.getString("CodiceFiscale")));
                     }
                     break;
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return observableList;
+    }
+
+    public static ObservableList<Tables> getTableData3(Table tableName){
+        ObservableList<Tables> observableList = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT * FROM " + tableName.getTableName();
+            PreparedStatement ps = CONNECTION.prepareStatement(query);
+            ResultSet resultSet = ps.executeQuery();
+
+            while(resultSet.next()){
+                switch(tableName){
+                    case PERSONA:
+                        observableList.add(new Persona(resultSet.getString("CodiceFiscale"), resultSet.getString("Nome"), resultSet.getString("Cognome"),
+                                Integer.parseInt(resultSet.getString("Età")), Optional.of(resultSet.getString("Ruolo")))); //TODO: getInt()
+                        break;
+                    case BAGAGLIO:
+                        observableList.add(new Bagaglio(resultSet.getInt("CodBagaglio"), resultSet.getInt("peso"), resultSet.getString("CodiceFiscale")));
+                        break;
+                }
             }
 
         }catch(Exception e){
