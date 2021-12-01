@@ -73,4 +73,25 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
 
         return observableList;
     }
+
+    public static ObservableList<String> getNamesOfTables(){
+
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+
+        try{
+            String query = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = 'aeroporto' ";
+            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                observableList.add(resultSet.getString("TABLE_NAME").toUpperCase());
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println("name of tables: " + observableList);
+
+        return observableList;
+    }
 }
