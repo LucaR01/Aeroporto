@@ -98,6 +98,11 @@ public class DataController<T> {
                                 Integer.parseInt(resultSet.getString("Età")), Optional.of(resultSet.getString("Ruolo"))));
                     }
                     break;
+                case BAGAGLIO:
+                    while(resultSet.next()){
+                        observableList.add(new Bagaglio(resultSet.getInt("CodBagaglio"), resultSet.getInt("peso"), resultSet.getString("CodiceFiscale")));
+                    }
+                    break;
             }
 
         }catch(Exception e){
