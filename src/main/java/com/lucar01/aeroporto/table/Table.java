@@ -56,7 +56,7 @@ public enum Table {
         this.tableName = tableName;
     }
 
-    public String getTableName() {
+    public final String getTableName() {
         return this.tableName;
     }
 }
