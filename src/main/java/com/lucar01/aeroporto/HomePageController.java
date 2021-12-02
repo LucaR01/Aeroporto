@@ -156,7 +156,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             this.paneSettings.toFront();
         } else {
             if(event.getSource() == btnQuit){
-                // TODO: message dialog : Are you sure to exit? Yes or No
+                // TODO: message dialog : Are you sure to exit? Yes or No (Are you sure you want to exit? Yes : No)
                 // TODO: System.exit(0);
             }
         }
@@ -305,11 +305,13 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     @FXML
     private void submitAddTable(ActionEvent event) {
-        this.textFields.forEach(n -> System.out.println(n.getText() + " nome_tabella: " + this.combo_add_table.getSelectionModel().getSelectedItem().toLowerCase()));
-        System.out.println(Table.valueOf(this.combo_add_table.getSelectionModel().getSelectedItem()));
+        this.textFields.forEach(n -> System.out.println(n.getText() + " nome_tabella: " + this.combo_add_table.getSelectionModel().getSelectedItem().toLowerCase())); //TODO: remove
+        System.out.println(Table.valueOf(this.combo_add_table.getSelectionModel().getSelectedItem())); //TODO: remove
 
         /*ObservableList<String> data = FXCollections.observableArrayList();
         DatabaseController.addDataToTable(Table.valueOf(this.combo_add_table.getSelectionModel().getSelectedItem()), data);*/
+
+        //TODO: se l'operazione è stata eseguita con successo si dovrà mostrare una notifica.
     }
 
 }

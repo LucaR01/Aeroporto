@@ -94,4 +94,18 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
 
         return observableList;
     }
+
+    public static boolean addDataToTable(Table table, ObservableList<String> data){
+
+        try {
+            String query = "INSERT INTO '" + table.getTableName() + "' ('', '', '') VALUES " + data + ""; //TODO: data.forEach(...);
+            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
+            preparedStatement.executeQuery(); // ResultSet? non dovrebbe servire.
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 }
