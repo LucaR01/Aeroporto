@@ -8,10 +8,13 @@ import com.lucar01.aeroporto.table.Table;
 import com.lucar01.aeroporto.table.Tables;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
@@ -22,7 +25,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import java.net.URL;
 import java.sql.Time;
@@ -85,25 +90,13 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     private TableView<Tables> table;
 
     @FXML
-    private TableColumn<Persona, String> col_id;
-
-    @FXML
-    private TableColumn<Persona, String> col1;
-
-    @FXML
-    private TableColumn<Persona, String> col2;
-
-    @FXML
-    private TableColumn<Persona, Integer> col3;
-
-    @FXML
-    private TableColumn<Persona, Optional<String>> col4;
-
-    @FXML
     private ComboBox<String> combo_tables;
 
     @FXML
     private Button btnSelectedTable;
+
+    @FXML
+    private TextField searchField;
 
     //private final static String PERSONA = "PERSONA"; //TODO: remove
 
@@ -111,11 +104,62 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     //ObservableList<Persona> personaObservableList;
     ObservableList<Tables> personaObservableList; //TODO: rename
 
+    @FXML
+    private AnchorPane addAnchorPane;
+
+    @FXML
+    private ComboBox<String> combo_add_table;
+
+    @FXML
+    private Button btnSubmitAddTable;
+
+    @FXML
+    private Button btnAddSelectedTable;
+
+    private ObservableList<TextField> textFields = FXCollections.observableArrayList();
+
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle) { //TODO: aggiungere pulsante per eliminare
         ObservableList<String> tablesList = DatabaseController.getNamesOfTables();
         this.combo_tables.setItems(tablesList);
+        this.combo_add_table.setItems(tablesList);
+
+        //TODO: searchData();
+
+        /*TextField textField = new TextField();
+        textField.setText("Ciao");
+        textField.setLayoutX(200);
+        textField.setLayoutY(100);
+        //textField.setAlignment(Pos.BOTTOM_RIGHT); //QUESTO è per il testo
+        textField.setStyle("-fx-border-color: #7b1417");
+
+        TextField textField2 = new TextField();
+        textField.setText("Yeah");
+        //textField2.setAlignment(Pos.CENTER); //QUESTO è per il testo
+        textField2.setEditable(false);
+        Paint value0 = Paint.valueOf("666666");
+        textField2.setStyle("-fx-control-inner-background: #"+value0.toString().substring(2)); // oppure potevo usare new BackgroundFill
+
+        Label label = new Label();
+        label.setText("GIIG");
+        label.setLayoutX(300);
+        label.setLayoutY(200);
+
+        this.addAnchorPane.getChildren().addAll(textField, textField2, label);*/
+
+        // =============================================================================================================
+
+        //createTextFields(Table.BAGAGLIO); // ANCHE QUESTO VA
+        //this.textFields = createTextFields2(Table.BAGAGLIO);
+        //this.addAnchorPane.getChildren().addAll(textFields);
+
+        //ObservableList<TextField> textFields = FXCollections.observableArrayList();
+
+        //TODO: metodo setTextFields(Table table)
+        //TODO: getNumberOfCols
+        //TODO: for i < getNumberOfCols; --> new TextField, textField.setLayoutX e Y.
+        //TODO: label next to text field.
     }
 
     @FXML
@@ -177,11 +221,11 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     }
 
     @FXML
-    void handleTableSelection(ActionEvent event) { //TODO: or just call it selectTables?
+    private void handleTableSelection(ActionEvent event) { //TODO: or just call it selectTables?
         String selectedTable = this.combo_tables.getSelectionModel().getSelectedItem();
         this.btnSelectedTable.setText(selectedTable);
 
-        switch(this.combo_tables.getSelectionModel().getSelectedItem()){
+        switch(this.combo_tables.getSelectionModel().getSelectedItem()){ //TODO: aggiungere le altre tabelle
             case "PERSONA":
                 showTable(Table.PERSONA);
                 break;
@@ -197,7 +241,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
-    public void createTable(int numOfColumns, ObservableList<String> columnsName){
+    private void createTable(int numOfColumns, ObservableList<String> columnsName){
 
         for(int i = 0; i < numOfColumns; i++){
             TableColumn<Tables, String> column = new TableColumn<>();
@@ -207,7 +251,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
-    public void showTable(Table table){
+    private void showTable(Table table){
         this.table.getColumns().clear();
 
         final ObservableList<String> namesOfColumnsList = DatabaseController.getNamesOfColumns(table);
@@ -219,6 +263,133 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         createTable(numOfColumns, namesOfColumnsList);
 
         this.table.setItems(tableDataList);
+    }
+
+    private void createTextFields(Table table){ //TODO: remove
+        final int numberOfColumns = DatabaseController.getNumberOfColumns(table);
+        final ObservableList<String> observableList = DatabaseController.getNamesOfColumns(table);
+
+        for(int i = 0; i < numberOfColumns; i++){
+            Label label = new Label();
+            label.setText(observableList.get(i));
+            label.setLayoutX(-9);
+            //label.setLayoutY(i == 0 ? 40 : (i + 1) * 40);
+            label.setLayoutY(i * 40);
+
+            TextField textField = new TextField();
+            textField.setLayoutX(i > 10 ? 2 * 63 : 63); // 63
+            //textField.setLayoutY(i == 0 ? 40 : (i + 1) * 40);
+            textField.setLayoutY(i * 40);
+            textField.setStyle("-fx-border-color: #7b1417");
+
+            this.addAnchorPane.getChildren().addAll(label, textField);
+        }
+    }
+
+    private ObservableList<TextField> createTextFields2(Table table){ //TODO: remove
+        this.textFields.clear();
+        this.addAnchorPane.getChildren().clear();
+
+        final int numberOfColumns = DatabaseController.getNumberOfColumns(table);
+        final ObservableList<String> observableList = DatabaseController.getNamesOfColumns(table);
+
+        ObservableList<TextField> textFieldObservableList = FXCollections.observableArrayList();
+
+        for(int i = 0; i < numberOfColumns; i++){
+            Label label = new Label();
+            label.setText(observableList.get(i));
+            label.setLayoutX(-9);
+            label.setLayoutY(i * 40);
+
+            TextField textField = new TextField();
+            textField.setLayoutX(i > 10 ? 2 * 63 : 63); // 63
+            textField.setLayoutY(i * 40);
+            textField.setStyle("-fx-border-color: #7b1417");
+
+            textFieldObservableList.add(textField);
+            this.addAnchorPane.getChildren().add(label);
+        }
+
+        return textFieldObservableList;
+    }
+
+    private void createTextFields3(Table table){
+        this.textFields.clear();
+        this.addAnchorPane.getChildren().clear();
+
+        final int numberOfColumns = DatabaseController.getNumberOfColumns(table);
+        final ObservableList<String> observableList = DatabaseController.getNamesOfColumns(table);
+
+        //ObservableList<TextField> textFields = FXCollections.observableArrayList();
+
+        for(int i = 0; i < numberOfColumns; i++){
+            Label label = new Label();
+            label.setText(observableList.get(i));
+            label.setLayoutX(-9);
+            label.setLayoutY(i * 40);
+
+            TextField textField = new TextField();
+            textField.setLayoutX(i > 10 ? 2 * 63 : 63); // 63
+            textField.setLayoutY(i * 40);
+            textField.setStyle("-fx-border-color: #7b1417");
+
+            this.textFields.add(textField);
+            this.addAnchorPane.getChildren().add(label);
+        }
+
+        this.addAnchorPane.getChildren().addAll(this.textFields);
+
+    }
+
+    /*private void searchData(){ //TODO: uncomment and fix
+        FilteredList<Tables> filteredDataList = new FilteredList<>(, b -> true); // primo parametro data
+        this.searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredDataList.setPredicate(e -> {
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if( != -1){
+                    return true;
+                } else if( != -1){
+                    return true;
+                }
+                else if( != -1){
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+        SortedList<Tables> sortedDataList = new SortedList<>(filteredDataList);
+        sortedDataList.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedDataList);
+    }*/
+
+    @FXML
+    void handleAddTableSelection(ActionEvent event) {
+        String selectedTable = this.combo_add_table.getSelectionModel().getSelectedItem();
+        this.btnAddSelectedTable.setText(selectedTable);
+
+        switch(this.combo_add_table.getSelectionModel().getSelectedItem()){ //TODO: aggiungere le altre tabelle
+            case "PERSONA":
+                break;
+            case "BAGAGLIO":
+                createTextFields3(Table.BAGAGLIO);
+                break;
+            case "TERMINAL":
+                createTextFields3(Table.TERMINAL);
+                break;
+            default:
+                this.addAnchorPane.getChildren().clear();
+                break;
+        }
+    }
+
+    @FXML
+    private void submitAddTable(ActionEvent event) {
+        this.textFields.forEach(n -> System.out.println(n.getText() + " nome_tabella: " + this.combo_add_table.getSelectionModel().getSelectedItem().toLowerCase()));
     }
 
 }
