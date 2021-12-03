@@ -308,10 +308,18 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         this.textFields.forEach(n -> System.out.println(n.getText() + " nome_tabella: " + this.combo_add_table.getSelectionModel().getSelectedItem().toLowerCase())); //TODO: remove
         System.out.println(Table.valueOf(this.combo_add_table.getSelectionModel().getSelectedItem())); //TODO: remove
 
-        /*ObservableList<String> data = FXCollections.observableArrayList();
-        DatabaseController.addDataToTable(Table.valueOf(this.combo_add_table.getSelectionModel().getSelectedItem()), data);*/
+        ObservableList<String> data = FXCollections.observableArrayList();
+        this.textFields.forEach( t -> data.add(t.getText()));
+        System.out.println("data: " + data); //TODO: remove
+
+        final boolean hasAddedTable = DatabaseController.addDataToTable(Table.valueOf(this.combo_add_table.getSelectionModel().getSelectedItem()), data);
 
         //TODO: se l'operazione è stata eseguita con successo si dovrà mostrare una notifica.
+        if(hasAddedTable){
+            System.out.println("operazione add table eseguita con successo."); //TODO: remove
+        } else {
+            System.out.println("operazione add table non eseguita."); //TODO: remove
+        }
     }
 
 }
