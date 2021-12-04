@@ -101,14 +101,6 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
 
         StringBuilder namesOfColumnsString = new StringBuilder();
 
-        /*for (String namesOfColumn : namesOfColumns) { //TODO: remove
-            if(namesOfColumns.size() > 1){
-
-            } else {
-
-            }
-        }*/
-
         for(int i = 0; i < namesOfColumns.size(); i++){
             if(i == namesOfColumns.size() - 1){
                 namesOfColumnsString.append(namesOfColumns.get(i));
@@ -126,7 +118,6 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
                 dataString.append(data.get(i));
             } else {
                 dataString.append(data.get(i)).append(", ");
-                //dataString.append("' ").append(data.get(i)).append(" '"); // forse questa è più giusta. //TODO: remove
             }
         }
 
