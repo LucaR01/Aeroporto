@@ -103,7 +103,7 @@
       </VBox>
       <StackPane layoutX="239.0" layoutY="197.0">
          <children>
-            <GridPane fx:id="paneAddTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
+            <GridPane fx:id="paneAddTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -136,19 +136,34 @@
                   </HBox>
                </children>
             </GridPane>
-            <GridPane fx:id="paneAlterTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
+            <GridPane fx:id="paneAlterTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
                <rowConstraints>
-                  <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="357.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="358.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="254.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="711.0" minWidth="10.0" prefWidth="489.0" />
                </columnConstraints>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="747.0" text="Alter Table" textFill="#0e401c">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnSubmitEdit" layoutX="100.0" layoutY="7.0" mnemonicParsing="false" onAction="#submitEditTable" style="-fx-background-color: #0e401c;" text="Submit" textFill="WHITE" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <Label layoutY="2.0" text="Alter Table" textFill="#0e401c">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboEditTable" layoutX="312.0" layoutY="6.0" onAction="#handleEditTableSelection" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #0e401c;" />
+                        <Button fx:id="btnEditSelectedTable" layoutX="145.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #0e401c;" text="NomeTabella" textFill="WHITE" />
+                     </children>
+                  </Pane>
+                  <AnchorPane fx:id="editAnchorPane" prefHeight="298.0" prefWidth="254.0" GridPane.rowIndex="1" />
+                  <TableView fx:id="editTable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff; -fx-border-color: #0e401c;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <GridPane fx:id="paneSettings" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">

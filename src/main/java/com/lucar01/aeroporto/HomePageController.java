@@ -118,12 +118,30 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     private ObservableList<TextField> textFields = FXCollections.observableArrayList();
 
+    @FXML
+    private TableView<Tables> editTable;
+
+    @FXML
+    private ComboBox<String> comboEditTable;
+
+    @FXML
+    private Button btnSubmitEdit;
+
+    @FXML
+    private Button btnEditSelectedTable;
+
+    @FXML
+    private AnchorPane editAnchorPane;
+
+    private ObservableList<TextField> editTextFields = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { //TODO: aggiungere pulsante per eliminare dati tabella
         ObservableList<String> tablesList = DatabaseController.getNamesOfTables();
         this.combo_tables.setItems(tablesList);
         this.combo_add_table.setItems(tablesList);
+        this.comboEditTable.setItems(tablesList);
 
         //TODO: searchData();
     }
@@ -191,7 +209,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         String selectedTable = this.combo_tables.getSelectionModel().getSelectedItem();
         this.btnSelectedTable.setText(selectedTable);
 
-        switch(this.combo_tables.getSelectionModel().getSelectedItem()){ //TODO: aggiungere le altre tabelle
+        switch(this.combo_tables.getSelectionModel().getSelectedItem()){ //TODO: aggiungere le altre tabelle, usare selectedTable
             case "PERSONA":
                 showTable(Table.PERSONA);
                 break;
@@ -207,7 +225,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
-    private void createTable(int numOfColumns, ObservableList<String> columnsName){
+    private void createTable(int numOfColumns, ObservableList<String> columnsName){ //TODO: usare createTable2()
 
         for(int i = 0; i < numOfColumns; i++){
             TableColumn<Tables, String> column = new TableColumn<>();
@@ -217,7 +235,17 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
-    private void showTable(Table table){
+    private void createTable2(int numOfColumns, ObservableList<String> columnsName, TableView<Tables> tableView){
+
+        for(int i = 0; i < numOfColumns; i++){
+            TableColumn<Tables, String> column = new TableColumn<>();
+            column.setText(columnsName.get(i).toUpperCase());
+            column.setCellValueFactory(new PropertyValueFactory<>(columnsName.get(i)));
+            tableView.getColumns().add(column);
+        }
+    }
+
+    private void showTable(Table table){ //TODO: usare showTable2()
         this.table.getColumns().clear();
 
         final ObservableList<String> namesOfColumnsList = DatabaseController.getNamesOfColumns(table);
@@ -231,7 +259,21 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         this.table.setItems(tableDataList);
     }
 
-    private void createTextFields(Table table){
+    private void showTable2(Table table, TableView<Tables> tableView){
+        tableView.getColumns().clear();
+
+        final ObservableList<String> namesOfColumnsList = DatabaseController.getNamesOfColumns(table);
+        final int numOfColumns = DatabaseController.getNumberOfColumns(table);
+        final ObservableList<Tables> tableDataList = DataController.getTableData3(table);
+
+        System.out.println("numOfColumns: " + numOfColumns); //TODO: remove
+        System.out.println("tableDataList: " + tableDataList); //TODO: remove
+        createTable2(numOfColumns, namesOfColumnsList, tableView);
+
+        tableView.setItems(tableDataList);
+    }
+
+    private void createTextFields(Table table){ //TODO: usare createTextFields2()
         this.textFields.clear();
         this.addAnchorPane.getChildren().clear();
 
@@ -254,6 +296,34 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
 
         this.addAnchorPane.getChildren().addAll(this.textFields);
+
+    }
+
+    //TODO: aggiungere final nei parametri.
+    private void createTextFields2(Table table, AnchorPane anchorPane, ObservableList<TextField> textFieldObservableList,
+                                   int xLabel, int yLabel, int xTextField, int yTextField, String color, int limitTextFields){ //TODO: aggiungere boolean se non voglio i labels.
+        textFieldObservableList.clear();
+        anchorPane.getChildren().clear();
+
+        final int numberOfColumns = DatabaseController.getNumberOfColumns(table);
+        final ObservableList<String> observableList = DatabaseController.getNamesOfColumns(table);
+
+        for(int i = 0; i < numberOfColumns; i++){
+            Label label = new Label();
+            label.setText(observableList.get(i));
+            label.setLayoutX(xLabel);
+            label.setLayoutY(i * yLabel);
+
+            TextField textField = new TextField();
+            textField.setLayoutX(i > limitTextFields ? 2 * xTextField : xTextField);
+            textField.setLayoutY(i * yTextField);
+            textField.setStyle("-fx-border-color: " + color);
+
+            textFieldObservableList.add(textField);
+            anchorPane.getChildren().add(label);
+        }
+
+        anchorPane.getChildren().addAll(textFieldObservableList);
 
     }
 
@@ -288,7 +358,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         String selectedTable = this.combo_add_table.getSelectionModel().getSelectedItem();
         this.btnAddSelectedTable.setText(selectedTable);
 
-        switch(this.combo_add_table.getSelectionModel().getSelectedItem()){ //TODO: aggiungere le altre tabelle
+        switch(this.combo_add_table.getSelectionModel().getSelectedItem()){ //TODO: aggiungere le altre tabelle, usare selectedTable
             case "PERSONA":
                 break;
             case "BAGAGLIO":
@@ -315,11 +385,40 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         final boolean hasAddedTable = DatabaseController.addDataToTable(Table.valueOf(this.combo_add_table.getSelectionModel().getSelectedItem()), data);
 
         //TODO: se l'operazione è stata eseguita con successo si dovrà mostrare una notifica.
+        //TODO: magari quella sorta di notifica che viene su dal basso, di colore verde se è andata a buon fine, in rosso altrimenti.
         if(hasAddedTable){
             System.out.println("operazione add table eseguita con successo."); //TODO: remove
         } else {
             System.out.println("operazione add table non eseguita."); //TODO: remove
         }
+    }
+
+    @FXML
+    void handleEditTableSelection(ActionEvent event) {
+        String selectedTable = this.comboEditTable.getSelectionModel().getSelectedItem();
+        this.btnEditSelectedTable.setText(selectedTable);
+
+        switch(selectedTable){ //TODO: aggiungere le altre tabelle
+            case "BAGAGLIO":
+                showTable2(Table.BAGAGLIO, this.editTable);
+                createTextFields2(Table.BAGAGLIO, this.editAnchorPane, this.editTextFields, -9, 40, 63, 40, "#0e401c", 10); //TODO: modificare parametri
+                break;
+            case "TERMINAL":
+                showTable2(Table.TERMINAL, this.editTable);
+                createTextFields2(Table.TERMINAL, this.editAnchorPane, this.editTextFields, -9, 40, 63, 40, "#0e401c", 10); //TODO: modificare parametri
+                break;
+            case "PERSONA":
+                break;
+            default:
+                this.editTable.getColumns().clear();
+                this.editAnchorPane.getChildren().clear();
+                break;
+        }
+    }
+
+    @FXML
+    void submitEditTable(ActionEvent event) {
+
     }
 
 }
