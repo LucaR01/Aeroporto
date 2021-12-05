@@ -3,6 +3,7 @@ package com.lucar01.aeroporto;
 import com.lucar01.aeroporto.controllers.DataController;
 import com.lucar01.aeroporto.controllers.DatabaseController;
 import com.lucar01.aeroporto.controllers.TableController;
+import com.lucar01.aeroporto.table.Bagaglio;
 import com.lucar01.aeroporto.table.Persona;
 import com.lucar01.aeroporto.table.Table;
 import com.lucar01.aeroporto.table.Tables;
@@ -29,6 +30,8 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -419,6 +422,71 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     void submitEditTable(ActionEvent event) {
 
+    }
+
+    @FXML
+    void rowSelected(MouseEvent event) throws NoSuchMethodException, ClassNotFoundException, InvocationTargetException, IllegalAccessException {
+        Tables selectedRow = this.editTable.getSelectionModel().getSelectedItem();
+        int index = this.editTable.getSelectionModel().getSelectedIndex();
+
+        System.out.println("index: " + index);
+        System.out.println(this.editTable.getColumns().get(index).getCellData(index).toString());
+
+        String[] bagaglioArr = new String[3];
+        StringBuilder stringBuilder = new StringBuilder();
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+
+        for(int i = 0; i < 3; i++){
+            System.out.println("bagaglio: " + this.editTable.getColumns().get(i).getCellData(index).toString());
+            bagaglioArr[i] = this.editTable.getColumns().get(i).getCellData(index).toString();
+            stringBuilder.append(this.editTable.getColumns().get(i).getCellData(index).toString());
+            observableList.add(this.editTable.getColumns().get(i).getCellData(index).toString());
+        }
+
+        System.out.println("bagaglioArr: " + Arrays.toString(bagaglioArr));
+        System.out.println("Stringbuilder: " + stringBuilder);
+        System.out.println("Stringbuilder: " + observableList);
+
+        System.out.println("selectedRow: " + selectedRow); //TODO: remove
+
+        this.editTextFields.forEach(textField -> textField.setText(selectedRow.toString()));
+
+        System.out.println(selectedRow.getClass().toString());
+        System.out.println(selectedRow.getClass().getTypeName());
+        System.out.println("canonical name: " + selectedRow.getClass().getCanonicalName());
+        System.out.println(Arrays.toString(selectedRow.getClass().getMethods()));
+        System.out.println(selectedRow.getClass().getName());
+        System.out.println(selectedRow.getClass().isInstance(Table.BAGAGLIO));
+        System.out.println("simpler name: " + selectedRow.getClass().getSimpleName());
+        System.out.println(selectedRow.getClass().getClassLoader());
+        System.out.println(selectedRow.getClass().getComponentType());
+
+        String methodName = "getPeso";
+        Class[] parameterType = null;
+        System.out.println(selectedRow.getClass().getMethod(methodName, parameterType));
+        System.out.println(selectedRow.getClass().getMethod(methodName, parameterType).getReturnType());
+
+        //System.out.println(selectedRow.getClass().getMethod(methodName, parameterType).invoke(new Bagaglio(), new Object())); //TODO:
+        //System.out.println(selectedRow.getClass().getMethod(methodName, parameterType).invoke(selectedRow.getClass(), new Object())); // non va bene
+        //System.out.println(selectedRow.getClass().getDeclaredMethod(methodName, parameterType).invoke(selectedRow.getClass(), null));
+
+        //Method m = selectedRow.getClass().getDeclaredMethod("getPeso", null);
+        //Object rv = m.invoke(null, null);
+
+        /*Class myClass = Class.forName("Bagaglio");
+        String methodName2 = "getCodBagaglio";
+        Class[] parameterType2 = null;
+
+        System.out.println(myClass.getMethod(methodName2, parameterType2));*/
+
+        switch(selectedRow.getClass().getSimpleName().toUpperCase()){
+            case "BAGAGLIO":
+                System.out.println("Nello switch");
+                break;
+            case "TERMINAL":
+                System.out.println("Nello switch");
+                break;
+        }
     }
 
 }

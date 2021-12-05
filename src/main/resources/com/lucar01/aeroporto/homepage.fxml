@@ -163,7 +163,7 @@
                      </children>
                   </Pane>
                   <AnchorPane fx:id="editAnchorPane" prefHeight="298.0" prefWidth="254.0" GridPane.rowIndex="1" />
-                  <TableView fx:id="editTable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff; -fx-border-color: #0e401c;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TableView fx:id="editTable" onMouseClicked="#rowSelected" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff; -fx-border-color: #0e401c;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <GridPane fx:id="paneSettings" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
