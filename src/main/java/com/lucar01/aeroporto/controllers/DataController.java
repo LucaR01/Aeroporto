@@ -129,7 +129,7 @@ public class DataController<T> {
         return observableList;
     }
 
-    public static ObservableList<Tables> getTableData3(Table tableName){
+    public static ObservableList<Tables> getTableData3(Table tableName){ //TODO: move to DatabaseController
         ObservableList<Tables> observableList = FXCollections.observableArrayList();
 
         try {
