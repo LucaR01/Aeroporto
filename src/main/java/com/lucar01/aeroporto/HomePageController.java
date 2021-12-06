@@ -426,7 +426,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     @FXML
     void rowSelected(MouseEvent event) throws NoSuchMethodException, ClassNotFoundException, InvocationTargetException, IllegalAccessException {
-        Tables selectedRow = this.editTable.getSelectionModel().getSelectedItem();
+        Tables selectedRow = this.editTable.getSelectionModel().getSelectedItem(); //TODO: remove
         int index = this.editTable.getSelectionModel().getSelectedIndex();
 
         System.out.println("index: " + index);
@@ -436,7 +436,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         StringBuilder stringBuilder = new StringBuilder();
         ObservableList<String> observableList = FXCollections.observableArrayList();
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 3; i++){ // col get switcho colonna, con getCellData prendo la riga.
             System.out.println("bagaglio: " + this.editTable.getColumns().get(i).getCellData(index).toString());
             bagaglioArr[i] = this.editTable.getColumns().get(i).getCellData(index).toString();
             stringBuilder.append(this.editTable.getColumns().get(i).getCellData(index).toString());
@@ -479,9 +479,22 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         System.out.println(myClass.getMethod(methodName2, parameterType2));*/
 
+        //TODO: Devo prendere i dati dalla row e metterli negli editTextFields
+        //TODO: tenere in memoria i vecchi dati perchè credo che servano per la query
+        //TODO: quando poi preme submit dell'edit allora:
+        //TODO: pulire gli editTextFields e aggiornare i dati nella tabella (potrei o mettere il simbolo per il refresh oppure direttamente chiamare .refresh() sulla table).
+        //TODO: salvare i nuovi dati e alterare la table con una query.
+
+        ObservableList<String> oldData = FXCollections.observableArrayList();
+        ObservableList<String> newData = FXCollections.observableArrayList();
+
         switch(selectedRow.getClass().getSimpleName().toUpperCase()){
             case "BAGAGLIO":
                 System.out.println("Nello switch");
+                final int numOfColumns = DatabaseController.getNumberOfColumns(Table.BAGAGLIO);
+                for(int i = 0; i < numOfColumns; i++){
+                    //oldData.add();
+                }
                 break;
             case "TERMINAL":
                 System.out.println("Nello switch");
