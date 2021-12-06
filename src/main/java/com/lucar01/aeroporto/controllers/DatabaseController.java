@@ -95,8 +95,7 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
         return observableList;
     }
 
-    public static boolean addDataToTable(Table table, ObservableList<String> data){
-
+    private static StringBuilder getNamesOfColumnsInString(Table table){
         ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
 
         StringBuilder namesOfColumnsString = new StringBuilder();
@@ -109,7 +108,26 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
             }
         }
 
-        System.out.println("namesOfColumnsString: " + namesOfColumnsString); //TODO: remove
+        return namesOfColumnsString;
+    }
+
+    public static boolean addDataToTable(Table table, ObservableList<String> data){
+
+        /*ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
+
+        StringBuilder namesOfColumnsString = new StringBuilder();
+
+        for(int i = 0; i < namesOfColumns.size(); i++){ //TODO: chiamare getNamesOfColumnsInString
+            if(i == namesOfColumns.size() - 1){
+                namesOfColumnsString.append(namesOfColumns.get(i));
+            } else {
+                namesOfColumnsString.append(namesOfColumns.get(i)).append(", ");
+            }
+        }
+
+        System.out.println("namesOfColumnsString: " + namesOfColumnsString);*/ //TODO: remove
+
+        StringBuilder namesOfColumnsString = getNamesOfColumnsInString(table);
 
         StringBuilder dataString = new StringBuilder();
 
@@ -125,14 +143,49 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
 
         try {
             String query = "INSERT INTO " + table.getTableName() + " ( " + namesOfColumnsString + " )" + " VALUES ( " + dataString + " ) ";
-            System.out.println("query: " + query); //TODO: remove
+            System.out.println("query add data table: " + query); //TODO: remove
             PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
-            preparedStatement.execute();
+            preparedStatement.execute(); //TODO: return .execute(); al posto di mettere true e false sotto. (in realtà non va se lo metto qui, forse perchè è dentro al try ).
         }catch(Exception e){
             e.printStackTrace();
             return false;
         }
 
+        return true;
+    }
+
+    public static boolean editTableData(Table table, ObservableList<String> oldData, ObservableList<String> newData){
+
+        //TODO: devo prendere l'id dell'oldData e per il resto modificare con la newData.
+        //StringBuilder stringBuilder = getNamesOfColumnsInString(table); //TODO: remove
+
+        ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
+
+        StringBuilder namesOfColumnsString = new StringBuilder();
+
+        for(int i = 0; i < namesOfColumns.size(); i++){
+            if(i == namesOfColumns.size() - 1){
+                namesOfColumnsString.append(namesOfColumns.get(i));
+                namesOfColumnsString.append(" = '").append(newData.get(i)).append("' "); //TODO: aggiungo '' altrimenti le stringhe non mi vanno.
+            } else {
+                namesOfColumnsString.append(namesOfColumns.get(i));
+                namesOfColumnsString.append(" = '").append(newData.get(i)).append("', "); //TODO: aggiungo '' altrimenti le stringhe non mi vanno.
+            }
+        }
+
+        System.out.println("namesOfColumnsString: " + namesOfColumnsString); //TODO: remove
+
+        String condition = "WHERE " + namesOfColumns.get(0) + " = " + oldData.get(0); // Metto 0 perchè voglio soltanto l'id, che si trova come primo elemento.
+
+        try {
+            String query = "UPDATE " + table.getTableName() + " SET " + namesOfColumnsString + " " + condition; // ho aggiunto il \n prima del where, ma in realtà non cambia niente
+            System.out.println("query edit table: " + query); //TODO: remove
+            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
+            preparedStatement.execute(); // se metto il return qui non va.
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
 }
