@@ -138,6 +138,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     private ObservableList<TextField> editTextFields = FXCollections.observableArrayList();
 
+    private ObservableList<String> editOldData = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { //TODO: aggiungere pulsante per eliminare dati tabella
@@ -421,85 +423,58 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     @FXML
     void submitEditTable(ActionEvent event) {
+        ObservableList<String> newData = FXCollections.observableArrayList();
+
+        final int numOfColumns = DatabaseController.getNumberOfColumns(Table.valueOf(this.comboEditTable.getSelectionModel().getSelectedItem()));
+
+        for(int i = 0; i < numOfColumns; i++){
+            newData.add(this.editTextFields.get(i).getText());
+        }
+
+        System.out.println("New data: " + newData);
+
+        //TODO: Chiamare metodo nel DatabaseController
+        final boolean hasUpdated = DatabaseController.editTableData(Table.valueOf(this.comboEditTable.getSelectionModel().getSelectedItem()), this.editOldData, newData); //TODO: uncomment.
+
+        //TODO: mostrare una notifica se l'operazione è avvenuta con successo oppure no.
+        if(hasUpdated){
+            System.out.println("operazione eseguita con successo"); //TODO: remove
+            this.editTable.refresh(); // Questo non funziona, o meglio non mi refresha i dati in tempo reale.
+        } else {
+            System.out.println("operazione fallita"); //TODO: remove
+        }
 
     }
 
     @FXML
     void rowSelected(MouseEvent event) throws NoSuchMethodException, ClassNotFoundException, InvocationTargetException, IllegalAccessException {
+        // Quando una nuova riga viene selezionata, devo svuotare i vecchi dati.
+        this.editOldData.clear();
+        //this.editTextFields.clear(); //TODO: remove?
+
         Tables selectedRow = this.editTable.getSelectionModel().getSelectedItem(); //TODO: remove
         int index = this.editTable.getSelectionModel().getSelectedIndex();
 
         System.out.println("index: " + index);
-        System.out.println(this.editTable.getColumns().get(index).getCellData(index).toString());
 
-        String[] bagaglioArr = new String[3];
-        StringBuilder stringBuilder = new StringBuilder();
-        ObservableList<String> observableList = FXCollections.observableArrayList();
+        final int numOfColumns = DatabaseController.getNumberOfColumns(Table.valueOf(this.comboEditTable.getSelectionModel().getSelectedItem()));
+        System.out.println("numOfColumns: " + numOfColumns); //TODO: remove
 
-        for(int i = 0; i < 3; i++){ // col get switcho colonna, con getCellData prendo la riga.
-            System.out.println("bagaglio: " + this.editTable.getColumns().get(i).getCellData(index).toString());
-            bagaglioArr[i] = this.editTable.getColumns().get(i).getCellData(index).toString();
-            stringBuilder.append(this.editTable.getColumns().get(i).getCellData(index).toString());
-            observableList.add(this.editTable.getColumns().get(i).getCellData(index).toString());
+        for(int i = 0; i < numOfColumns; i++){
+            this.editOldData.add(this.editTable.getColumns().get(i).getCellData(index).toString());
+            //this.editTextFields.get(i).setText(this.editOldData.get(i)); //TODO: potrei anche mettere la stessa roba che ho messo in editOldData
+            this.editTextFields.get(i).setText(this.editTable.getColumns().get(i).getCellData(index).toString());
+            System.out.println("editTextFields: " + editTextFields.get(i).getText()); //TODO: remove
         }
 
-        System.out.println("bagaglioArr: " + Arrays.toString(bagaglioArr));
-        System.out.println("Stringbuilder: " + stringBuilder);
-        System.out.println("Stringbuilder: " + observableList);
+        System.out.println("editOldData: " + editOldData); //TODO: remove
 
-        System.out.println("selectedRow: " + selectedRow); //TODO: remove
-
-        this.editTextFields.forEach(textField -> textField.setText(selectedRow.toString()));
-
-        System.out.println(selectedRow.getClass().toString());
-        System.out.println(selectedRow.getClass().getTypeName());
-        System.out.println("canonical name: " + selectedRow.getClass().getCanonicalName());
-        System.out.println(Arrays.toString(selectedRow.getClass().getMethods()));
-        System.out.println(selectedRow.getClass().getName());
-        System.out.println(selectedRow.getClass().isInstance(Table.BAGAGLIO));
-        System.out.println("simpler name: " + selectedRow.getClass().getSimpleName());
-        System.out.println(selectedRow.getClass().getClassLoader());
-        System.out.println(selectedRow.getClass().getComponentType());
-
-        String methodName = "getPeso";
-        Class[] parameterType = null;
-        System.out.println(selectedRow.getClass().getMethod(methodName, parameterType));
-        System.out.println(selectedRow.getClass().getMethod(methodName, parameterType).getReturnType());
-
-        //System.out.println(selectedRow.getClass().getMethod(methodName, parameterType).invoke(new Bagaglio(), new Object())); //TODO:
-        //System.out.println(selectedRow.getClass().getMethod(methodName, parameterType).invoke(selectedRow.getClass(), new Object())); // non va bene
-        //System.out.println(selectedRow.getClass().getDeclaredMethod(methodName, parameterType).invoke(selectedRow.getClass(), null));
-
-        //Method m = selectedRow.getClass().getDeclaredMethod("getPeso", null);
-        //Object rv = m.invoke(null, null);
-
-        /*Class myClass = Class.forName("Bagaglio");
-        String methodName2 = "getCodBagaglio";
-        Class[] parameterType2 = null;
-
-        System.out.println(myClass.getMethod(methodName2, parameterType2));*/
 
         //TODO: Devo prendere i dati dalla row e metterli negli editTextFields
         //TODO: tenere in memoria i vecchi dati perchè credo che servano per la query
         //TODO: quando poi preme submit dell'edit allora:
         //TODO: pulire gli editTextFields e aggiornare i dati nella tabella (potrei o mettere il simbolo per il refresh oppure direttamente chiamare .refresh() sulla table).
         //TODO: salvare i nuovi dati e alterare la table con una query.
-
-        ObservableList<String> oldData = FXCollections.observableArrayList();
-        ObservableList<String> newData = FXCollections.observableArrayList();
-
-        switch(selectedRow.getClass().getSimpleName().toUpperCase()){
-            case "BAGAGLIO":
-                System.out.println("Nello switch");
-                final int numOfColumns = DatabaseController.getNumberOfColumns(Table.BAGAGLIO);
-                for(int i = 0; i < numOfColumns; i++){
-                    //oldData.add();
-                }
-                break;
-            case "TERMINAL":
-                System.out.println("Nello switch");
-                break;
-        }
     }
 
 }
