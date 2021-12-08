@@ -22,6 +22,7 @@ import javafx.scene.control.*;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -34,10 +35,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class HomePageController implements Initializable { //TODO: mettere nel package controllers
 
@@ -152,6 +150,15 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private Button btnDeleteRow;
 
+    @FXML
+    private ImageView imgViewLanguage;
+
+    @FXML
+    private ImageView imgViewTheme;
+
+    private boolean isLightTheme = true; //TODO: caricare da file
+    private boolean isEnglish; //TODO: rename in isLanguageEnglish o isInEnglish
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { //TODO: aggiungere pulsante per eliminare dati tabella
@@ -173,6 +180,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         this.comboTheme.getSelectionModel().select("Light");
 
         //TODO: searchData();
+        //searchData();
     }
 
     @FXML
@@ -312,11 +320,11 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         for(int i = 0; i < numberOfColumns; i++){
             Label label = new Label();
             label.setText(observableList.get(i));
-            label.setLayoutX(-9);
+            label.setLayoutX(0); // prima -9
             label.setLayoutY(i * 40);
 
             TextField textField = new TextField();
-            textField.setLayoutX(i > 10 ? 2 * 63 : 63); // 63
+            textField.setLayoutX(i > 10 ? 2 * 73 : 73); // prima era 10; 63
             textField.setLayoutY(i * 40);
             textField.setStyle("-fx-border-color: #7b1417");
 
@@ -357,7 +365,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     }
 
     /*private void searchData(){ //TODO: uncomment and fix
-        FilteredList<Tables> filteredDataList = new FilteredList<>(, b -> true); // primo parametro data
+        FilteredList<Tables> filteredDataList = new FilteredList<>(DatabaseController.getTableData(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem())), b -> true); // primo parametro data
         this.searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredDataList.setPredicate(e -> {
                 if(newValue == null || newValue.isEmpty()){
@@ -365,12 +373,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if( != -1){
+                if(getFirstName().toLowerCase().indexOf(lowerCaseFilter) != -1){
                     return true;
-                } else if( != -1){
+                } else if(getQualcosaltro().to.blabla != -1){
                     return true;
                 }
-                else if( != -1){
+                else if(getAltro().bla.bla.come.sopra != -1){
                     return true;
                 } else {
                     return false;
@@ -378,8 +386,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             });
         });
         SortedList<Tables> sortedDataList = new SortedList<>(filteredDataList);
-        sortedDataList.comparatorProperty().bind(table.comparatorProperty());
-        table.setItems(sortedDataList);
+        sortedDataList.comparatorProperty().bind(this.table.comparatorProperty());
+        this.table.setItems(sortedDataList);
     }*/
 
     @FXML
@@ -430,11 +438,11 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         switch(selectedTable){ //TODO: aggiungere le altre tabelle
             case "BAGAGLIO":
                 showTable2(Table.BAGAGLIO, this.editTable);
-                createTextFields2(Table.BAGAGLIO, this.editAnchorPane, this.editTextFields, -9, 40, 63, 40, "#0e401c", 10); //TODO: modificare parametri
+                createTextFields2(Table.BAGAGLIO, this.editAnchorPane, this.editTextFields, 0, 40, 73, 40, "#0e401c", 10); //TODO: modificare parametri
                 break;
             case "TERMINAL":
                 showTable2(Table.TERMINAL, this.editTable);
-                createTextFields2(Table.TERMINAL, this.editAnchorPane, this.editTextFields, -9, 40, 63, 40, "#0e401c", 10); //TODO: modificare parametri
+                createTextFields2(Table.TERMINAL, this.editAnchorPane, this.editTextFields, 0, 40, 73, 40, "#0e401c", 10); //TODO: modificare parametri
                 break;
             case "PERSONA":
                 break;
@@ -504,12 +512,47 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     void handleThemeSelection(ActionEvent event) {
         //TODO: devo settare i vari style in base alla scelta.
+
+
+
+        switch(this.comboTheme.getSelectionModel().getSelectedItem()){
+            case "Light":
+                //TODO: metto pane per pane
+                //TODO: remove stylesheet dark mode
+                this.comboTheme.getScene().getRoot().getStylesheets().add(getClass().getResource("").toString()); //TODO: aggiungere path
+                this.isLightTheme = true;
+
+                //TODO: chiamare setLightTheme()
+                break;
+            case "Dark":
+                //TODO: remove light mode
+                this.isLightTheme = false;
+
+                //TODO: chiamare setDarkTheme();
+                break;
+        }
     }
 
     @FXML
     void handleLanguageSelection(ActionEvent event) {
         //TODO: faccio uno switch ed in base alla lingua scelta cambio i vari labels con setText.
 
+        /*switch(this.comboLanguage.getSelectionModel().getSelectedItem()){ //TODO: metterlo dentro ad un altro metodo, così lo chiamo anche all'inizio, remove.
+            case "Italiano":
+                break;
+
+            default:
+            case "English":
+                break;
+        }*/
+
+        //TODO: chiamare setLanguageSetting();
+        setLanguageSetting();
+    }
+
+    //TODO: potrei usare Internationalization dependency oppure uso direttamente i setText.
+    private void setLanguageSetting(){
+        //TODO: faccio uno switch ed in base alla lingua scelta cambio i vari labels con setText.
         switch(this.comboLanguage.getSelectionModel().getSelectedItem()){
             case "Italiano":
                 break;
@@ -539,6 +582,9 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private void submitDeleteRow(ActionEvent event) {
         //TODO: in base alla riga della tabella selezionata selezionata, se clicco questo pulsante me la cancella.
+
+        //TODO: potrei aggiungere un dialog per chiedere all'utente se è sicuro di voler eliminare i dati. Tipo: Are you sure? Yes No
+
         final int index = this.table.getSelectionModel().getSelectedIndex();
 
         final int numOfColumns = DatabaseController.getNumberOfColumns(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()));
@@ -560,6 +606,39 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             System.out.println("Operazione cancellazione failed."); //TODO: remove
         }
 
+    }
+
+    @FXML
+    void swapLanguage(MouseEvent event) {
+
+    }
+
+    @FXML
+    void swapTheme(MouseEvent event) {
+        this.isLightTheme = !this.isLightTheme;
+        if(this.isLightTheme){
+            setLightTheme();
+        } else {
+            setDarkTheme();
+        }
+    }
+
+    private void setLightTheme(){
+        //root.getStylesheets().remove("");// dark mode //TODO: uncomment
+        //root.getStylesheets().add(""); // light mode
+
+        Image imgTheme = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/resources/icons8_haze_40px.png"))); //src/main/resources/com/lucar01/icons/icons8_haze_40px.png
+        this.imgViewTheme.setImage(imgTheme);
+    }
+
+    private void setDarkTheme(){
+        //root.getStylesheets().remove("");// light mode //TODO: uncomment
+        //root.getStylesheets().add(""); // dark mode
+
+        //Image imgTheme = new Image("/resources/icons8_night_40px.png"); //src/main/resources/com/lucar01/icons/icons8_night_40px.png
+        //imgViewTheme.class.getResource("icons/icons8_night_40px.png"); // NON VA
+        Image imgTheme = new Image(getClass().getClassLoader().getResource("../../../../resources/com/lucar01/icons/icons8_night_40px.png").toString(), true); // NON VA
+        this.imgViewTheme.setImage(imgTheme);
     }
 
 }

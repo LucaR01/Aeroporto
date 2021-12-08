@@ -258,7 +258,7 @@
          </children></Pane>
       <HBox alignment="TOP_RIGHT" layoutX="228.0" prefHeight="100.0" prefWidth="772.0" style="-fx-background-color: #0e2d82;" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Pane prefHeight="0.0" prefWidth="772.0" style="-fx-background-color: #0e2d82;">
+            <Pane prefHeight="100.0" prefWidth="787.0" style="-fx-background-color: #0e2d82;">
                <children>
                   <Label graphicTextGap="12.0" layoutX="22.0" layoutY="40.0" text="Gestisci i tuoi Aeroporti" textFill="WHITE">
                      <font>
@@ -278,6 +278,16 @@
                   <ImageView fx:id="btnMinimize" fitHeight="24.0" fitWidth="24.0" layoutX="679.0" layoutY="2.0" onMouseClicked="#handleMinimizeButton" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/minimize_window_48px.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="imgViewTheme" fitHeight="36.0" fitWidth="36.0" layoutX="685.0" layoutY="50.0" onMouseClicked="#swapTheme" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/icons8_haze_40px.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="imgViewLanguage" fitHeight="36.0" fitWidth="36.0" layoutX="629.0" layoutY="50.0" onMouseClicked="#swapLanguage" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/language_48px.png" />
                      </image>
                   </ImageView>
                </children>
