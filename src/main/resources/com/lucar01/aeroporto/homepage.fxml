@@ -63,7 +63,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnAlterTable" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleButtonsClick" prefHeight="52.0" prefWidth="229.0" stylesheets="@../css/style.css" text="Alter Table" textFill="WHITE">
+            <Button fx:id="btnUpdateTable" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleButtonsClick" prefHeight="52.0" prefWidth="229.0" stylesheets="@../css/style.css" text="Edit Table" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -101,7 +101,7 @@
             </Button>
          </children>
       </VBox>
-      <StackPane layoutX="239.0" layoutY="197.0">
+      <StackPane fx:id="root" layoutX="239.0" layoutY="197.0">
          <children>
             <GridPane fx:id="paneAddTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
                <columnConstraints>
@@ -136,7 +136,7 @@
                   </HBox>
                </children>
             </GridPane>
-            <GridPane fx:id="paneAlterTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
+            <GridPane fx:id="paneUpdateTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
                <rowConstraints>
                   <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="358.0" vgrow="SOMETIMES" />
@@ -153,32 +153,55 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <Label layoutY="2.0" text="Alter Table" textFill="#0e401c">
+                        <Label layoutX="-23.0" layoutY="2.0" text="Update Table" textFill="#0e401c">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
                         <ComboBox fx:id="comboEditTable" layoutX="312.0" layoutY="6.0" onAction="#handleEditTableSelection" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #0e401c;" />
-                        <Button fx:id="btnEditSelectedTable" layoutX="145.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #0e401c;" text="NomeTabella" textFill="WHITE" />
+                        <Button fx:id="btnEditSelectedTable" layoutX="114.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #0e401c;" text="NomeTabella" textFill="WHITE" />
                      </children>
                   </Pane>
                   <AnchorPane fx:id="editAnchorPane" prefHeight="298.0" prefWidth="254.0" GridPane.rowIndex="1" />
                   <TableView fx:id="editTable" onMouseClicked="#rowSelected" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff; -fx-border-color: #0e401c;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <GridPane fx:id="paneSettings" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
+            <GridPane fx:id="paneSettings" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
                <rowConstraints>
-                  <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="357.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="365.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="747.0" text="Settings" textFill="#380b5a">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="747.0" text="Settings" textFill="#380b5a">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="labelTheme" layoutX="271.0" layoutY="42.0" text="Tema" textFill="#380b5a">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboTheme" layoutX="372.0" layoutY="46.0" onAction="#handleThemeSelection" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #380b5a;" />
+                        <Label fx:id="labelLanguage" layoutX="265.0" layoutY="97.0" text="Lingua" textFill="#380b5a">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboLanguage" layoutX="372.0" layoutY="101.0" onAction="#handleLanguageSelection" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #380b5a;" />
+                        <Button fx:id="btnSaveSettings" layoutX="310.0" layoutY="307.0" mnemonicParsing="false" onAction="#submitSaveSettings" style="-fx-background-color: #380b5a;" text="Save" textFill="WHITE" />
+                        <Button fx:id="btnResetSettings" layoutX="393.0" layoutY="307.0" mnemonicParsing="false" onAction="#submitResetSettings" style="-fx-background-color: #380b5a;" text="Reset" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
                </children>
             </GridPane>
             <GridPane fx:id="paneOverview" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">

@@ -42,10 +42,13 @@ import java.util.ResourceBundle;
 public class HomePageController implements Initializable { //TODO: mettere nel package controllers
 
     @FXML
+    private StackPane root;
+
+    @FXML
     private Button btnAddTable;
 
     @FXML
-    private Button btnAlterTable;
+    private Button btnUpdateTable;
 
     @FXML
     private Button btnOverview;
@@ -78,7 +81,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     private GridPane paneAddTable;
 
     @FXML
-    private GridPane paneAlterTable;
+    private GridPane paneUpdateTable;
 
     @FXML
     private GridPane paneOverview;
@@ -140,6 +143,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     private ObservableList<String> editOldData = FXCollections.observableArrayList();
 
+    @FXML
+    private ComboBox<String> comboLanguage;
+
+    @FXML
+    private ComboBox<String> comboTheme;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { //TODO: aggiungere pulsante per eliminare dati tabella
@@ -147,6 +156,18 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         this.combo_tables.setItems(tablesList);
         this.combo_add_table.setItems(tablesList);
         this.comboEditTable.setItems(tablesList);
+
+        ObservableList<String> themesList = FXCollections.observableArrayList();
+        themesList.addAll("Light", "Dark"); //TODO: prendere queste informazioni da un enum o da una stringa.
+        ObservableList<String> languagesList = FXCollections.observableArrayList();
+        languagesList.addAll("English", "Italiano");
+        this.comboTheme.setItems(themesList);
+        this.comboLanguage.setItems(languagesList);
+
+        //TODO: verrà caricata la scelta dal file del salvataggio dei dati.
+        //this.comboLanguage.getSelectionModel().select(1); // VANNO ENTRAMBE
+        this.comboLanguage.getSelectionModel().select("Italiano"); //TODO: salvare in un file.
+        this.comboTheme.getSelectionModel().select("Light");
 
         //TODO: searchData();
     }
@@ -166,11 +187,11 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(123, 20, 23), CornerRadii.EMPTY, Insets.EMPTY)));
             this.paneAddTable.toFront();
         }
-        else if(event.getSource() == this.btnAlterTable){
-            this.lblStatusTitle.setText("Alter Table");
+        else if(event.getSource() == this.btnUpdateTable){
+            this.lblStatusTitle.setText("Update Table");
             this.lblStatusSubtitle.setText("Modifica le tabelle");
             this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(14, 64, 28), CornerRadii.EMPTY, Insets.EMPTY))); // 44, 125, 51
-            this.paneAlterTable.toFront();
+            this.paneUpdateTable.toFront();
         }
         else if(event.getSource() == this.btnSettings){
             this.lblStatusTitle.setText("Settings");
@@ -475,6 +496,41 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         //TODO: quando poi preme submit dell'edit allora:
         //TODO: pulire gli editTextFields e aggiornare i dati nella tabella (potrei o mettere il simbolo per il refresh oppure direttamente chiamare .refresh() sulla table).
         //TODO: salvare i nuovi dati e alterare la table con una query.
+    }
+
+    @FXML
+    void handleThemeSelection(ActionEvent event) {
+        //TODO: devo settare i vari style in base alla scelta.
+    }
+
+    @FXML
+    void handleLanguageSelection(ActionEvent event) {
+        //TODO: faccio uno switch ed in base alla lingua scelta cambio i vari labels con setText.
+
+        switch(this.comboLanguage.getSelectionModel().getSelectedItem()){
+            case "Italiano":
+                break;
+
+            default:
+            case "English":
+                break;
+        }
+    }
+
+    @FXML
+    void submitResetSettings(ActionEvent event) {
+        //TODO: settare nei combo i valori di default (il salvataggio lo faccio nella submitSaveSettings());
+        this.comboTheme.getSelectionModel().select(Settings.Theme.LIGHT.getDefaultTheme());
+        this.comboLanguage.getSelectionModel().select(Settings.Languages.ENGLISH.getDefaultLanguage());
+    }
+
+    @FXML
+    void submitSaveSettings(ActionEvent event) {
+        //TODO: salvare i dati in un file. this.comboLang e theme .getSelectionModel().getSelectedItem();
+    }
+
+    private void error(String message){
+
     }
 
 }
