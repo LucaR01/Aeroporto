@@ -1,0 +1,15 @@
+
+.combo {
+    -fx-background-color: #fff;
+    -fx-border-color: #380b5a;
+}
+
+.label {
+    color: #380b5a;
+    font-size: 24px;
+}
+
+.button {
+    -fx-background-color: #380b5a;
+    color: white;
+}

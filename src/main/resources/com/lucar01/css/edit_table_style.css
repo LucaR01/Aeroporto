@@ -1,0 +1,20 @@
+
+.button {
+    color: white;
+    -fx-background-color:  #0e401c;
+}
+
+.combo {
+    -fx-background-color: #fff;
+    -fx-border-color:  #0e401c;
+}
+
+.label {
+    color:  #0e401c;
+    /* align: center */
+}
+
+.table {
+    -fx-background-color: #fff;
+    -fx-border-color:  #0e401c;
+}

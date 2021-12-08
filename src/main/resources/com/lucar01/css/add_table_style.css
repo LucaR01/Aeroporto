@@ -1,0 +1,18 @@
+
+.button {
+    -fx-background-color: #7b1417;
+}
+
+.textfield {
+    -fx-border-color: #7b1417;
+}
+
+.combobox {
+    -fx-border-color: #7b1417;
+    -fx-background-color: #fff;
+}
+
+.label {
+    /* -fx-text-fill: #7b1417; non so se sia giusto.
+    -fx-color: #7b1417; */
+}
