@@ -103,7 +103,7 @@
       </VBox>
       <StackPane fx:id="root" layoutX="239.0" layoutY="197.0">
          <children>
-            <GridPane fx:id="paneAddTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
+            <GridPane fx:id="paneAddTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -136,7 +136,7 @@
                   </HBox>
                </children>
             </GridPane>
-            <GridPane fx:id="paneUpdateTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
+            <GridPane fx:id="paneUpdateTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
                <rowConstraints>
                   <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="386.0" minHeight="10.0" prefHeight="358.0" vgrow="SOMETIMES" />
@@ -149,15 +149,15 @@
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="btnSubmitEdit" layoutX="100.0" layoutY="7.0" mnemonicParsing="false" onAction="#submitEditTable" style="-fx-background-color: #0e401c;" text="Submit" textFill="WHITE" />
-                     </children>
-                  </Pane>
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                     <children>
-                        <Label layoutX="-23.0" layoutY="2.0" text="Update Table" textFill="#0e401c">
+                        <Label layoutX="183.0" layoutY="2.0" text="Update Table" textFill="#0e401c">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
                         <ComboBox fx:id="comboEditTable" layoutX="312.0" layoutY="6.0" onAction="#handleEditTableSelection" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #0e401c;" />
                         <Button fx:id="btnEditSelectedTable" layoutX="114.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #0e401c;" text="NomeTabella" textFill="WHITE" />
                      </children>
@@ -204,7 +204,7 @@
                   </AnchorPane>
                </children>
             </GridPane>
-            <GridPane fx:id="paneOverview" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
+            <GridPane fx:id="paneOverview" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -228,6 +228,15 @@
                         <TextField fx:id="searchField" prefHeight="25.0" prefWidth="223.0" style="-fx-border-color: #12a2ed;" />
                         <ComboBox fx:id="combo_tables" onAction="#handleTableSelection" prefWidth="150.0" style="-fx-border-color: #12a2ed; -fx-background-color: #fff;" />
                         <Button fx:id="btnSelectedTable" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" stylesheets="@../css/style.css" textFill="WHITE" />
+                        <Button fx:id="btnDeleteRow" mnemonicParsing="false" onAction="#submitDeleteRow" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/style.css" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/icons8_remove_30px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </HBox>
                </children>

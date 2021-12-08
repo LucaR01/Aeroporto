@@ -149,6 +149,9 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private ComboBox<String> comboTheme;
 
+    @FXML
+    private Button btnDeleteRow;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { //TODO: aggiungere pulsante per eliminare dati tabella
@@ -531,6 +534,11 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     private void error(String message){
 
+    }
+
+    @FXML
+    private void submitDeleteRow(ActionEvent event) {
+        //TODO: in base alla riga della tabella selezionata selezionata, se clicco questo pulsante me la cancella.
     }
 
 }

@@ -188,4 +188,8 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
         }
         return true;
     }
+
+    public static boolean deleteTableData(Table table, ObservableList<String> dataToDelete){
+        return false;
+    }
 }
