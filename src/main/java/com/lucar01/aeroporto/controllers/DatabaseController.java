@@ -1,8 +1,7 @@
 package com.lucar01.aeroporto.controllers;
 
 import com.lucar01.aeroporto.Database;
-import com.lucar01.aeroporto.table.Persona;
-import com.lucar01.aeroporto.table.Table;
+import com.lucar01.aeroporto.table.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -205,5 +204,35 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
             return false;
         }
         return true;
+    }
+
+    public static ObservableList<Tables> getTableData(Table tableName){
+        ObservableList<Tables> observableList = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT * FROM " + tableName.getTableName();
+            PreparedStatement ps = CONNECTION.prepareStatement(query);
+            ResultSet resultSet = ps.executeQuery();
+
+            while(resultSet.next()){ //TODO: aggiungere le altre tabelle.
+                switch(tableName){
+                    case PERSONA:
+                        observableList.add(new Persona(resultSet.getString("CodiceFiscale"), resultSet.getString("Nome"), resultSet.getString("Cognome"),
+                                Integer.parseInt(resultSet.getString("Età")), Optional.of(resultSet.getString("Ruolo")))); //TODO: getInt()
+                        break;
+                    case BAGAGLIO:
+                        observableList.add(new Bagaglio(resultSet.getInt("CodBagaglio"), resultSet.getInt("peso"), resultSet.getString("CodiceFiscale")));
+                        break;
+                    case TERMINAL:
+                        observableList.add(new Terminal(resultSet.getInt("CodTerminal")));
+                        break;
+                }
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return observableList;
     }
 }
