@@ -10,8 +10,9 @@
 }
 
 .label {
-    color:  #0e401c;
+    color:  #0e401c; /* forse qui è -fx-text-fill: colore */
     /* align: center */
+    /* forse qui è -fx-font-size: size */
 }
 
 .table {

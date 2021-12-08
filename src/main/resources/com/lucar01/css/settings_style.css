@@ -5,11 +5,11 @@
 }
 
 .label {
-    color: #380b5a;
-    font-size: 24px;
+    color: #380b5a; /* forse qui è -fx-text-fill: colore */
+    font-size: 24px; /* forse qui è -fx-font-size: size */
 }
 
 .button {
     -fx-background-color: #380b5a;
-    color: white;
+    color: white; /* forse qui è -fx-text-fill: colore */
 }
