@@ -25,9 +25,11 @@ public enum Settings {
             return LIGHT.getTheme();
         }
 
-        public ObservableList<Theme> getThemes(){
-            ObservableList<Theme> themes = FXCollections.observableArrayList();
-            themes.addAll(Theme.values()); //TODO: in String
+        public ObservableList<String> getThemes(){
+            ObservableList<String> themes = FXCollections.observableArrayList();
+            for(Theme t : Theme.values()){
+                themes.add(t.getTheme());
+            }
             return themes;
         }
     }
@@ -50,9 +52,11 @@ public enum Settings {
             return ENGLISH.getLanguage();
         }
 
-        public ObservableList<Languages> getLanguages(){
-            ObservableList<Languages> languages = FXCollections.observableArrayList();
-            languages.addAll(Languages.values()); //TODO: in String
+        public ObservableList<String> getLanguages(){
+            ObservableList<String> languages = FXCollections.observableArrayList();
+            for(Languages l : Languages.values()){
+                languages.add(l.getLanguage());
+            }
             return languages;
         }
     }
