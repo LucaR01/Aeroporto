@@ -163,7 +163,7 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
 
         StringBuilder namesOfColumnsString = new StringBuilder();
 
-        for(int i = 0; i < namesOfColumns.size(); i++){
+        for(int i = 0; i < namesOfColumns.size(); i++){ //TODO: alla fine non penso ci sia nemmeno il bisogno di usare il for per ottenere tutti i dati, uso solo il get(0); (guardare deleteTableData come reference)
             if(i == namesOfColumns.size() - 1){
                 namesOfColumnsString.append(namesOfColumns.get(i));
                 namesOfColumnsString.append(" = '").append(newData.get(i)).append("' "); //TODO: aggiungo '' altrimenti le stringhe non mi vanno.
@@ -190,6 +190,20 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
     }
 
     public static boolean deleteTableData(Table table, ObservableList<String> dataToDelete){
-        return false;
+
+        final ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
+
+        final String condition = namesOfColumns.get(0) + " = '" + dataToDelete.get(0) + "'"; // Faccio 0 perchè mi basta l'ID.
+
+        try {
+            String query = "DELETE FROM " + table.getTableName() + " WHERE " + condition;
+            System.out.println("delete query: " + query); //TODO: remove
+            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
+            preparedStatement.execute();
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

@@ -532,13 +532,34 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         //TODO: salvare i dati in un file. this.comboLang e theme .getSelectionModel().getSelectedItem();
     }
 
-    private void error(String message){
+    private void error(String message){ //TODO: message-dialog
 
     }
 
     @FXML
     private void submitDeleteRow(ActionEvent event) {
         //TODO: in base alla riga della tabella selezionata selezionata, se clicco questo pulsante me la cancella.
+        final int index = this.table.getSelectionModel().getSelectedIndex();
+
+        final int numOfColumns = DatabaseController.getNumberOfColumns(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()));
+
+        ObservableList<String> dataToDelete = FXCollections.observableArrayList();
+
+        for(int i = 0; i < numOfColumns; i++){
+            dataToDelete.add(this.table.getColumns().get(i).getCellData(index).toString());
+        }
+
+        System.out.println("dataToDelete: " + dataToDelete); //TODO: remove
+
+        final boolean hasDeleted = DatabaseController.deleteTableData(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()), dataToDelete);
+
+        //TODO: usare un message dialog.
+        if(hasDeleted){
+            System.out.println("Operazione cancellazione eseguita con successo."); //TODO: remove
+        } else {
+            System.out.println("Operazione cancellazione failed."); //TODO: remove
+        }
+
     }
 
 }
