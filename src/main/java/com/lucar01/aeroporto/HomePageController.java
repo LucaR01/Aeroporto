@@ -1,6 +1,7 @@
 package com.lucar01.aeroporto;
 
 import com.lucar01.aeroporto.controllers.DatabaseController;
+import com.lucar01.aeroporto.save.Data;
 import com.lucar01.aeroporto.table.Table;
 import com.lucar01.aeroporto.table.Tables;
 import javafx.collections.FXCollections;
@@ -179,6 +180,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     private boolean isLightTheme = true; //TODO: caricare da file
     private boolean isEnglish; //TODO: rename in isLanguageEnglish o isInEnglish
 
+    private HashMap<String, String> settingsMap = Data.loadSettings();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { //TODO: aggiungere pulsante per eliminare dati tabella
@@ -193,12 +196,13 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         this.comboLanguage.setItems(languagesList);
 
         //TODO: verrà caricata la scelta dal file del salvataggio dei dati.
-        //this.comboLanguage.getSelectionModel().select(1); // VANNO ENTRAMBE
-        this.comboLanguage.getSelectionModel().select("Italiano"); //TODO: salvare in un file.
-        this.comboTheme.getSelectionModel().select("Light");
+        this.comboLanguage.getSelectionModel().select(this.settingsMap.get(Data.LANG_STRING)); //TODO: salvare in un file.
+        this.comboTheme.getSelectionModel().select(this.settingsMap.get(Data.THEME_STRING));
 
         //TODO: searchData();
         //searchData();
+
+        //TODO: settare l'icona della lingua dall'inizio del programma?.
     }
 
     @FXML
@@ -546,8 +550,11 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     //TODO: potrei usare Internationalization dependency oppure uso direttamente i setText.
     private void setLanguageSetting(Settings.Languages language) throws IOException {
         //TODO: faccio uno switch ed in base alla lingua scelta cambio i vari labels con setText.
+        this.comboLanguage.getSelectionModel().select(language.getLanguage());
+
         switch(language.getLanguage()){
             case "Italiano":
+
                 Image imgLanguageIt = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_italy_48px_1.png")));
                 this.imgViewLanguage.setImage(imgLanguageIt);
 
@@ -616,7 +623,10 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     @FXML
     void submitSaveSettings(ActionEvent event) {
-        //TODO: salvare i dati in un file. this.comboLang e theme .getSelectionModel().getSelectedItem();
+
+        Data.saveSettings(this.comboTheme.getSelectionModel().getSelectedItem(), this.comboLanguage.getSelectionModel().getSelectedItem());
+
+        //TODO: forse mi servirebbe una notifica e forse saveSettings dovrebbe restituire un boolean.
     }
 
     private void error(String message){ //TODO: message-dialog
@@ -664,6 +674,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     private void setLightTheme() throws IOException, URISyntaxException {
 
+        this.comboTheme.getSelectionModel().select(Settings.Theme.LIGHT.getTheme());
+
         //String css = Objects.requireNonNull(this.getClass().getResource("style.css")).toExternalForm(); // NON VA
 
         //this.vBoxRoot.getStylesheets().remove("res/assets/css/style.css"); //TODO: remove dark theme
@@ -686,6 +698,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     }
 
     private void setDarkTheme() throws IOException {
+
+        this.comboTheme.getSelectionModel().select(Settings.Theme.DARK.getTheme());
 
         Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_night_40px.png")));
         //Image imgTheme = new Image("res/assets/icons/icons8_night_40px.png"); // questo invece non va
