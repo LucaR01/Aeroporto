@@ -7,10 +7,10 @@ public class Database {
     private static Connection connection;
 
     public static Connection getConnection(){
-        String databaseName = "aeroporto"; //TODO: add database name
-        String databaseUser = "root"; //TODO: add database user
-        String databasePassword = ""; //TODO:
-        String url = "jdbc:mysql://localhost/" + databaseName; //TODO: add database url
+        String databaseName = "aeroporto";
+        String databaseUser = "root";
+        String databasePassword = "";
+        String url = "jdbc:mysql://localhost/" + databaseName;
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
