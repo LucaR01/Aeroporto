@@ -1,10 +1,6 @@
 package com.lucar01.aeroporto;
 
-import com.lucar01.aeroporto.controllers.DataController;
 import com.lucar01.aeroporto.controllers.DatabaseController;
-import com.lucar01.aeroporto.controllers.TableController;
-import com.lucar01.aeroporto.table.Bagaglio;
-import com.lucar01.aeroporto.table.Persona;
 import com.lucar01.aeroporto.table.Table;
 import com.lucar01.aeroporto.table.Tables;
 import javafx.collections.FXCollections;
@@ -15,9 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 
 import javafx.scene.control.Label;
@@ -27,13 +21,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Time;
 import java.util.*;
 
@@ -156,6 +151,27 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private ImageView imgViewTheme;
 
+    @FXML
+    private Label lblAddTable;
+
+    @FXML
+    private Label lblSettings;
+
+    @FXML
+    private Label lblSubTitle;
+
+    @FXML
+    private Label lblTitle;
+
+    @FXML
+    private Label lblUpdateTable;
+
+    @FXML
+    private Label lblLanguage;
+
+    @FXML
+    private Label lblTheme;
+
     private boolean isLightTheme = true; //TODO: caricare da file
     private boolean isEnglish; //TODO: rename in isLanguageEnglish o isInEnglish
 
@@ -167,10 +183,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         this.combo_add_table.setItems(tablesList);
         this.comboEditTable.setItems(tablesList);
 
-        ObservableList<String> themesList = FXCollections.observableArrayList();
-        themesList.addAll("Light", "Dark"); //TODO: prendere queste informazioni da un enum o da una stringa.
-        ObservableList<String> languagesList = FXCollections.observableArrayList();
-        languagesList.addAll("English", "Italiano");
+        ObservableList<String> themesList = Settings.Theme.LIGHT.getThemes();
+        ObservableList<String> languagesList = Settings.Languages.ENGLISH.getLanguages();
         this.comboTheme.setItems(themesList);
         this.comboLanguage.setItems(languagesList);
 
@@ -187,26 +201,52 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     private void handleButtonsClick(ActionEvent event){ //TODO: rename in handleMenuButtons?
         //TODO: try to use a switch if possible
         if(event.getSource() == this.btnOverview){
-            this.lblStatusTitle.setText("Overview");
-            this.lblStatusSubtitle.setText("Visualizza le tabelle");
+            if(this.isEnglish){
+                this.lblStatusTitle.setText("Overview");
+                this.lblStatusSubtitle.setText("View the tables");
+            } else {
+                this.lblStatusTitle.setText("Visualizza");
+                this.lblStatusSubtitle.setText("Visualizza le tabelle");
+            }
+
             this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(18, 162, 237), CornerRadii.EMPTY, Insets.EMPTY)));
             this.paneOverview.toFront();
         }
         else if(event.getSource() == this.btnAddTable){
-            this.lblStatusTitle.setText("Add Table");
-            this.lblStatusSubtitle.setText("Aggiungi tabelle al database");
+            if(this.isEnglish){
+                this.lblStatusTitle.setText("Add Table");
+                this.lblStatusSubtitle.setText("Add tables to the database");
+            } else {
+                this.lblStatusTitle.setText("Aggiungi Tabelle");
+                this.lblStatusSubtitle.setText("Aggiungi tabelle al database");
+            }
+
             this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(123, 20, 23), CornerRadii.EMPTY, Insets.EMPTY)));
             this.paneAddTable.toFront();
         }
         else if(event.getSource() == this.btnUpdateTable){
-            this.lblStatusTitle.setText("Update Table");
-            this.lblStatusSubtitle.setText("Modifica le tabelle");
+            if(this.isEnglish){
+                this.lblStatusTitle.setText("Update Table");
+                this.lblStatusSubtitle.setText("Edit the tables");
+            } else {
+                this.lblStatusTitle.setText("Aggiorna le tabelle");
+                this.lblStatusSubtitle.setText("Modifica le tabelle");
+            }
+
+
             this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(14, 64, 28), CornerRadii.EMPTY, Insets.EMPTY))); // 44, 125, 51
             this.paneUpdateTable.toFront();
         }
         else if(event.getSource() == this.btnSettings){
-            this.lblStatusTitle.setText("Settings");
-            this.lblStatusSubtitle.setText("Modifica le tue impostazioni");
+            if(this.isEnglish){
+                this.lblStatusTitle.setText("Settings");
+                this.lblStatusSubtitle.setText("Edit your settings");
+            } else {
+                this.lblStatusTitle.setText("Impostazioni");
+                this.lblStatusSubtitle.setText("Modifica le tue impostazioni");
+            }
+
+
             this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(56, 11, 90), CornerRadii.EMPTY, Insets.EMPTY))); // 109, 21, 170
             this.paneSettings.toFront();
         } else {
@@ -248,13 +288,13 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         switch(this.combo_tables.getSelectionModel().getSelectedItem()){ //TODO: aggiungere le altre tabelle, usare selectedTable
             case "PERSONA":
-                showTable(Table.PERSONA);
+                showTable(Table.PERSONA, this.table);
                 break;
             case "BAGAGLIO":
-                showTable(Table.BAGAGLIO);
+                showTable(Table.BAGAGLIO, this.table);
                 break;
             case "TERMINAL":
-                showTable(Table.TERMINAL);
+                showTable(Table.TERMINAL, this.table);
                 break;
             default:
                 this.table.getColumns().clear();
@@ -262,17 +302,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
-    private void createTable(int numOfColumns, ObservableList<String> columnsName){ //TODO: usare createTable2()
-
-        for(int i = 0; i < numOfColumns; i++){
-            TableColumn<Tables, String> column = new TableColumn<>();
-            column.setText(columnsName.get(i).toUpperCase());
-            column.setCellValueFactory(new PropertyValueFactory<>(columnsName.get(i)));
-            this.table.getColumns().add(column);
-        }
-    }
-
-    private void createTable2(int numOfColumns, ObservableList<String> columnsName, TableView<Tables> tableView){
+    private void createTable(final int numOfColumns, final ObservableList<String> columnsName, TableView<Tables> tableView){
 
         for(int i = 0; i < numOfColumns; i++){
             TableColumn<Tables, String> column = new TableColumn<>();
@@ -282,63 +312,22 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
-    private void showTable(Table table){ //TODO: usare showTable2()
-        this.table.getColumns().clear();
-
-        final ObservableList<String> namesOfColumnsList = DatabaseController.getNamesOfColumns(table);
-        final int numOfColumns = DatabaseController.getNumberOfColumns(table);
-        final ObservableList<Tables> tableDataList = DataController.getTableData3(table);
-
-        System.out.println("numOfColumns: " + numOfColumns); //TODO: remove
-        System.out.println("tableDataList: " + tableDataList); //TODO: remove
-        createTable(numOfColumns, namesOfColumnsList);
-
-        this.table.setItems(tableDataList);
-    }
-
-    private void showTable2(Table table, TableView<Tables> tableView){
+    private void showTable(final Table table, TableView<Tables> tableView){
         tableView.getColumns().clear();
 
         final ObservableList<String> namesOfColumnsList = DatabaseController.getNamesOfColumns(table);
         final int numOfColumns = DatabaseController.getNumberOfColumns(table);
-        final ObservableList<Tables> tableDataList = DataController.getTableData3(table);
+        final ObservableList<Tables> tableDataList = DatabaseController.getTableData(table);
 
         System.out.println("numOfColumns: " + numOfColumns); //TODO: remove
         System.out.println("tableDataList: " + tableDataList); //TODO: remove
-        createTable2(numOfColumns, namesOfColumnsList, tableView);
+        createTable(numOfColumns, namesOfColumnsList, tableView);
 
         tableView.setItems(tableDataList);
     }
 
-    private void createTextFields(Table table){ //TODO: usare createTextFields2()
-        this.textFields.clear();
-        this.addAnchorPane.getChildren().clear();
-
-        final int numberOfColumns = DatabaseController.getNumberOfColumns(table);
-        final ObservableList<String> observableList = DatabaseController.getNamesOfColumns(table);
-
-        for(int i = 0; i < numberOfColumns; i++){
-            Label label = new Label();
-            label.setText(observableList.get(i));
-            label.setLayoutX(0); // prima -9
-            label.setLayoutY(i * 40);
-
-            TextField textField = new TextField();
-            textField.setLayoutX(i > 10 ? 2 * 73 : 73); // prima era 10; 63
-            textField.setLayoutY(i * 40);
-            textField.setStyle("-fx-border-color: #7b1417");
-
-            this.textFields.add(textField);
-            this.addAnchorPane.getChildren().add(label);
-        }
-
-        this.addAnchorPane.getChildren().addAll(this.textFields);
-
-    }
-
-    //TODO: aggiungere final nei parametri.
-    private void createTextFields2(Table table, AnchorPane anchorPane, ObservableList<TextField> textFieldObservableList,
-                                   int xLabel, int yLabel, int xTextField, int yTextField, String color, int limitTextFields){ //TODO: aggiungere boolean se non voglio i labels.
+    private void createTextFields(final Table table, AnchorPane anchorPane, ObservableList<TextField> textFieldObservableList,
+                                   final int xLabel, final int yLabel, final int xTextField, final int yTextField, final String color, final int limitTextFields){ //TODO: aggiungere boolean se non voglio i labels.
         textFieldObservableList.clear();
         anchorPane.getChildren().clear();
 
@@ -399,10 +388,10 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             case "PERSONA":
                 break;
             case "BAGAGLIO":
-                createTextFields(Table.BAGAGLIO);
+                createTextFields(Table.BAGAGLIO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 10);
                 break;
             case "TERMINAL":
-                createTextFields(Table.TERMINAL);
+                createTextFields(Table.TERMINAL, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 10);
                 break;
             default:
                 this.addAnchorPane.getChildren().clear();
@@ -437,12 +426,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         switch(selectedTable){ //TODO: aggiungere le altre tabelle
             case "BAGAGLIO":
-                showTable2(Table.BAGAGLIO, this.editTable);
-                createTextFields2(Table.BAGAGLIO, this.editAnchorPane, this.editTextFields, 0, 40, 73, 40, "#0e401c", 10); //TODO: modificare parametri
+                showTable(Table.BAGAGLIO, this.editTable);
+                createTextFields(Table.BAGAGLIO, this.editAnchorPane, this.editTextFields, 0, 40, 73, 40, "#0e401c", 10);
                 break;
             case "TERMINAL":
-                showTable2(Table.TERMINAL, this.editTable);
-                createTextFields2(Table.TERMINAL, this.editAnchorPane, this.editTextFields, 0, 40, 73, 40, "#0e401c", 10); //TODO: modificare parametri
+                showTable(Table.TERMINAL, this.editTable);
+                createTextFields(Table.TERMINAL, this.editAnchorPane, this.editTextFields, 0, 40, 73, 40, "#0e401c", 10);
                 break;
             case "PERSONA":
                 break;
@@ -519,7 +508,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             case "Light":
                 //TODO: metto pane per pane
                 //TODO: remove stylesheet dark mode
-                this.comboTheme.getScene().getRoot().getStylesheets().add(getClass().getResource("").toString()); //TODO: aggiungere path
+                //this.comboTheme.getScene().getRoot().getStylesheets().add(getClass().getResource("").toString()); //TODO: aggiungere path
                 this.isLightTheme = true;
 
                 //TODO: chiamare setLightTheme()
@@ -537,29 +526,74 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     void handleLanguageSelection(ActionEvent event) {
         //TODO: faccio uno switch ed in base alla lingua scelta cambio i vari labels con setText.
 
-        /*switch(this.comboLanguage.getSelectionModel().getSelectedItem()){ //TODO: metterlo dentro ad un altro metodo, così lo chiamo anche all'inizio, remove.
+        switch(this.comboLanguage.getSelectionModel().getSelectedItem()){ //TODO: metterlo dentro ad un altro metodo, così lo chiamo anche all'inizio, remove.
             case "Italiano":
+                setLanguageSetting(Settings.Languages.ITALIANO);
                 break;
 
             default:
             case "English":
+                setLanguageSetting(Settings.Languages.ENGLISH);
                 break;
-        }*/
+        }
 
-        //TODO: chiamare setLanguageSetting();
-        setLanguageSetting();
     }
 
     //TODO: potrei usare Internationalization dependency oppure uso direttamente i setText.
-    private void setLanguageSetting(){
+    private void setLanguageSetting(Settings.Languages language){
         //TODO: faccio uno switch ed in base alla lingua scelta cambio i vari labels con setText.
-        switch(this.comboLanguage.getSelectionModel().getSelectedItem()){
+        switch(language.getLanguage()){
             case "Italiano":
+                this.lblLanguage.setText("Lingua");
+                this.lblTheme.setText("Tema");
+
+                this.lblSettings.setText("Impostazioni");
+
+                this.lblAddTable.setText("Aggiungi");
+
+                this.lblUpdateTable.setText("Aggiorna Tabella");
+                this.lblTitle.setText("Aeroporto");
+
+                this.lblSubTitle.setText("Gestisci i tuoi Aeroporti");
+
+                this.btnOverview.setText("Visualizza");
+                this.btnAddTable.setText("Aggiungi Tabellle");
+                this.btnUpdateTable.setText("Aggiorna Tabelle");
+                this.btnSettings.setText("Impostazioni");
+                this.btnQuit.setText("Esci");
                 break;
 
             default:
             case "English":
+                this.lblLanguage.setText("Language");
+                this.lblTheme.setText("Theme");
+
+                this.lblSettings.setText("Settings");
+
+                this.lblAddTable.setText("Add Table");
+
+                this.lblUpdateTable.setText("Update Table");
+                this.lblTitle.setText("Airport");
+
+                this.lblSubTitle.setText("Manage your Airports");
+
+                this.btnOverview.setText("Overview");
+                this.btnAddTable.setText("Add Table");
+                this.btnUpdateTable.setText("Edit Table");
+                this.btnSettings.setText("Settings");
+                this.btnQuit.setText("Quit");
                 break;
+        }
+    }
+
+    @FXML
+    void swapLanguage(MouseEvent event) {
+        this.isEnglish = !this.isEnglish;
+
+        if(this.isEnglish){
+            setLanguageSetting(Settings.Languages.ENGLISH);
+        } else {
+            setLanguageSetting(Settings.Languages.ITALIANO);
         }
     }
 
@@ -609,12 +643,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     }
 
     @FXML
-    void swapLanguage(MouseEvent event) {
-
-    }
-
-    @FXML
-    void swapTheme(MouseEvent event) {
+    void swapTheme(MouseEvent event) throws IOException {
         this.isLightTheme = !this.isLightTheme;
         if(this.isLightTheme){
             setLightTheme();
@@ -623,21 +652,20 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
-    private void setLightTheme(){
+    private void setLightTheme() throws IOException {
         //root.getStylesheets().remove("");// dark mode //TODO: uncomment
         //root.getStylesheets().add(""); // light mode
 
-        Image imgTheme = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/resources/icons8_haze_40px.png"))); //src/main/resources/com/lucar01/icons/icons8_haze_40px.png
+        Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_haze_40px.png")));
         this.imgViewTheme.setImage(imgTheme);
     }
 
-    private void setDarkTheme(){
+    private void setDarkTheme() throws IOException {
         //root.getStylesheets().remove("");// light mode //TODO: uncomment
         //root.getStylesheets().add(""); // dark mode
 
-        //Image imgTheme = new Image("/resources/icons8_night_40px.png"); //src/main/resources/com/lucar01/icons/icons8_night_40px.png
-        //imgViewTheme.class.getResource("icons/icons8_night_40px.png"); // NON VA
-        Image imgTheme = new Image(getClass().getClassLoader().getResource("../../../../resources/com/lucar01/icons/icons8_night_40px.png").toString(), true); // NON VA
+        Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_night_40px.png")));
+        //Image imgTheme = new Image("res/assets/icons/icons8_night_40px.png"); // questo invece non va
         this.imgViewTheme.setImage(imgTheme);
     }
 
