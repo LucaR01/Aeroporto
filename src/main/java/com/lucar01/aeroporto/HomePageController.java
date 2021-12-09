@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -171,6 +172,9 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     @FXML
     private Label lblTheme;
+
+    @FXML
+    private VBox vBoxRoot;
 
     private boolean isLightTheme = true; //TODO: caricare da file
     private boolean isEnglish; //TODO: rename in isLanguageEnglish o isInEnglish
@@ -523,7 +527,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     }
 
     @FXML
-    void handleLanguageSelection(ActionEvent event) {
+    void handleLanguageSelection(ActionEvent event) throws IOException {
         //TODO: faccio uno switch ed in base alla lingua scelta cambio i vari labels con setText.
 
         switch(this.comboLanguage.getSelectionModel().getSelectedItem()){ //TODO: metterlo dentro ad un altro metodo, così lo chiamo anche all'inizio, remove.
@@ -540,10 +544,13 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     }
 
     //TODO: potrei usare Internationalization dependency oppure uso direttamente i setText.
-    private void setLanguageSetting(Settings.Languages language){
+    private void setLanguageSetting(Settings.Languages language) throws IOException {
         //TODO: faccio uno switch ed in base alla lingua scelta cambio i vari labels con setText.
         switch(language.getLanguage()){
             case "Italiano":
+                Image imgLanguageIt = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_italy_48px_1.png")));
+                this.imgViewLanguage.setImage(imgLanguageIt);
+
                 this.lblLanguage.setText("Lingua");
                 this.lblTheme.setText("Tema");
 
@@ -565,6 +572,9 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
             default:
             case "English":
+                Image imgLanguageEng = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_great_britain_48px.png")));
+                this.imgViewLanguage.setImage(imgLanguageEng);
+
                 this.lblLanguage.setText("Language");
                 this.lblTheme.setText("Theme");
 
@@ -587,7 +597,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     }
 
     @FXML
-    void swapLanguage(MouseEvent event) {
+    void swapLanguage(MouseEvent event) throws IOException {
         this.isEnglish = !this.isEnglish;
 
         if(this.isEnglish){
@@ -643,7 +653,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     }
 
     @FXML
-    void swapTheme(MouseEvent event) throws IOException {
+    void swapTheme(MouseEvent event) throws IOException, URISyntaxException {
         this.isLightTheme = !this.isLightTheme;
         if(this.isLightTheme){
             setLightTheme();
@@ -652,17 +662,30 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
-    private void setLightTheme() throws IOException {
-        //root.getStylesheets().remove("");// dark mode //TODO: uncomment
-        //root.getStylesheets().add(""); // light mode
+    private void setLightTheme() throws IOException, URISyntaxException {
+
+        //String css = Objects.requireNonNull(this.getClass().getResource("style.css")).toExternalForm(); // NON VA
+
+        //this.vBoxRoot.getStylesheets().remove("res/assets/css/style.css"); //TODO: remove dark theme
+        //this.vBoxRoot.getStylesheets().add(Main.class.getResource("../css/style.css").toExternalForm()); // NON VA
+        //this.vBoxRoot.getStylesheets().add(getClass().getResource( "res/assets/css/style.css" ).toExternalForm()); // NON VA
+
+        //this.vBoxRoot.getStylesheets().clear();
+        //this.vBoxRoot.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm()); // NON VA
+        //this.vBoxRoot.getScene().getStylesheets().add("stylesheet.css"); // NON VA
+
+        //this.vBoxRoot.getScene().getStylesheets().add(getClass().getClassLoader().getResource("style.css").toExternalForm()); // NON VA
+
+        //this.vBoxRoot.getStylesheets().add("src/main/resources/style.css"); // NON VA
+        //this.vBoxRoot.getStylesheets().add(String.valueOf(Main.class.getResource("style.css").toURI())); // NON VA
+
+        //this.btnOverview.getStylesheets().add(Paths.get("res/assets/css/style.css").toString()); // NON VA
 
         Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_haze_40px.png")));
         this.imgViewTheme.setImage(imgTheme);
     }
 
     private void setDarkTheme() throws IOException {
-        //root.getStylesheets().remove("");// light mode //TODO: uncomment
-        //root.getStylesheets().add(""); // dark mode
 
         Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_night_40px.png")));
         //Image imgTheme = new Image("res/assets/icons/icons8_night_40px.png"); // questo invece non va
