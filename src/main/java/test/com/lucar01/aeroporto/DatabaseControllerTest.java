@@ -5,9 +5,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.Test;
 
+//import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DatabaseController {
+public class DatabaseControllerTest {
 
     @Test
     public void DatabaseControllerTest(){
