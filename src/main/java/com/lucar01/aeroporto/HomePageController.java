@@ -33,7 +33,7 @@ import java.nio.file.Paths;
 import java.sql.Time;
 import java.util.*;
 
-public class HomePageController implements Initializable { //TODO: mettere nel package controllers
+public class HomePageController implements Initializable { //TODO: mettere nel package controllers, add javadoc.
 
     @FXML
     private StackPane root;
