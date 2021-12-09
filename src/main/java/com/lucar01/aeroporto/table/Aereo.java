@@ -1,6 +1,6 @@
 package com.lucar01.aeroporto.table;
 
-public class Aereo extends AbstractTable{ //TODO: non li metto final perchè poi li devo cambiare con i setter.
+public class Aereo implements Tables{ //TODO: non li metto final perchè poi li devo cambiare con i setter.
 
     private int codAereo;
     private String nome;
