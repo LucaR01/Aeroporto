@@ -11,8 +11,8 @@ public final class Data {
 
     private static final String SETTINGS_PATH = "data/settings/settings.dat";
 
-    private static final String THEME_STRING = "Theme";
-    private static final String LANG_STRING = "Language";
+    public static final String THEME_STRING = "Theme";
+    public static final String LANG_STRING = "Language";
 
     /**
      * private constructor because I don't want the class to be instantiated.
