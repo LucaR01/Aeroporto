@@ -12,6 +12,7 @@ module com.lucar01.aeroporto {
 
     requires junit;
     requires org.junit.jupiter.api;
+    requires json.simple;
 
     opens com.lucar01.aeroporto to javafx.fxml;
     // opens controllers;
