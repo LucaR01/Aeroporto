@@ -101,7 +101,7 @@
             </Button>
          </children>
       </VBox>
-      <StackPane fx:id="root" layoutX="239.0" layoutY="197.0">
+      <StackPane fx:id="root" layoutX="239.0" layoutY="197.0" AnchorPane.leftAnchor="239.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="197.0">
          <children>
             <GridPane fx:id="paneAddTable" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
                <columnConstraints>
