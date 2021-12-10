@@ -20,11 +20,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lucar01.aeroporto.HomePageController">
    <children>
-      <VBox fx:id="vBoxRoot" prefHeight="597.0" prefWidth="229.0" style="-fx-background-color: #0d7bf2;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="vBoxRoot" prefHeight="597.0" prefWidth="229.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="127.0" prefWidth="229.0" style="-fx-background-color: #0d7bf2;">
+            <Pane id="paneVbox" prefHeight="127.0" prefWidth="229.0">
                <children>
-                  <Pane layoutY="-2.0" prefHeight="96.0" prefWidth="229.0" style="-fx-background-color: #3b76c4;">
+                  <Pane id="paneAeroporto" layoutY="-2.0" prefHeight="96.0" prefWidth="229.0">
                      <children>
                         <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="50.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -115,18 +115,18 @@
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnAddSelectedTable" layoutX="163.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" style="-fx-background-color: #7b1417;" textFill="WHITE" />
-                        <Label fx:id="lblAddTable" layoutX="318.0" text="Add Table" textFill="#7b1417">
+                        <Button fx:id="btnAddSelectedTable" layoutX="163.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" textFill="WHITE" />
+                        <Label fx:id="lblAddTable" layoutX="318.0" text="Add Table">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="combo_add_table" layoutX="444.0" layoutY="5.0" onAction="#handleAddTableSelection" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #7b1417;" />
+                        <ComboBox fx:id="combo_add_table" layoutX="444.0" layoutY="5.0" onAction="#handleAddTableSelection" prefWidth="150.0" />
                      </children>
                   </Pane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
-                        <Button fx:id="btnSubmitAddTable" mnemonicParsing="false" onAction="#submitAddTable" style="-fx-cursor: hand;" text="Submit" />
+                        <Button fx:id="btnSubmitAddTable" mnemonicParsing="false" onAction="#submitAddTable" style="-fx-cursor: hand;" text="Submit" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -148,7 +148,7 @@
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnSubmitEdit" layoutX="100.0" layoutY="7.0" mnemonicParsing="false" onAction="#submitEditTable" style="-fx-background-color: #0e401c; -fx-cursor: hand;" text="Submit" textFill="WHITE" />
+                        <Button fx:id="btnSubmitEdit" layoutX="100.0" layoutY="7.0" mnemonicParsing="false" onAction="#submitEditTable" text="Submit" textFill="WHITE" />
                         <Label fx:id="lblUpdateTable" layoutX="183.0" layoutY="2.0" text="Update Table" textFill="#0e401c">
                            <font>
                               <Font size="24.0" />
@@ -158,12 +158,12 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <ComboBox fx:id="comboEditTable" layoutX="312.0" layoutY="6.0" onAction="#handleEditTableSelection" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #0e401c;" />
-                        <Button fx:id="btnEditSelectedTable" layoutX="114.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #0e401c;" text="NomeTabella" textFill="WHITE" />
+                        <ComboBox fx:id="comboEditTable" layoutX="312.0" layoutY="6.0" onAction="#handleEditTableSelection" prefWidth="150.0" />
+                        <Button fx:id="btnEditSelectedTable" layoutX="114.0" layoutY="7.0" mnemonicParsing="false" text="NomeTabella" textFill="WHITE" />
                      </children>
                   </Pane>
                   <AnchorPane fx:id="editAnchorPane" prefHeight="298.0" prefWidth="254.0" GridPane.rowIndex="1" />
-                  <TableView fx:id="editTable" onMouseClicked="#rowSelected" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff; -fx-border-color: #0e401c;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TableView fx:id="editTable" onMouseClicked="#rowSelected" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <GridPane fx:id="paneSettings" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
@@ -191,20 +191,20 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="comboTheme" layoutX="372.0" layoutY="46.0" onAction="#handleThemeSelection" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #380b5a;" />
+                        <ComboBox fx:id="comboTheme" layoutX="372.0" layoutY="46.0" onAction="#handleThemeSelection" prefWidth="150.0" />
                         <Label fx:id="lblLanguage" layoutX="265.0" layoutY="97.0" text="Lingua" textFill="#380b5a">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="comboLanguage" layoutX="372.0" layoutY="101.0" onAction="#handleLanguageSelection" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #380b5a;" />
-                        <Button fx:id="btnSaveSettings" layoutX="310.0" layoutY="307.0" mnemonicParsing="false" onAction="#submitSaveSettings" style="-fx-background-color: #380b5a; -fx-cursor: hand;" text="Save" textFill="WHITE" />
-                        <Button fx:id="btnResetSettings" layoutX="393.0" layoutY="307.0" mnemonicParsing="false" onAction="#submitResetSettings" style="-fx-background-color: #380b5a; -fx-cursor: hand;" text="Reset" textFill="WHITE" />
+                        <ComboBox fx:id="comboLanguage" layoutX="372.0" layoutY="101.0" onAction="#handleLanguageSelection" prefWidth="150.0" />
+                        <Button fx:id="btnSaveSettings" layoutX="310.0" layoutY="307.0" mnemonicParsing="false" onAction="#submitSaveSettings" text="Save" textFill="WHITE" />
+                        <Button fx:id="btnResetSettings" layoutX="393.0" layoutY="307.0" mnemonicParsing="false" onAction="#submitResetSettings" text="Reset" textFill="WHITE" />
                      </children>
                   </AnchorPane>
                </children>
             </GridPane>
-            <GridPane fx:id="paneOverview" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
+            <GridPane fx:id="paneOverview" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -225,8 +225,8 @@
                               <Image url="@../icons/search_64px_2.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="searchField" prefHeight="25.0" prefWidth="223.0" style="-fx-border-color: #12a2ed;" />
-                        <ComboBox fx:id="combo_tables" onAction="#handleTableSelection" prefWidth="150.0" style="-fx-border-color: #12a2ed; -fx-background-color: #fff;" />
+                        <TextField fx:id="searchField" prefHeight="25.0" prefWidth="223.0" />
+                        <ComboBox fx:id="combo_tables" onAction="#handleTableSelection" prefWidth="150.0" />
                         <Button fx:id="btnSelectedTable" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" textFill="WHITE" />
                         <Button fx:id="btnDeleteRow" mnemonicParsing="false" onAction="#submitDeleteRow" prefHeight="25.0" prefWidth="25.0" style="-fx-cursor: hand;" textFill="WHITE">
                            <graphic>
@@ -256,9 +256,9 @@
                </font>
             </Label>
          </children></Pane>
-      <HBox alignment="TOP_RIGHT" layoutX="228.0" prefHeight="100.0" prefWidth="772.0" style="-fx-background-color: #0e2d82;" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0">
+      <HBox fx:id="hBoxTitleBar" alignment="TOP_RIGHT" layoutX="228.0" prefHeight="100.0" prefWidth="772.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Pane prefHeight="100.0" prefWidth="787.0" style="-fx-background-color: #0e2d82;">
+            <Pane prefHeight="100.0" prefWidth="787.0">
                <children>
                   <Label fx:id="lblSubTitle" graphicTextGap="12.0" layoutX="22.0" layoutY="40.0" text="Gestisci i tuoi Aeroporti" textFill="WHITE">
                      <font>

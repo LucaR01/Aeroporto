@@ -177,6 +177,9 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private VBox vBoxRoot;
 
+    @FXML
+    private HBox hBoxTitleBar;
+
     private boolean isLightTheme = true; //TODO: caricare da file
     private boolean isEnglish; //TODO: rename in isLanguageEnglish o isInEnglish
 
@@ -507,25 +510,22 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     }
 
     @FXML
-    void handleThemeSelection(ActionEvent event) {
+    void handleThemeSelection(ActionEvent event) throws IOException, URISyntaxException {
         //TODO: devo settare i vari style in base alla scelta.
 
-
+        this.isLightTheme = !this.isLightTheme;
 
         switch(this.comboTheme.getSelectionModel().getSelectedItem()){
             case "Light":
-                //TODO: metto pane per pane
-                //TODO: remove stylesheet dark mode
                 //this.comboTheme.getScene().getRoot().getStylesheets().add(getClass().getResource("").toString()); //TODO: aggiungere path
-                this.isLightTheme = true;
+                //this.isLightTheme = true;
 
-                //TODO: chiamare setLightTheme()
+                setLightTheme();
                 break;
             case "Dark":
-                //TODO: remove light mode
-                this.isLightTheme = false;
+                //this.isLightTheme = false;
 
-                //TODO: chiamare setDarkTheme();
+                setDarkTheme();
                 break;
         }
     }
@@ -676,38 +676,28 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         this.comboTheme.getSelectionModel().select(Settings.Theme.LIGHT.getTheme());
 
-        /*String lightColor = "#0d7bf2"; // PLAN B
-        String backgroundColor = "-fx-background-color: ";
-
-        this.btnOverview.setStyle(backgroundColor + lightColor);
-        this.btnAddTable.setStyle(backgroundColor + lightColor);
-        this.btnUpdateTable.setStyle(backgroundColor + lightColor);
-        this.btnSettings.setStyle(backgroundColor + lightColor);
-        this.btnQuit.setStyle(backgroundColor + lightColor);*/
-
-        //String css = Objects.requireNonNull(this.getClass().getResource("style.css")).toExternalForm(); // NON VA
-
-        //this.vBoxRoot.getStylesheets().remove("res/assets/css/style.css"); //TODO: remove dark theme
-        //this.vBoxRoot.getStylesheets().add(Main.class.getResource("../css/style.css").toExternalForm()); // NON VA
-        //this.vBoxRoot.getStylesheets().add(getClass().getResource( "res/assets/css/style.css" ).toExternalForm()); // NON VA
-
-        //this.vBoxRoot.getStylesheets().clear();
-        //this.vBoxRoot.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm()); // NON VA
-        //this.vBoxRoot.getScene().getStylesheets().add("stylesheet.css"); // NON VA
-
-        //this.vBoxRoot.getScene().getStylesheets().add(getClass().getClassLoader().getResource("style.css").toExternalForm()); // NON VA
-
-        //this.vBoxRoot.getStylesheets().add("src/main/resources/style.css"); // NON VA
-        //this.vBoxRoot.getStylesheets().add(String.valueOf(Main.class.getResource("style.css").toURI())); // NON VA
-
-        //this.btnOverview.getStylesheets().add(Paths.get("res/assets/css/style.css").toString()); // NON VA
-
         //scene.getStylesheets().add("file:///E:/csse2002-7023/src/csse2002/block/world/main.css"); // REFERENCE
 
         // Paths.get("E","csse2002-7023","src","csse2002","block","world","main.css").toUri().toString()) // REFERENCE 2
 
         this.vBoxRoot.getStylesheets().clear();
+
+        this.paneOverview.getStylesheets().clear();
+        this.paneAddTable.getStylesheets().clear();
+        this.paneUpdateTable.getStylesheets().clear();
+        this.paneSettings.getStylesheets().clear();
+
+        this.hBoxTitleBar.getStylesheets().clear();
+
+
         this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/style.css"); // FUNZIONAAAAAAAAAAAAAAA ALLELUIA
+
+        this.paneOverview.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/table_style.css");
+        this.paneAddTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/add_table_style.css");
+        this.paneUpdateTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/edit_table_style.css");
+        this.paneSettings.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/settings_style.css");
+
+        this.hBoxTitleBar.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/title_bar_style.css");
 
         //this.vBoxRoot.getStylesheets().add(Paths.get("D", "Documenti", "IntelliJ-workspace", "Aeroporto", "src", "main", "resources", "com", "lucar01", "css", "style.css").toUri().toString()); // QUESTO è da fixare
 
@@ -719,20 +709,19 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         this.comboTheme.getSelectionModel().select(Settings.Theme.DARK.getTheme());
 
-        /*String darkColor = "#3e3c3f"; // PLAN B
-        String backgroundColor = "-fx-background-color: ";
-
-        this.btnOverview.setStyle(backgroundColor + darkColor + "; -fx-cursor: hand" + "button:hover");
-        this.btnAddTable.setStyle(backgroundColor + darkColor);
-        this.btnUpdateTable.setStyle(backgroundColor + darkColor);
-        this.btnSettings.setStyle(backgroundColor + darkColor);
-        this.btnQuit.setStyle(backgroundColor + darkColor);*/
-
         this.vBoxRoot.getStylesheets().clear();
+
+        this.paneOverview.getStylesheets().clear();
+        this.paneAddTable.getStylesheets().clear();
+        this.paneUpdateTable.getStylesheets().clear();
+        this.paneSettings.getStylesheets().clear();
+
+        this.hBoxTitleBar.getStylesheets().clear();
+
+
         this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_style.css");
 
         Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_night_40px.png")));
-        //Image imgTheme = new Image("res/assets/icons/icons8_night_40px.png"); // questo invece non va
         this.imgViewTheme.setImage(imgTheme);
 
 
