@@ -1,0 +1,16 @@
+
+#hBoxTitleBar {
+    -fx-background-color:  #010101;
+}
+
+.pane {
+    -fx-background-color:  #010101;
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.image-view {
+    -fx-cursor: hand;
+}

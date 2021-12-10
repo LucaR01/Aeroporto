@@ -1,5 +1,9 @@
 
-hbox {
+/*.hbox {
+    -fx-background-color:  #0e2d82;
+}*/
+
+#hBoxTitleBar {
     -fx-background-color:  #0e2d82;
 }
 
@@ -12,5 +16,5 @@ hbox {
 }
 
 .image-view {
-    cursor: hand;
+    -fx-cursor: hand;
 }

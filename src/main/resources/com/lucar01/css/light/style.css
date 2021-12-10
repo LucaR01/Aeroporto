@@ -19,9 +19,9 @@
     -fx-border-width: 0px 0px 0px 3px;
 }
 
-/*.pane {
+.pane {
     -fx-background-color:  #3b76c4;
-}*/
+}
 
 #paneAeroporto {
     -fx-background-color:  #3b76c4;
@@ -35,7 +35,11 @@
     -fx-text-fill: white;
 }
 
-.vbox {
+/*.VBox {
+    -fx-background-color:  #0d7bf2;
+}*/
+
+#vBoxRoot {
     -fx-background-color:  #0d7bf2;
 }
 
