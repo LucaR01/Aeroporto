@@ -699,13 +699,34 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     void submitSaveSettings(ActionEvent event) {
 
-        Data.saveSettings(this.comboTheme.getSelectionModel().getSelectedItem(), this.comboLanguage.getSelectionModel().getSelectedItem());
+        final boolean hasSaved = Data.saveSettings(this.comboTheme.getSelectionModel().getSelectedItem(), this.comboLanguage.getSelectionModel().getSelectedItem());
 
-        //TODO: forse mi servirebbe una notifica e forse saveSettings dovrebbe restituire un boolean.
-    }
+        final Alert saveAlertSuccess = new Alert(Alert.AlertType.INFORMATION);
+        final Alert saveAlertError = new Alert(Alert.AlertType.ERROR);
 
-    private void error(String message){ //TODO: message-dialog
+        if(this.isEnglish){
+            saveAlertSuccess.setTitle("Save");
+            saveAlertSuccess.setHeaderText("Save Data");
+            saveAlertSuccess.setContentText("Data has been saved successfully");
 
+            saveAlertError.setTitle("Save Error");
+            saveAlertError.setHeaderText("Save Data Error");
+            saveAlertError.setContentText("Data save failed. An error has occurred");
+        } else {
+            saveAlertSuccess.setTitle("Salva");
+            saveAlertSuccess.setHeaderText("Salva Dati");
+            saveAlertSuccess.setContentText("I dati sono stati salvati correttamente");
+
+            saveAlertError.setTitle("Salva Errore");
+            saveAlertError.setHeaderText("Salva Dati Errore");
+            saveAlertError.setContentText("I dati non sono stati salvati. Un errore è stato riscontrato");
+        }
+
+        if(hasSaved){
+            saveAlertSuccess.show();
+        } else {
+            saveAlertError.show();
+        }
     }
 
     @FXML
