@@ -300,8 +300,24 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             this.paneSettings.toFront();
         } else {
             if(event.getSource() == btnQuit){
-                // TODO: message dialog : Are you sure to exit? Yes or No (Are you sure you want to exit? Yes : No)
-                // TODO: System.exit(0);
+                final Alert quitAlert = new Alert(Alert.AlertType.CONFIRMATION);
+
+                if(this.isEnglish){
+                    quitAlert.setTitle("Exit");
+                    quitAlert.setHeaderText("Exit from the program");
+                    quitAlert.setContentText("Are you sure to exit?");
+                } else {
+                    quitAlert.setTitle("Esci");
+                    quitAlert.setHeaderText("Uscita dal programma");
+                    quitAlert.setContentText("Sei sicuro di voler uscire?");
+                }
+
+                //quitAlert.show();
+
+                Optional<ButtonType> quitResult = quitAlert.showAndWait();
+                if(quitResult.get() == ButtonType.OK){
+                    javafx.application.Platform.exit();
+                }
             }
         }
     }
@@ -506,11 +522,33 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         //TODO: Chiamare metodo nel DatabaseController
         final boolean hasUpdated = DatabaseController.editTableData(Table.valueOf(this.comboEditTable.getSelectionModel().getSelectedItem()), this.editOldData, newData); //TODO: uncomment.
 
-        //TODO: mostrare una notifica se l'operazione è avvenuta con successo oppure no.
+        Alert updateAlertSuccess = new Alert(Alert.AlertType.INFORMATION);
+        Alert updateAlertError = new Alert(Alert.AlertType.ERROR);
+
+        if(this.isEnglish){
+            updateAlertSuccess.setTitle("Update");
+            updateAlertSuccess.setHeaderText("Update Data");
+            updateAlertSuccess.setContentText("Update Data successfully executed");
+
+            updateAlertError.setTitle("Update Error");
+            updateAlertError.setHeaderText("Update Data Error");
+            updateAlertError.setContentText("Update data failed. An error has occurred");
+        } else {
+            updateAlertSuccess.setTitle("Aggiorna");
+            updateAlertSuccess.setHeaderText("Aggiorna Dati");
+            updateAlertSuccess.setContentText("Dati aggiornati correttamente");
+
+            updateAlertError.setTitle("Aggiorna Errore");
+            updateAlertError.setHeaderText("Aggiorna Dati Errore");
+            updateAlertError.setContentText("Dati non aggiornati. Un errore si è presentato");
+        }
+
         if(hasUpdated){
             System.out.println("operazione eseguita con successo"); //TODO: remove
+            updateAlertSuccess.show();
             this.editTable.refresh(); // Questo non funziona, o meglio non mi refresha i dati in tempo reale.
         } else {
+            updateAlertError.show();
             System.out.println("operazione fallita"); //TODO: remove
         }
 
@@ -672,29 +710,64 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     @FXML
     private void submitDeleteRow(ActionEvent event) {
-        //TODO: in base alla riga della tabella selezionata selezionata, se clicco questo pulsante me la cancella.
 
-        //TODO: potrei aggiungere un dialog per chiedere all'utente se è sicuro di voler eliminare i dati. Tipo: Are you sure? Yes No
+        final Alert deleteConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
 
-        final int index = this.table.getSelectionModel().getSelectedIndex();
-
-        final int numOfColumns = DatabaseController.getNumberOfColumns(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()));
-
-        ObservableList<String> dataToDelete = FXCollections.observableArrayList();
-
-        for(int i = 0; i < numOfColumns; i++){
-            dataToDelete.add(this.table.getColumns().get(i).getCellData(index).toString());
+        if(this.isEnglish){
+            deleteConfirmation.setTitle("Delete Confirm");
+            deleteConfirmation.setHeaderText("Delete Confirmation");
+            deleteConfirmation.setContentText("Are you sure to delete?");
+        } else {
+            deleteConfirmation.setTitle("Cancella Conferma");
+            deleteConfirmation.setHeaderText("Conferma cancellazione");
+            deleteConfirmation.setContentText("Sei sicuro di voler cancellare?");
         }
 
-        System.out.println("dataToDelete: " + dataToDelete); //TODO: remove
+        Optional<ButtonType> deleteResult = deleteConfirmation.showAndWait();
 
-        final boolean hasDeleted = DatabaseController.deleteTableData(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()), dataToDelete);
+        if(deleteResult.get() == ButtonType.OK){
+            final int index = this.table.getSelectionModel().getSelectedIndex();
 
-        //TODO: usare un message dialog.
-        if(hasDeleted){
-            System.out.println("Operazione cancellazione eseguita con successo."); //TODO: remove
-        } else {
-            System.out.println("Operazione cancellazione failed."); //TODO: remove
+            final int numOfColumns = DatabaseController.getNumberOfColumns(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()));
+
+            ObservableList<String> dataToDelete = FXCollections.observableArrayList();
+
+            for(int i = 0; i < numOfColumns; i++){
+                dataToDelete.add(this.table.getColumns().get(i).getCellData(index).toString());
+            }
+
+            System.out.println("dataToDelete: " + dataToDelete); //TODO: remove
+
+            final boolean hasDeleted = DatabaseController.deleteTableData(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()), dataToDelete);
+
+            Alert deleteAlertSuccess = new Alert(Alert.AlertType.INFORMATION);
+            Alert deleteAlertError = new Alert(Alert.AlertType.ERROR);
+
+            if(this.isEnglish){
+                deleteAlertSuccess.setTitle("Delete");
+                deleteAlertSuccess.setHeaderText("Delete Data");
+                deleteAlertSuccess.setContentText("Data successfully deleted"); // Operation delete successfully executed
+
+                deleteAlertError.setTitle("Delete Error");
+                deleteAlertError.setHeaderText("Delete Data Error");
+                deleteAlertError.setContentText("Data has not been deleted. Error has occurred"); // Operation delete failed. An error has occurred
+            } else {
+                deleteAlertSuccess.setTitle("Cancella");
+                deleteAlertSuccess.setHeaderText("Cancella Dati");
+                deleteAlertSuccess.setContentText("Operazione di cancellazione eseguita con successo");
+
+                deleteAlertError.setTitle("Cancella Errore");
+                deleteAlertError.setHeaderText("Cancella Dati Errore");
+                deleteAlertError.setContentText("Operazione di cancellazione non eseguita. Un errore è capitato");
+            }
+
+            if(hasDeleted){
+                System.out.println("Operazione cancellazione eseguita con successo."); //TODO: remove
+                deleteAlertSuccess.show();
+            } else {
+                System.out.println("Operazione cancellazione failed."); //TODO: remove
+                deleteAlertError.show();
+            }
         }
 
     }
@@ -727,7 +800,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         this.hBoxTitleBar.getStylesheets().clear();
 
 
-        this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/style.css"); // FUNZIONAAAAAAAAAAAAAAA ALLELUIA
+        this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/style.css");
 
         this.paneOverview.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/table_style.css");
         this.paneAddTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/add_table_style.css");
@@ -735,8 +808,6 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         this.paneSettings.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/settings_style.css");
 
         this.hBoxTitleBar.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/title_bar_style.css");
-
-        //this.vBoxRoot.getStylesheets().add(Paths.get("D", "Documenti", "IntelliJ-workspace", "Aeroporto", "src", "main", "resources", "com", "lucar01", "css", "style.css").toUri().toString()); // QUESTO è da fixare
 
         Image imgTheme = new Image("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/icons/icons8_haze_40px.png");
         this.imgViewTheme.setImage(imgTheme);
