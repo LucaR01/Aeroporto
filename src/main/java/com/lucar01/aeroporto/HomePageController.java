@@ -591,7 +591,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         switch(language.getLanguage()){
             case "Italiano":
 
-                Image imgLanguageIt = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_italy_48px_1.png")));
+                Image imgLanguageIt = new Image("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/icons/icons8_italy_48px_1.png");
+
                 this.imgViewLanguage.setImage(imgLanguageIt);
 
                 this.lblLanguage.setText("Lingua");
@@ -615,7 +616,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
             default:
             case "English":
-                Image imgLanguageEng = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_great_britain_48px.png")));
+                Image imgLanguageEng = new Image("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/icons/icons8_great_britain_48px.png");
                 this.imgViewLanguage.setImage(imgLanguageEng);
 
                 this.lblLanguage.setText("Language");
@@ -737,7 +738,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         //this.vBoxRoot.getStylesheets().add(Paths.get("D", "Documenti", "IntelliJ-workspace", "Aeroporto", "src", "main", "resources", "com", "lucar01", "css", "style.css").toUri().toString()); // QUESTO è da fixare
 
-        Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_haze_40px.png")));
+        Image imgTheme = new Image("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/icons/icons8_haze_40px.png");
         this.imgViewTheme.setImage(imgTheme);
     }
 
@@ -764,7 +765,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         this.hBoxTitleBar.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_title_bar_style.css");
 
-        Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_night_40px.png")));
+        Image imgTheme = new Image("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/icons/icons8_night_40px.png");
         this.imgViewTheme.setImage(imgTheme);
 
 
