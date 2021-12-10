@@ -1,0 +1,26 @@
+
+.button {
+    -fx-background-color: #470505;
+    /*-fx-cursor: hand;*/
+}
+
+.button:hover {
+    -fx-background-color: #1f0202;
+}
+
+.button:pressed {
+    -fx-background-color: #8d020b;
+}
+
+.text-field {
+    -fx-border-color: #470505;
+}
+
+.combo-box {
+    -fx-border-color: #470505;
+    -fx-background-color: #fff;
+}
+
+.label {
+    -fx-text-fill: #470505;
+}

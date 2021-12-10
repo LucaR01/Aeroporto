@@ -1,32 +1,32 @@
 
 .button {
     -fx-text-fill: white;
-    -fx-background-color:  #0e401c;
+    -fx-background-color:  #032207;
     /*-fx-cursor: hand;*/
 }
 
 .button:hover {
-    -fx-background-color: #0f4f1e; /* #053e0e */
+    -fx-background-color: #021404; /* #053e0e */
 }
 
 .button:pressed {
-    -fx-background-color: #0fca3b; /* #12df32 */
+    -fx-background-color: #053a0c; /* #12df32 */
 }
 
 .combo-box {
     -fx-background-color: #fff;
-    -fx-border-color:  #0e401c;
+    -fx-border-color:  #032207;
 }
 
 .label {
-    -fx-text-fill:  #0e401c; /* forse qui è -fx-text-fill: colore */
+    -fx-text-fill:  #032207; /* forse qui è -fx-text-fill: colore */
     /* align: center */
     /* forse qui è -fx-font-size: size */
 }
 
 .table-view {
     -fx-background-color: #fff;
-    -fx-border-color:  #0e401c;
+    -fx-border-color:  #032207;
 }
 
 .table-view .column-header .label{
@@ -36,7 +36,7 @@
 }
 
 .table-view .column-header {
-    -fx-background-color: #0e401c;
+    -fx-background-color: #032207;
 }
 
 .table-view .cell{
@@ -46,7 +46,7 @@
 }
 
 .table-row-cell:selected{
-    -fx-background-color: #0e401c;
+    -fx-background-color: #032207;
 }
 
 .table-row-cell:selected .text{

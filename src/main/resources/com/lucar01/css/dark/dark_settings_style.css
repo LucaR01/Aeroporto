@@ -1,0 +1,24 @@
+
+.combo-box {
+    -fx-background-color: #fff;
+    -fx-border-color: #1e0433;
+}
+
+.label {
+    -fx-text-fill: #1e0433;
+    -fx-font-size: 24px;
+}
+
+.button {
+    -fx-background-color: #1e0433;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #150324;
+}
+
+.button:pressed {
+    -fx-background-color: #3a0863;
+}
