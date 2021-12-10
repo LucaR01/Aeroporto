@@ -676,6 +676,15 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         this.comboTheme.getSelectionModel().select(Settings.Theme.LIGHT.getTheme());
 
+        /*String lightColor = "#0d7bf2"; // PLAN B
+        String backgroundColor = "-fx-background-color: ";
+
+        this.btnOverview.setStyle(backgroundColor + lightColor);
+        this.btnAddTable.setStyle(backgroundColor + lightColor);
+        this.btnUpdateTable.setStyle(backgroundColor + lightColor);
+        this.btnSettings.setStyle(backgroundColor + lightColor);
+        this.btnQuit.setStyle(backgroundColor + lightColor);*/
+
         //String css = Objects.requireNonNull(this.getClass().getResource("style.css")).toExternalForm(); // NON VA
 
         //this.vBoxRoot.getStylesheets().remove("res/assets/css/style.css"); //TODO: remove dark theme
@@ -693,6 +702,15 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         //this.btnOverview.getStylesheets().add(Paths.get("res/assets/css/style.css").toString()); // NON VA
 
+        //scene.getStylesheets().add("file:///E:/csse2002-7023/src/csse2002/block/world/main.css"); // REFERENCE
+
+        // Paths.get("E","csse2002-7023","src","csse2002","block","world","main.css").toUri().toString()) // REFERENCE 2
+
+        this.vBoxRoot.getStylesheets().clear();
+        this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/style.css"); // FUNZIONAAAAAAAAAAAAAAA ALLELUIA
+
+        //this.vBoxRoot.getStylesheets().add(Paths.get("D", "Documenti", "IntelliJ-workspace", "Aeroporto", "src", "main", "resources", "com", "lucar01", "css", "style.css").toUri().toString()); // QUESTO è da fixare
+
         Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_haze_40px.png")));
         this.imgViewTheme.setImage(imgTheme);
     }
@@ -701,9 +719,23 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         this.comboTheme.getSelectionModel().select(Settings.Theme.DARK.getTheme());
 
+        /*String darkColor = "#3e3c3f"; // PLAN B
+        String backgroundColor = "-fx-background-color: ";
+
+        this.btnOverview.setStyle(backgroundColor + darkColor + "; -fx-cursor: hand" + "button:hover");
+        this.btnAddTable.setStyle(backgroundColor + darkColor);
+        this.btnUpdateTable.setStyle(backgroundColor + darkColor);
+        this.btnSettings.setStyle(backgroundColor + darkColor);
+        this.btnQuit.setStyle(backgroundColor + darkColor);*/
+
+        this.vBoxRoot.getStylesheets().clear();
+        this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_style.css");
+
         Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_night_40px.png")));
         //Image imgTheme = new Image("res/assets/icons/icons8_night_40px.png"); // questo invece non va
         this.imgViewTheme.setImage(imgTheme);
+
+
     }
 
 }
