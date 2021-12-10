@@ -11,5 +11,6 @@
 
 .button {
     -fx-background-color: #380b5a;
-    color: white; /* forse qui è -fx-text-fill: colore */
+    -fx-text-fill: white; /* forse qui è -fx-text-fill: colore */
+    -fx-cursor: hand;
 }

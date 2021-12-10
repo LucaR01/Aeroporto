@@ -1,7 +1,8 @@
 
 .button {
-    color: white;
+    -fx-text-fill: white; /* forse #fff */
     -fx-background-color:  #0e401c;
+    -fx-cursor: hand;
 }
 
 .combo {

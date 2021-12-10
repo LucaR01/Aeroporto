@@ -1,6 +1,7 @@
 
 .button {
     -fx-background-color: #7b1417;
+    -fx-cursor: hand;
 }
 
 .textfield {
@@ -15,4 +16,5 @@
 .label {
     /* -fx-text-fill: #7b1417; non so se sia giusto.
     -fx-color: #7b1417; */
+    -fx-text-fill: #7b1417;
 }
