@@ -148,7 +148,7 @@
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnSubmitEdit" layoutX="100.0" layoutY="7.0" mnemonicParsing="false" onAction="#submitEditTable" text="Submit" textFill="WHITE" />
+                        <Button fx:id="btnSubmitEdit" layoutX="100.0" layoutY="7.0" mnemonicParsing="false" onAction="#submitEditTable" style="-fx-cursor: hand;" text="Submit" textFill="WHITE" />
                         <Label fx:id="lblUpdateTable" layoutX="183.0" layoutY="2.0" text="Update Table" textFill="#0e401c">
                            <font>
                               <Font size="24.0" />
@@ -163,7 +163,10 @@
                      </children>
                   </Pane>
                   <AnchorPane fx:id="editAnchorPane" prefHeight="298.0" prefWidth="254.0" GridPane.rowIndex="1" />
-                  <TableView fx:id="editTable" onMouseClicked="#rowSelected" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TableView fx:id="editTable" onMouseClicked="#rowSelected" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy></TableView>
                </children>
             </GridPane>
             <GridPane fx:id="paneSettings" alignment="CENTER" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">

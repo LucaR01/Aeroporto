@@ -240,7 +240,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
                 this.lblStatusSubtitle.setText("Visualizza le tabelle");
             }
 
-            this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(18, 162, 237), CornerRadii.EMPTY, Insets.EMPTY)));
+            if(this.isLightTheme){
+                this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(18, 162, 237), CornerRadii.EMPTY, Insets.EMPTY)));
+            } else {
+                this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(11, 61, 155), CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+
             this.paneOverview.toFront();
         }
         else if(event.getSource() == this.btnAddTable){
@@ -252,7 +257,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
                 this.lblStatusSubtitle.setText("Aggiungi tabelle al database");
             }
 
-            this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(123, 20, 23), CornerRadii.EMPTY, Insets.EMPTY)));
+            if(this.isLightTheme){
+                this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(123, 20, 23), CornerRadii.EMPTY, Insets.EMPTY)));
+            } else {
+                this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(71, 5, 5), CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+
             this.paneAddTable.toFront();
         }
         else if(event.getSource() == this.btnUpdateTable){
@@ -264,8 +274,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
                 this.lblStatusSubtitle.setText("Modifica le tabelle");
             }
 
+            if(this.isLightTheme){
+                this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(14, 64, 28), CornerRadii.EMPTY, Insets.EMPTY))); // 44, 125, 51
+            } else {
+                this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(3, 34, 7), CornerRadii.EMPTY, Insets.EMPTY)));
+            }
 
-            this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(14, 64, 28), CornerRadii.EMPTY, Insets.EMPTY))); // 44, 125, 51
             this.paneUpdateTable.toFront();
         }
         else if(event.getSource() == this.btnSettings){
@@ -277,8 +291,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
                 this.lblStatusSubtitle.setText("Modifica le tue impostazioni");
             }
 
+            if(this.isLightTheme){
+                this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(56, 11, 90), CornerRadii.EMPTY, Insets.EMPTY))); // 109, 21, 170
+            } else {
+                this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(30, 4, 51), CornerRadii.EMPTY, Insets.EMPTY)));
+            }
 
-            this.paneStatus.setBackground(new Background(new BackgroundFill(Color.rgb(56, 11, 90), CornerRadii.EMPTY, Insets.EMPTY))); // 109, 21, 170
             this.paneSettings.toFront();
         } else {
             if(event.getSource() == btnQuit){
@@ -533,17 +551,15 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     void handleThemeSelection(ActionEvent event) throws IOException, URISyntaxException {
         //TODO: devo settare i vari style in base alla scelta.
 
-        this.isLightTheme = !this.isLightTheme;
-
         switch(this.comboTheme.getSelectionModel().getSelectedItem()){
             case "Light":
                 //this.comboTheme.getScene().getRoot().getStylesheets().add(getClass().getResource("").toString()); //TODO: aggiungere path
-                //this.isLightTheme = true;
+                this.isLightTheme = true;
 
                 setLightTheme();
                 break;
             case "Dark":
-                //this.isLightTheme = false;
+                this.isLightTheme = false;
 
                 setDarkTheme();
                 break;
@@ -741,10 +757,10 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
         this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_style.css");
 
-        /*this.paneOverview.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_table_style.css");
+        this.paneOverview.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_table_style.css");
         this.paneAddTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_add_table_style.css");
         this.paneUpdateTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_edit_table_style.css");
-        this.paneSettings.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_settings_style.css");*/
+        this.paneSettings.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_settings_style.css");
 
         this.hBoxTitleBar.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_title_bar_style.css");
 
