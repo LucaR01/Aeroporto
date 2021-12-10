@@ -1,0 +1,16 @@
+
+hbox {
+    -fx-background-color:  #0e2d82;
+}
+
+.pane {
+    -fx-background-color:  #0e2d82;
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.image-view {
+    cursor: hand;
+}

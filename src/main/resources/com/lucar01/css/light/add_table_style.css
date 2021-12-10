@@ -4,17 +4,23 @@
     -fx-cursor: hand;
 }
 
-.textfield {
+.button:hover {
+    -fx-background-color: #831011;
+}
+
+.button:pressed {
+    -fx-background-color: #dc1c1c;
+}
+
+.text-field {
     -fx-border-color: #7b1417;
 }
 
-.combobox {
+.combo-box {
     -fx-border-color: #7b1417;
     -fx-background-color: #fff;
 }
 
 .label {
-    /* -fx-text-fill: #7b1417; non so se sia giusto.
-    -fx-color: #7b1417; */
     -fx-text-fill: #7b1417;
 }

@@ -1,6 +1,6 @@
 
 .table-view .column-header .label{
-    -fx-text-fill: ; /* TODO: scegliere colore */
+    /*-fx-text-fill: ;*/ /* TODO: scegliere colore */
     -fx-font-weight: bold;
     -fx-alignment: CENTER_LEFT;
 }
@@ -12,9 +12,28 @@
 }
 
 .table-row-cell:selected{
-    -fx-background-color: rgb(, , ,) /* TODO: scegliere colore */
+    /*-fx-background-color: rgb(, , ,)*/ /* TODO: scegliere colore */
 }
 
 .table-row-cell:selected .text{
-    -fx-fill: ; /* TODO: scegliere colore */
+    /*-fx-fill:*/ ; /* TODO: scegliere colore */
+}
+
+.button {
+    -fx-background-color: #0d7bf2;
+    -fx-text-fill: white;
+}
+
+.button:pressed{
+    -fx-background-color: #052d58;
+}
+
+/* TODO: fix */
+.text-field {
+    -fx-border-color: #12a2ed;
+}
+
+.combo-box {
+    -fx-background-color: #fff;
+    -fx-border-color:  #12a2ed;
 }
