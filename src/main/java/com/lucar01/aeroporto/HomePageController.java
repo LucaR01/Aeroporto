@@ -19,6 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -443,6 +445,49 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         sortedDataList.comparatorProperty().bind(this.table.comparatorProperty());
         this.table.setItems(sortedDataList);
     }*/
+
+    /*searchBox.textProperty().addListener((observable, oldValue, newValue) ->
+            exampleTable.setItems(filterList(orders, newValue))
+            );
+
+    FilteredList<Order> filteredData = new FilteredList<>(FXCollections.observableList(orders));
+exampleTable.setItems(filteredData);
+
+    private Predicate<Order> createPredicate(String searchText){
+        return order -> {
+            if (searchText == null || searchText.isEmpty()) return true;
+            return searchFindsOrder(order, searchText);
+        };
+    }
+
+    searchBox.textProperty().addListener((observable, oldValue, newValue) ->
+            filteredData.setPredicate(createPredicate(newValue))
+            );*/
+
+    /*@FXML
+    void handleSearchBar(InputMethodEvent event) { //TODO: fix
+        System.out.println("searchbar"); //TODO: remove
+        this.table.getItems().stream().filter(item -> Objects.equals(item, this.searchField.getText())).findAny().ifPresent(item -> {
+            this.table.getSelectionModel().select(item);
+            this.table.scrollTo(item);
+        });
+    }*/
+
+    @FXML
+    void handleSearchBar(KeyEvent event) { //TODO: fix, questo viene chiamato rispetto al primo.
+        System.out.println("searchbar2"); //TODO: remove
+        this.table.getItems().stream().filter(item -> Objects.equals(item.toString(), this.searchField.getText())).findAny().ifPresent(item -> {
+            this.table.getSelectionModel().select(item);
+            this.table.scrollTo(item);
+        });
+
+        /*if(this.table.getColumns().get().getCellData()) //TODO: fix
+            if(cellValue.contains(txtField.textProperty().get().toLowerCase())) {
+
+                tableItems.add(data.get(i));
+
+                break;*/
+    }
 
     @FXML
     void handleAddTableSelection(ActionEvent event) {

@@ -228,7 +228,7 @@
                               <Image url="@../icons/search_64px_2.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="searchField" prefHeight="25.0" prefWidth="223.0" />
+                        <TextField fx:id="searchField" onKeyTyped="#handleSearchBar" prefHeight="25.0" prefWidth="223.0" />
                         <ComboBox fx:id="combo_tables" onAction="#handleTableSelection" prefWidth="150.0" />
                         <Button fx:id="btnSelectedTable" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" textFill="WHITE" />
                         <Button fx:id="btnDeleteRow" mnemonicParsing="false" onAction="#submitDeleteRow" prefHeight="25.0" prefWidth="25.0" style="-fx-cursor: hand;" textFill="WHITE">
