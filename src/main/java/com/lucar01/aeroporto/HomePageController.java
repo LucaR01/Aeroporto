@@ -180,10 +180,10 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private HBox hBoxTitleBar;
 
-    private boolean isLightTheme = true; //TODO: caricare da file
-    private boolean isEnglish; //TODO: rename in isLanguageEnglish o isInEnglish
-
     private HashMap<String, String> settingsMap = Data.loadSettings();
+
+    private boolean isLightTheme = Objects.equals(this.settingsMap.get(Data.THEME_STRING), Settings.Theme.LIGHT.getTheme()); //TODO: caricare da file
+    private boolean isEnglish = Objects.equals(this.settingsMap.get(Data.LANG_STRING), Settings.Languages.ENGLISH.getLanguage()); //TODO: rename in isLanguageEnglish o isInEnglish, caricare dal file
 
 
     @Override
@@ -199,8 +199,28 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         this.comboLanguage.setItems(languagesList);
 
         //TODO: verrà caricata la scelta dal file del salvataggio dei dati.
-        this.comboLanguage.getSelectionModel().select(this.settingsMap.get(Data.LANG_STRING)); //TODO: salvare in un file.
-        this.comboTheme.getSelectionModel().select(this.settingsMap.get(Data.THEME_STRING));
+        /*this.comboLanguage.getSelectionModel().select(this.settingsMap.get(Data.LANG_STRING)); //TODO: salvare in un file.
+        this.comboTheme.getSelectionModel().select(this.settingsMap.get(Data.THEME_STRING));*/
+
+        System.out.println("settingsMap: " + this.settingsMap); //TODO: remove
+        System.out.println("isLightTheme: " + this.isLightTheme); //TODO: remove
+        System.out.println("isEnglish: " + this.isEnglish); //TODO: remove
+
+        try {
+            if(this.isLightTheme){
+                setLightTheme();
+            } else {
+                setDarkTheme();
+            }
+
+            if(this.isEnglish){
+                setLanguageSetting(Settings.Languages.ENGLISH);
+            } else {
+                setLanguageSetting(Settings.Languages.ITALIANO);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         //TODO: searchData();
         //searchData();
@@ -720,6 +740,13 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
 
         this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_style.css");
+
+        /*this.paneOverview.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_table_style.css");
+        this.paneAddTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_add_table_style.css");
+        this.paneUpdateTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_edit_table_style.css");
+        this.paneSettings.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_settings_style.css");*/
+
+        this.hBoxTitleBar.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_title_bar_style.css");
 
         Image imgTheme = new Image(Files.newInputStream(Paths.get("res/assets/icons/icons8_night_40px.png")));
         this.imgViewTheme.setImage(imgTheme);

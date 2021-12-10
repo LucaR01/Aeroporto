@@ -20,7 +20,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lucar01.aeroporto.HomePageController">
    <children>
-      <VBox fx:id="vBoxRoot" prefHeight="597.0" prefWidth="229.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox id="vBoxRoot" fx:id="vBoxRoot" prefHeight="597.0" prefWidth="229.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane id="paneVbox" prefHeight="127.0" prefWidth="229.0">
                <children>
@@ -204,7 +204,7 @@
                   </AnchorPane>
                </children>
             </GridPane>
-            <GridPane fx:id="paneOverview" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;" visible="false">
+            <GridPane fx:id="paneOverview" prefHeight="397.0" prefWidth="743.0" style="-fx-background-color: #fff;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -256,7 +256,7 @@
                </font>
             </Label>
          </children></Pane>
-      <HBox fx:id="hBoxTitleBar" alignment="TOP_RIGHT" layoutX="228.0" prefHeight="100.0" prefWidth="772.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0">
+      <HBox id="hBoxTitleBar" fx:id="hBoxTitleBar" alignment="TOP_RIGHT" layoutX="228.0" prefHeight="100.0" prefWidth="772.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Pane prefHeight="100.0" prefWidth="787.0">
                <children>
