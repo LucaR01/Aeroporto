@@ -24,7 +24,7 @@ public final class Data {
      * @param theme: the theme that has been set and that we want to save in the settings file.
      * @param language: the language that has been set and that we want to save in the settings file.
      */
-    public static void saveSettings(final String theme, final String language){
+    public static boolean saveSettings(final String theme, final String language){
         JSONParser jsonParser = new JSONParser();
 
         JSONObject jsonObject = new JSONObject();
@@ -63,7 +63,9 @@ public final class Data {
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("nel catch");
+            return false;
         }
+        return true;
     }
 
     /**
