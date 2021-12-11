@@ -16,6 +16,8 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
     //TODO: al posto di una stringa per il table name posso usare un enum.
     //TODO: oppure potrei direttamente mettere nell'enum il numero di colonne, i loro nomi, e la loro tipologia ecc..
 
+    //TODO: prossima volta usare per ottenere il numero di colonne resultSet.getMetaData().getColumnCount();
+
     private final static Connection CONNECTION = Database.getConnection();
 
     public static int getNumberOfColumns(Table table){
@@ -225,6 +227,58 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
                         break;
                     case TERMINAL:
                         observableList.add(new Terminal(resultSet.getInt("CodTerminal")));
+                        break;
+                    case AEREO:
+                        observableList.add(new Aereo(resultSet.getInt("CodAereo"),resultSet.getInt("CodPista"), resultSet.getString("Nome"), resultSet.getInt("Num_Equipaggio"), resultSet.getInt("Peso"),
+                                resultSet.getString("Tipologia"), resultSet.getInt("Num_Passeggeri"), resultSet.getInt("Num_Merci"), resultSet.getBoolean("Commerciale"),
+                                resultSet.getInt("CodHangar"), resultSet.getInt("CodVia")));
+                        break;
+                    case COMPONENTE_AEREO:
+                        observableList.add(new ComponenteAereo(resultSet.getInt("CodComponente"), resultSet.getString("Nome"), Integer.parseInt(resultSet.getString("Quantità")), resultSet.getBoolean("Funzionante"),
+                                resultSet.getString("Tipologia"), resultSet.getInt("CodAereo"))); //TODO: fix
+                        break;
+                    case ASSICURAZIONE:
+                        observableList.add(new Assicurazione(resultSet.getInt("CodAssicurazione"),resultSet.getString("Nome"), resultSet.getString("Partita_IVA"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine"))); //TODO: fix
+                        break;
+                    case CARGO:
+                        observableList.add(new Cargo(resultSet.getInt("CodCargo"), resultSet.getInt("Num_dipendenti"), resultSet.getInt("CodAereo"),
+                                resultSet.getInt("CodLogistica"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine"))); //TODO: fix
+                        break;
+                    case CENTRO_CONTROLLO_AREA:
+                        observableList.add(new CentroControlloAerea(resultSet.getInt("CodCentro"), resultSet.getInt("Num_Personale"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine")));
+                        break;
+                    case COMPAGNIA_AEREA:
+                        observableList.add(new CompagniaAerea(resultSet.getInt("CodCompagnia"), resultSet.getString("Nome"), resultSet.getString("Partita_Iva"),
+                                resultSet.getInt("Num_Personale"), resultSet.getInt("Num_Aerei"), resultSet.getInt("CodAssicurazione"),
+                                resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine")));
+                        break;
+                    case GATE:
+                        break;
+                    case GROUND_SUPPORT_EQUIPMENT:
+                        break;
+                    case HANGAR:
+                        break;
+                    case LOGISTICA:
+                        break;
+                    case MANTENIMENTO:
+                        break;
+                    case NEGOZIO:
+                        break;
+                    case PISTA:
+                        break;
+                    case RADAR:
+                        break;
+                    case SERVIZIO_CLIENTI:
+                        break;
+                    case SOCCORSI:
+                        break;
+                    case TORRE_CONTROLLO:
+                        break;
+                    case TRATTA:
+                        break;
+                    case VIA_RULLAGGIO:
+                        break;
+                    case VOLO:
                         break;
                 }
             }
