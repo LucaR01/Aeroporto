@@ -377,7 +377,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         String selectedTable = this.combo_tables.getSelectionModel().getSelectedItem();
         this.btnSelectedTable.setText(selectedTable);
 
-        switch(this.combo_tables.getSelectionModel().getSelectedItem()){ //TODO: aggiungere le altre tabelle, usare selectedTable
+        switch(this.combo_tables.getSelectionModel().getSelectedItem()){
             case PERSONA:
                 showTable(Table.PERSONA, this.table);
                 break;
@@ -455,10 +455,17 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     private void createTable(final int numOfColumns, final ObservableList<String> columnsName, TableView<Tables> tableView){
 
+        for(int i = 0; i < columnsName.size(); i++){
+            columnsName.set(i, columnsName.get(i).replaceAll("_", ""));
+            columnsName.set(i, columnsName.get(i).replaceAll("[^\\p{ASCII}]", "")); // Per rimuovere gli accenti (però toglie tutta la lettera non solo l'accento).
+        }
+
+        System.out.println("columnsName senza _ e accenti: " + columnsName); //TODO: remove
+
         for(int i = 0; i < numOfColumns; i++){
             TableColumn<Tables, String> column = new TableColumn<>();
             column.setText(columnsName.get(i).toUpperCase());
-            column.setCellValueFactory(new PropertyValueFactory<>(columnsName.get(i)));
+            column.setCellValueFactory(new PropertyValueFactory<>(columnsName.get(i))); // Non riesce a leggere gli underscores _ ?
             tableView.getColumns().add(column);
         }
     }
@@ -581,7 +588,7 @@ exampleTable.setItems(filteredData);
         String selectedTable = this.combo_add_table.getSelectionModel().getSelectedItem();
         this.btnAddSelectedTable.setText(selectedTable);
 
-        switch(this.combo_add_table.getSelectionModel().getSelectedItem()){ //TODO: aggiungere le altre tabelle, usare selectedTable
+        switch(this.combo_add_table.getSelectionModel().getSelectedItem()){
             case PERSONA:
                 createTextFields(Table.PERSONA, this.addAnchorPane, this.textFields, 0, 30, 73, 30, "#7b1417", 6);
                 break;
@@ -682,7 +689,7 @@ exampleTable.setItems(filteredData);
         String selectedTable = this.comboEditTable.getSelectionModel().getSelectedItem();
         this.btnEditSelectedTable.setText(selectedTable);
 
-        switch(selectedTable){ //TODO: aggiungere le altre tabelle
+        switch(selectedTable){
             case BAGAGLIO:
                 showTable(Table.BAGAGLIO, this.editTable);
                 createTextFields(Table.BAGAGLIO, this.editAnchorPane, this.editTextFields, 0, 40, 73, 40, "#0e401c", 10);
@@ -1095,6 +1102,10 @@ exampleTable.setItems(filteredData);
 
         this.hBoxTitleBar.getStylesheets().clear();
 
+
+        //File fileStyle = new File("/resources/com/lucar01/css/light/style.css");
+        //this.vBoxRoot.getStylesheets().add("../css/light/style.css");
+        //this.vBoxRoot.getStylesheets().add(fileStyle.toURI().toString());
 
         this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/style.css");
 

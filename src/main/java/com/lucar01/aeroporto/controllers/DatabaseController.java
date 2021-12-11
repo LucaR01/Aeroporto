@@ -216,7 +216,7 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
             PreparedStatement ps = CONNECTION.prepareStatement(query);
             ResultSet resultSet = ps.executeQuery();
 
-            while(resultSet.next()){ //TODO: aggiungere le altre tabelle.
+            while(resultSet.next()){
                 switch(tableName){
                     case PERSONA:
                         observableList.add(new Persona(resultSet.getString("CodiceFiscale"), resultSet.getString("Nome"), resultSet.getString("Cognome"),
@@ -249,7 +249,7 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
                                 resultSet.getInt("CodLogistica"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine"))); //TODO: fix
                         break;
                     case CENTRO_CONTROLLO_AREA:
-                        observableList.add(new CentroControlloAerea(resultSet.getInt("CodCentro"), resultSet.getInt("Num_Personale"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine")));
+                        observableList.add(new CentroControlloAerea(resultSet.getInt("CodCentro"), resultSet.getInt("Num_Personale"), resultSet.getTime("Orario_inizio"), resultSet.getTime("Orario_fine")));
                         break;
                     case COMPAGNIA_AEREA:
                         observableList.add(new CompagniaAerea(resultSet.getInt("CodCompagnia"), resultSet.getString("Nome"), resultSet.getString("Partita_Iva"),
@@ -276,7 +276,7 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
                         break;
                     case NEGOZIO:
                         observableList.add(new Negozio(resultSet.getInt("CodNegozio"), resultSet.getString("Prodotti"),
-                                resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine"), resultSet.getString("Tipologia"), resultSet.getInt("CodCompagnia")));
+                                resultSet.getTime("Orario_inizio"), resultSet.getTime("Orario_fine"), resultSet.getString("Tipologia"), resultSet.getInt("CodCompagnia")));
                         break;
                     case PISTA:
                         observableList.add(new Pista(resultSet.getInt("CodPista")));

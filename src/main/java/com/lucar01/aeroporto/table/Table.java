@@ -1,8 +1,5 @@
 package com.lucar01.aeroporto.table;
 
-import java.util.EnumMap;
-import java.util.HashMap;
-
 public enum Table {
     PERSONA("persona"),
     AEREO("aereo"),
