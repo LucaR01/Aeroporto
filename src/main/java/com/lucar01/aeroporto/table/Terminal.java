@@ -2,7 +2,7 @@ package com.lucar01.aeroporto.table;
 
 public class Terminal implements Tables{
 
-    private int codTerminal;
+    private final int codTerminal;
 
     public Terminal(int codTerminal) {
         this.codTerminal = codTerminal;

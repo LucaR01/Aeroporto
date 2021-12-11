@@ -1,36 +1,36 @@
 package com.lucar01.aeroporto.table;
 
 import java.sql.Time;
-import java.util.Optional;
 
-public class Persona implements Tables{ //TODO: lasciare un singolo costruttore, quando si sarà fixato tutto.
+public class Persona implements Tables{
 
-    private String codiceFiscale;
+    private final String codiceFiscale;
 
-    private String nome;
-    private String cognome;
-    private int age;
+    private final String nome;
+    private final String cognome;
+    private final int age;
 
-    private Optional<String> ruolo;
-    private Optional<Time> oraInizio;
-    private Optional<Time> oraFine;
+    private final String ruolo;
+    private final Time oraInizio;
+    private final Time oraFine;
 
     //FOREIGN KEYS
-    private int codCentro;
-    private int codLogistica;
-    private int codMantenimento;
-    private int codNegozio;
-    private int codServizio;
-    private int codTerminal;
-    private int codTorre;
-    private int codVolo;
-    private int codCompagnia;
-    private int codAereo;
-    private int codRadar;
-    private  int codSoccorso;
+    private final int codCentro;
+    private final int codLogistica;
+    private final int codMantenimento;
+    private final int codNegozio;
+    private final int codServizio;
+    private final int codTerminal;
+    private final int codTorre;
+    private final int codVolo;
+    private final int codCompagnia;
+    private final int codAereo;
+    private final int codRadar;
+    private final int codSoccorso;
 
-    //TODO: con optional non va, usare semplicemente string
-    public Persona(String codiceFiscale, String nome, String cognome, int age, Optional<String> ruolo, Optional<Time> oraInizio, Optional<Time> oraFine){
+    public Persona(String codiceFiscale, String nome, String cognome, int age, String ruolo, Time oraInizio, Time oraFine,
+                   int codCentro, int codLogistica, int codMantenimento, int codNegozio, int codServizio, int codTerminal,
+                   int codTorre, int codVolo, int codCompagnia, int codAereo, int codRadar, int codSoccorso){
         this.codiceFiscale = codiceFiscale;
         this.nome = nome;
         this.cognome = cognome;
@@ -38,14 +38,18 @@ public class Persona implements Tables{ //TODO: lasciare un singolo costruttore,
         this.ruolo = ruolo;
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
-    }
-
-    public Persona(String codiceFiscale, String nome, String cognome, int age, Optional<String> ruolo){
-        this.codiceFiscale = codiceFiscale;
-        this.nome = nome;
-        this.cognome = cognome;
-        this.age = age;
-        this.ruolo = ruolo;
+        this.codCentro = codCentro;
+        this.codLogistica = codLogistica;
+        this.codMantenimento = codMantenimento;
+        this.codNegozio = codNegozio;
+        this.codServizio = codServizio;
+        this.codTerminal = codTerminal;
+        this.codTorre = codTorre;
+        this.codVolo = codVolo;
+        this.codCompagnia = codCompagnia;
+        this.codAereo = codAereo;
+        this.codRadar = codRadar;
+        this.codSoccorso = codSoccorso;
     }
 
     public String getCodiceFiscale() {
@@ -64,15 +68,63 @@ public class Persona implements Tables{ //TODO: lasciare un singolo costruttore,
         return age;
     }
 
-    public Optional<String> getRuolo() {
+    public String getRuolo() {
         return ruolo;
     }
 
-    public Optional<Time> getOraInizio() {
+    public Time getOraInizio() {
         return oraInizio;
     }
 
-    public Optional<Time> getOraFine() {
+    public Time getOraFine() {
         return oraFine;
+    }
+
+    public int getCodCentro() {
+        return codCentro;
+    }
+
+    public int getCodLogistica() {
+        return codLogistica;
+    }
+
+    public int getCodMantenimento() {
+        return codMantenimento;
+    }
+
+    public int getCodNegozio() {
+        return codNegozio;
+    }
+
+    public int getCodServizio() {
+        return codServizio;
+    }
+
+    public int getCodTerminal() {
+        return codTerminal;
+    }
+
+    public int getCodTorre() {
+        return codTorre;
+    }
+
+    public int getCodVolo() {
+        return codVolo;
+    }
+
+    public int getCodCompagnia() {
+        return codCompagnia;
+    }
+
+    public int getCodAereo() {
+        return codAereo;
+    }
+
+    public int getCodRadar() {
+        return codRadar;
+    }
+
+    public int getCodSoccorso() {
+        return codSoccorso;
     }
 }

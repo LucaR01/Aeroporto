@@ -1,10 +1,10 @@
 package com.lucar01.aeroporto.table;
 
-public class GroundSupportEquipment {
+public class GroundSupportEquipment implements Tables{
 
-    private int codMacchinario;
-    private int quantity;
-    private String tipologia;
+    private final int codMacchinario;
+    private final int quantity;
+    private final String tipologia;
 
     public GroundSupportEquipment(int codMacchinario, int quantity, String tipologia) {
         this.codMacchinario = codMacchinario;

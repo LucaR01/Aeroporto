@@ -1,18 +1,17 @@
 package com.lucar01.aeroporto.table;
 
 import java.sql.Time;
-import java.util.Optional;
 
-public class TorreControllo {
+public class TorreControllo implements Tables{
 
-    private int codTorre;
-    private int numDipendenti;
-    private int numAereiInComunicazione;
+    private final int codTorre;
+    private final int numDipendenti;
+    private final int numAereiInComunicazione;
 
-    private Optional<Time> orarioInizio;
-    private Optional<Time> orarioFine;
+    private final Time orarioInizio;
+    private final Time orarioFine;
 
-    public TorreControllo(int codTorre, int numDipendenti, int numAereiInComunicazione, Optional<Time> orarioInizio, Optional<Time> orarioFine) {
+    public TorreControllo(int codTorre, int numDipendenti, int numAereiInComunicazione, Time orarioInizio, Time orarioFine) {
         this.codTorre = codTorre;
         this.numDipendenti = numDipendenti;
         this.numAereiInComunicazione = numAereiInComunicazione;
@@ -32,11 +31,11 @@ public class TorreControllo {
         return numAereiInComunicazione;
     }
 
-    public Optional<Time> getOrarioInizio() {
+    public Time getOrarioInizio() {
         return orarioInizio;
     }
 
-    public Optional<Time> getOrarioFine() {
+    public Time getOrarioFine() {
         return orarioFine;
     }
 }

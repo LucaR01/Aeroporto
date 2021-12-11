@@ -1,9 +1,9 @@
 package com.lucar01.aeroporto.table;
 
-public class Gate {
+public class Gate implements Tables{
 
-    private int codGate;
-    private int codTerminal;
+    private final int codGate;
+    private final int codTerminal;
 
     public Gate(int codGate, int codTerminal) {
         this.codGate = codGate;

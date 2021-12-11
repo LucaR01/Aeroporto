@@ -1,19 +1,18 @@
 package com.lucar01.aeroporto.table;
 
 import java.sql.Time;
-import java.util.Optional;
 
-public class Negozio {
+public class Negozio implements Tables{
 
-    private int codNegozio;
-    private String prodotti;
-    private Optional<Time> oraInizio;
-    private Optional<Time> oraFine;
-    private String tipologia;
+    private final int codNegozio;
+    private final String prodotti;
+    private final Time oraInizio;
+    private final Time oraFine;
+    private final String tipologia;
 
-    private int codCompagnia;
+    private final int codCompagnia;
 
-    public Negozio(int codNegozio, String prodotti, Optional<Time> oraInizio, Optional<Time> oraFine, String tipologia, int codCompagnia) {
+    public Negozio(int codNegozio, String prodotti, Time oraInizio, Time oraFine, String tipologia, int codCompagnia) {
         this.codNegozio = codNegozio;
         this.prodotti = prodotti;
         this.oraInizio = oraInizio;
@@ -30,11 +29,11 @@ public class Negozio {
         return prodotti;
     }
 
-    public Optional<Time> getOraInizio() {
+    public Time getOraInizio() {
         return oraInizio;
     }
 
-    public Optional<Time> getOraFine() {
+    public Time getOraFine() {
         return oraFine;
     }
 

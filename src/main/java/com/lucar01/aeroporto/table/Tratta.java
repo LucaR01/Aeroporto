@@ -1,20 +1,19 @@
 package com.lucar01.aeroporto.table;
 
 import java.sql.Time;
-import java.util.Optional;
 
-public class Tratta {
+public class Tratta implements Tables{
 
-    private int codTratta;
-    private String cittaPartenza; //TODO: insomma,  cityStart, startingCity
-    private String cittaDestinazione;
-    private String aeroportoPartenza;
-    private String aeroportoDestinazione;
+    private final int codTratta;
+    private final String cittaPartenza;
+    private final String cittaDestinazione;
+    private final String aeroportoPartenza;
+    private final String aeroportoDestinazione;
 
-    private Optional<Time> oraPartenza;
-    private Optional<Time> oraFine;
+    private final Time oraPartenza;
+    private final Time oraFine;
 
-    public Tratta(int codTratta, String cittaPartenza, String cittaDestinazione, String aeroportoPartenza, String aeroportoDestinazione, Optional<Time> oraPartenza, Optional<Time> oraFine) {
+    public Tratta(int codTratta, String cittaPartenza, String cittaDestinazione, String aeroportoPartenza, String aeroportoDestinazione, Time oraPartenza, Time oraFine) {
         this.codTratta = codTratta;
         this.cittaPartenza = cittaPartenza;
         this.cittaDestinazione = cittaDestinazione;
@@ -44,11 +43,11 @@ public class Tratta {
         return aeroportoDestinazione;
     }
 
-    public Optional<Time> getOraPartenza() {
+    public Time getOraPartenza() {
         return oraPartenza;
     }
 
-    public Optional<Time> getOraFine() {
+    public Time getOraFine() {
         return oraFine;
     }
 }

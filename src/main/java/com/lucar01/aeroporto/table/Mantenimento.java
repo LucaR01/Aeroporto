@@ -1,19 +1,18 @@
 package com.lucar01.aeroporto.table;
 
 import java.sql.Time;
-import java.util.Optional;
 
-public class Mantenimento {
+public class Mantenimento implements Tables{
 
-    private int codMantenimento;
+    private final int codMantenimento;
 
-    private int codAereo;
-    private int codMacchinario;
+    private final int codAereo;
+    private final int codMacchinario;
 
-    private Optional<Time> oraInizio;
-    private Optional<Time> oraFine;
+    private final Time oraInizio;
+    private final Time oraFine;
 
-    public Mantenimento(int codMantenimento, int codAereo, int codMacchinario, Optional<Time> oraInizio, Optional<Time> oraFine) {
+    public Mantenimento(int codMantenimento, int codAereo, int codMacchinario, Time oraInizio, Time oraFine) {
         this.codMantenimento = codMantenimento;
         this.codAereo = codAereo;
         this.codMacchinario = codMacchinario;
@@ -33,11 +32,11 @@ public class Mantenimento {
         return codMacchinario;
     }
 
-    public Optional<Time> getOraInizio() {
+    public Time getOraInizio() {
         return oraInizio;
     }
 
-    public Optional<Time> getOraFine() {
+    public Time getOraFine() {
         return oraFine;
     }
 }

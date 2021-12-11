@@ -1,14 +1,14 @@
 package com.lucar01.aeroporto.table;
 
-public class Radar {
+public class Radar implements Tables{
 
-    private int codRadar;
-    private int raggio;
-    private int frequenza;
-    private int altitudine;
-    private String tipologia;
+    private final int codRadar;
+    private final int raggio;
+    private final int frequenza;
+    private final int altitudine;
+    private final String tipologia;
 
-    private int codAereo;
+    private final int codAereo;
 
     public Radar(int codRadar, int raggio, int frequenza, int altitudine, String tipologia, int codAereo) {
         this.codRadar = codRadar;

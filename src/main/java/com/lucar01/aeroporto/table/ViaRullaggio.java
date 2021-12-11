@@ -1,9 +1,9 @@
 package com.lucar01.aeroporto.table;
 
-public class ViaRullaggio {
+public class ViaRullaggio implements Tables{
 
-    private int codVia;
-    private int numAerei;
+    private final int codVia;
+    private final int numAerei;
 
     public ViaRullaggio(int codVia, int numAerei) {
         this.codVia = codVia;

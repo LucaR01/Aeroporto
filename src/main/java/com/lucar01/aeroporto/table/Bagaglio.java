@@ -2,9 +2,9 @@ package com.lucar01.aeroporto.table;
 
 public class Bagaglio implements Tables{
 
-    private int codBagaglio;
-    private int peso;
-    private String codiceFiscale;
+    private final int codBagaglio;
+    private final int peso;
+    private final String codiceFiscale;
 
     public Bagaglio(int codBagaglio, int peso, String codiceFiscale) {
         this.codBagaglio = codBagaglio;

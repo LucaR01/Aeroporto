@@ -3,19 +3,19 @@ package com.lucar01.aeroporto.table;
 import java.sql.Time;
 import java.util.Optional;
 
-public class Logistica {
+public class Logistica implements Tables{
 
-    private int codLogistica;
-    private String nome;
-    private int numPersonale;
-    private String materiali;
-    private int quantity;
+    private final int codLogistica;
+    private final String nome;
+    private final int numPersonale;
+    private final String materiali;
+    private final int quantity;
 
-    private int codCompagnia;
-    private Optional<Time> oraInizio;
-    private Optional<Time> oraFine;
+    private final int codCompagnia;
+    private final Time oraInizio;
+    private final Time oraFine;
 
-    public Logistica(int codLogistica, String nome, int numPersonale, String materiali, int quantity, int codCompagnia, Optional<Time> oraInizio, Optional<Time> oraFine) {
+    public Logistica(int codLogistica, String nome, int numPersonale, String materiali, int quantity, int codCompagnia, Time oraInizio, Time oraFine) {
         this.codLogistica = codLogistica;
         this.nome = nome;
         this.numPersonale = numPersonale;
@@ -50,11 +50,11 @@ public class Logistica {
         return codCompagnia;
     }
 
-    public Optional<Time> getOraInizio() {
+    public Time getOraInizio() {
         return oraInizio;
     }
 
-    public Optional<Time> getOraFine() {
+    public Time getOraFine() {
         return oraFine;
     }
 }

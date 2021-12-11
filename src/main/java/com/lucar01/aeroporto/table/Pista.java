@@ -1,8 +1,8 @@
 package com.lucar01.aeroporto.table;
 
-public class Pista {
+public class Pista implements Tables{
 
-    private int codPista;
+    private final int codPista;
 
     public Pista(int codPista) {
         this.codPista = codPista;
