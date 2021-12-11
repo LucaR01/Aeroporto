@@ -220,7 +220,11 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
                 switch(tableName){
                     case PERSONA:
                         observableList.add(new Persona(resultSet.getString("CodiceFiscale"), resultSet.getString("Nome"), resultSet.getString("Cognome"),
-                                Integer.parseInt(resultSet.getString("Età")), Optional.of(resultSet.getString("Ruolo")))); //TODO: getInt()
+                                resultSet.getInt("Età"), resultSet.getString("Ruolo"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine"),
+                                resultSet.getInt("CodCentro"), resultSet.getInt("CodLogistica"), resultSet.getInt("CodMantenimento"),
+                                resultSet.getInt("CodNegozio"), resultSet.getInt("CodServizio"), resultSet.getInt("CodTerminal"),
+                                resultSet.getInt("CodTorre"), resultSet.getInt("CodVolo"), resultSet.getInt("CodCompagnia"),
+                                resultSet.getInt("CodAereo"), resultSet.getInt("CodRadar"), resultSet.getInt("CodSoccorso")));
                         break;
                     case BAGAGLIO:
                         observableList.add(new Bagaglio(resultSet.getInt("CodBagaglio"), resultSet.getInt("peso"), resultSet.getString("CodiceFiscale")));
@@ -253,32 +257,57 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
                                 resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine")));
                         break;
                     case GATE:
+                        observableList.add(new Gate(resultSet.getInt("CodGate"), resultSet.getInt("CodTerminal")));
                         break;
                     case GROUND_SUPPORT_EQUIPMENT:
+                        observableList.add(new GroundSupportEquipment(resultSet.getInt("CodMacchinario"), resultSet.getInt("Quantità"), resultSet.getString("Tipologia")));
                         break;
                     case HANGAR:
+                        observableList.add(new Hangar(resultSet.getInt("CodHangar"), resultSet.getInt("Num_aerei")));
                         break;
                     case LOGISTICA:
+                        observableList.add(new Logistica(resultSet.getInt("CodLogistica"), resultSet.getString("Nome"), resultSet.getInt("Num_Personale"),
+                                resultSet.getString("Materiali"), resultSet.getInt("Quantità"), resultSet.getInt("CodCompagnia"),
+                                resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine")));
                         break;
                     case MANTENIMENTO:
+                        observableList.add(new Mantenimento(resultSet.getInt("CodMantenimento"), resultSet.getInt("CodAereo"),
+                                resultSet.getInt("CodMacchinario"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine")));
                         break;
                     case NEGOZIO:
+                        observableList.add(new Negozio(resultSet.getInt("CodNegozio"), resultSet.getString("Prodotti"),
+                                resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine"), resultSet.getString("Tipologia"), resultSet.getInt("CodCompagnia")));
                         break;
                     case PISTA:
+                        observableList.add(new Pista(resultSet.getInt("CodPista")));
                         break;
                     case RADAR:
+                        observableList.add(new Radar(resultSet.getInt("CodRadar"), resultSet.getInt("Raggio"),
+                                resultSet.getInt("Frequenza"), resultSet.getInt("Altitudine"),
+                                resultSet.getString("Tipologia"), resultSet.getInt("CodAereo")));
                         break;
                     case SERVIZIO_CLIENTI:
+                        observableList.add(new ServizioClienti(resultSet.getInt("CodServizio"), resultSet.getTime("Orario_inizio"), resultSet.getTime("Orario_fine")));
                         break;
                     case SOCCORSI:
+                        observableList.add(new Soccorsi(resultSet.getInt("CodSoccorso"), resultSet.getTime("Orario_inizio"), resultSet.getTime("Orario_fine")));
                         break;
                     case TORRE_CONTROLLO:
+                        observableList.add(new TorreControllo(resultSet.getInt("CodTorre"), resultSet.getInt("Num_dipendenti"), resultSet.getInt("Num_Aerei_in_comunicazione"),
+                                resultSet.getTime("Orario_inizio"), resultSet.getTime("Orario_fine")));
                         break;
                     case TRATTA:
+                        observableList.add(new Tratta(resultSet.getInt("CodTratta"), resultSet.getString("Città_partenza"),
+                                resultSet.getString("Città_destinazione"), resultSet.getString("Aeroporto_partenza"),
+                                resultSet.getString("Aeroporto_destinazione"), resultSet.getTime("Ora_partenza"),
+                                resultSet.getTime("Ora_fine")));
                         break;
                     case VIA_RULLAGGIO:
+                        observableList.add(new ViaRullaggio(resultSet.getInt("CodVia"), resultSet.getInt("Num_Aerei")));
                         break;
                     case VOLO:
+                        observableList.add(new Volo(resultSet.getInt("CodVolo"), resultSet.getInt("CodTratta"),
+                                resultSet.getInt("CodAereo"), resultSet.getString("Nome")));
                         break;
                 }
             }
