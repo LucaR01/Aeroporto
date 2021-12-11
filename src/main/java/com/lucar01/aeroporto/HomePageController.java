@@ -57,9 +57,9 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     private static final String RADAR = "RADAR";
     private static final String SERVIZIO_CLIENTI = "SERVIZIO_CLIENTI";
     private static final String SOCCORSI = "SOCCORSI";
-    private static final String TORRE_CONTROLLO = "TORRE_CONTROLLO";
+    private static final String TORRE_CONTROLLO = "TORRE_DI_CONTROLLO";
     private static final String TRATTA = "TRATTA";
-    private static final String VIA_RULLAGGIO = "VIA_RULLAGGIO";
+    private static final String VIA_RULLAGGIO = "VIA_DI_RULLAGGIO";
     private static final String VOLO = "VOLO";
 
     @FXML
@@ -491,12 +491,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         for(int i = 0; i < numberOfColumns; i++){
             Label label = new Label();
             label.setText(observableList.get(i));
-            label.setLayoutX(i > limitTextFields ? 3 * (xLabel + 30) : xLabel);
-            label.setLayoutY(i * yLabel);
+            label.setLayoutX(i > limitTextFields ? 6 * (xLabel + 40) : xLabel);
+            label.setLayoutY(i > limitTextFields ? (i - limitTextFields) * yLabel : i * yLabel); // Se cambia colonna, devo tornare a zero la y, ovvero deve tornare su
 
             TextField textField = new TextField();
-            textField.setLayoutX(i > limitTextFields ? 3 * xTextField : xTextField);
-            textField.setLayoutY(i * yTextField);
+            textField.setLayoutX(i > limitTextFields ? 6 * xTextField : xTextField);
+            textField.setLayoutY(i > limitTextFields ? (i - limitTextFields) * yTextField : i * yTextField); // Se cambia colonna, devo tornare a zero la y, ovvero deve tornare su
             textField.setStyle("-fx-border-color: " + color);
 
             textFieldObservableList.add(textField);
@@ -583,6 +583,7 @@ exampleTable.setItems(filteredData);
 
         switch(this.combo_add_table.getSelectionModel().getSelectedItem()){ //TODO: aggiungere le altre tabelle, usare selectedTable
             case PERSONA:
+                createTextFields(Table.PERSONA, this.addAnchorPane, this.textFields, 0, 30, 73, 30, "#7b1417", 6);
                 break;
             case BAGAGLIO:
                 createTextFields(Table.BAGAGLIO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 10);
@@ -691,6 +692,8 @@ exampleTable.setItems(filteredData);
                 createTextFields(Table.TERMINAL, this.editAnchorPane, this.editTextFields, 0, 40, 73, 40, "#0e401c", 10);
                 break;
             case PERSONA:
+                showTable(Table.PERSONA, this.editTable);
+                createTextFields(Table.PERSONA, this.editAnchorPane, this.editTextFields, 0, 20, 73, 20, "#0e401c", 20);
                 break;
             case AEREO:
                 showTable(Table.AEREO, this.editTable);
@@ -709,38 +712,68 @@ exampleTable.setItems(filteredData);
                 createTextFields(Table.CENTRO_CONTROLLO_AREA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case COMPAGNIA_AEREA:
+                showTable(Table.COMPAGNIA_AEREA, this.editTable);
+                createTextFields(Table.COMPAGNIA_AEREA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case COMPONENTE_AEREO:
                 showTable(Table.COMPONENTE_AEREO, this.editTable);
                 createTextFields(Table.COMPONENTE_AEREO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case GATE:
+                showTable(Table.GATE, this.editTable);
+                createTextFields(Table.GATE, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case GROUND_SUPPORT_EQUIPMENT:
+                showTable(Table.GROUND_SUPPORT_EQUIPMENT, this.editTable);
+                createTextFields(Table.GROUND_SUPPORT_EQUIPMENT, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case HANGAR:
+                showTable(Table.HANGAR, this.editTable);
+                createTextFields(Table.HANGAR, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case LOGISTICA:
+                showTable(Table.LOGISTICA, this.editTable);
+                createTextFields(Table.LOGISTICA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case MANTENIMENTO:
+                showTable(Table.MANTENIMENTO, this.editTable);
+                createTextFields(Table.MANTENIMENTO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case NEGOZIO:
+                showTable(Table.NEGOZIO, this.editTable);
+                createTextFields(Table.NEGOZIO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case PISTA:
+                showTable(Table.PISTA, this.editTable);
+                createTextFields(Table.PISTA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case RADAR:
+                showTable(Table.RADAR, this.editTable);
+                createTextFields(Table.RADAR, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case SERVIZIO_CLIENTI:
+                showTable(Table.SERVIZIO_CLIENTI, this.editTable);
+                createTextFields(Table.SERVIZIO_CLIENTI, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case SOCCORSI:
+                showTable(Table.SOCCORSI, this.editTable);
+                createTextFields(Table.SOCCORSI, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case TORRE_CONTROLLO:
+                showTable(Table.TORRE_CONTROLLO, this.editTable);
+                createTextFields(Table.TORRE_CONTROLLO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case TRATTA:
+                showTable(Table.TRATTA, this.editTable);
+                createTextFields(Table.TRATTA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case VIA_RULLAGGIO:
+                showTable(Table.VIA_RULLAGGIO, this.editTable);
+                createTextFields(Table.VIA_RULLAGGIO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case VOLO:
+                showTable(Table.VOLO, this.editTable);
+                createTextFields(Table.VOLO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             default:
                 this.editTable.getColumns().clear();
