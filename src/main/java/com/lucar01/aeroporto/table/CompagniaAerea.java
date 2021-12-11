@@ -1,22 +1,21 @@
 package com.lucar01.aeroporto.table;
 
 import java.sql.Time;
-import java.util.Optional;
 
-public class CompagniaAerea {
+public class CompagniaAerea implements Tables{
 
-    private int codCompagnia;
-    private String nome;
-    private String partitaIva;
-    private int numPersonale;
-    private int numAerei;
+    private final int codCompagnia;
+    private final String nome;
+    private final String partitaIva;
+    private final int numPersonale;
+    private final int numAerei;
 
-    private int codAssicurazione;
+    private final int codAssicurazione;
 
-    private Optional<Time> oraInizio;
-    private Optional<Time> oraFine;
+    private final Time oraInizio;
+    private final Time oraFine;
 
-    public CompagniaAerea(int codCompagnia, String nome, String partitaIva, int numPersonale, int numAerei, int codAssicurazione, Optional<Time> oraInizio, Optional<Time> oraFine) {
+    public CompagniaAerea(int codCompagnia, String nome, String partitaIva, int numPersonale, int numAerei, int codAssicurazione, Time oraInizio, Time oraFine) {
         this.codCompagnia = codCompagnia;
         this.nome = nome;
         this.partitaIva = partitaIva;
@@ -51,11 +50,11 @@ public class CompagniaAerea {
         return codAssicurazione;
     }
 
-    public Optional<Time> getOraInizio() {
+    public Time getOraInizio() {
         return oraInizio;
     }
 
-    public Optional<Time> getOraFine() {
+    public Time getOraFine() {
         return oraFine;
     }
 }

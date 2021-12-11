@@ -4,14 +4,14 @@ import java.sql.Time;
 
 public class Cargo implements Tables{
 
-    private int codCargo;
-    private int numDipendenti;
+    private final int codCargo;
+    private final int numDipendenti;
 
-    private int codAereo;
-    private int codLogistica;
+    private final int codAereo;
+    private final int codLogistica;
 
-    private Time oraInizio;
-    private Time oraFine;
+    private final Time oraInizio;
+    private final Time oraFine;
 
     public Cargo(int codCargo, int numDipendenti, int codAereo, int codLogistica, Time oraInizio, Time oraFine) {
         this.codCargo = codCargo;

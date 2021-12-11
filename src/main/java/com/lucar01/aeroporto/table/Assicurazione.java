@@ -2,15 +2,17 @@ package com.lucar01.aeroporto.table;
 
 import java.sql.Time;
 
-public class Assicurazione {
+public class Assicurazione implements Tables{
 
-    private int codAssicurazione;
-    private String partitaIva;
-    private Time oraInizio;
-    private Time oraFine;
+    private final int codAssicurazione;
+    private final String nome;
+    private final String partitaIva;
+    private final Time oraInizio;
+    private final Time oraFine;
 
-    public Assicurazione(int codAssicurazione, String partitaIva, Time oraInizio, Time oraFine) {
+    public Assicurazione(int codAssicurazione, String nome, String partitaIva, Time oraInizio, Time oraFine) {
         this.codAssicurazione = codAssicurazione;
+        this.nome = nome;
         this.partitaIva = partitaIva;
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
@@ -18,6 +20,10 @@ public class Assicurazione {
 
     public int getCodAssicurazione() {
         return this.codAssicurazione;
+    }
+
+    public String getNome(){
+        return this.nome;
     }
 
     public String getPartitaIva() {

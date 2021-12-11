@@ -2,13 +2,13 @@ package com.lucar01.aeroporto.table;
 
 import java.sql.Time;
 
-public class CentroControlloAerea {
+public class CentroControlloAerea implements Tables{
 
-    private int codCentro;
-    private int numPersonale;
+    private final int codCentro;
+    private final int numPersonale;
 
-    private Time oraInizio;
-    private Time oraFine;
+    private final Time oraInizio;
+    private final Time oraFine;
 
     public CentroControlloAerea(int codCentro, int numPersonale, Time oraInizio, Time oraFine) {
         this.codCentro = codCentro;

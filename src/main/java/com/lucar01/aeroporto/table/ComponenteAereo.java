@@ -1,17 +1,17 @@
 package com.lucar01.aeroporto.table;
 
-public class ComponenteAereo { //TODO: mettere tutto in inglese come da buone prassi?
+public class ComponenteAereo implements Tables{
 
-    private int componenteAereo;
-    private String nome;
-    private int quantity; //TODO: insomma, quantita meglio?
-    private boolean isWorking; //TODO: funzionante, isFunzionante?
-    private String tipologia;
+    private final int codComponenteAereo;
+    private final String nome;
+    private final int quantity;
+    private final boolean isWorking;
+    private final String tipologia;
 
-    private int codAereo;
+    private final int codAereo;
 
-    public ComponenteAereo(int componenteAereo, String nome, int quantity, boolean isWorking, String tipologia, int codAereo) {
-        this.componenteAereo = componenteAereo;
+    public ComponenteAereo(int codComponenteAereo, String nome, int quantity, boolean isWorking, String tipologia, int codAereo) {
+        this.codComponenteAereo = codComponenteAereo;
         this.nome = nome;
         this.quantity = quantity;
         this.isWorking = isWorking;
@@ -19,8 +19,8 @@ public class ComponenteAereo { //TODO: mettere tutto in inglese come da buone pr
         this.codAereo = codAereo;
     }
 
-    public int getComponenteAereo() {
-        return componenteAereo;
+    public int getCodComponenteAereo() {
+        return codComponenteAereo;
     }
 
     public String getNome() {
