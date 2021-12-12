@@ -79,65 +79,6 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
         return observableList;
     }
 
-    public static ObservableList<StringProperty> getNamesOfColumns2(Table table){
-        ObservableList<StringProperty> observableList = FXCollections.observableArrayList();
-
-        try{
-            String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
-            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
-                //observableList.add(resultSet.getString("COLUMN_NAME"));
-                //observableList.add(new StringProperty().setValue(resultSet.getString("COLUMN_NAME")));
-                //StringProperty stringProperty = new SimpleStringProperty(this, resultSet.getString("COLUMN_NAME"), "");
-                //observableList.add(stringProperty);
-            }
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return observableList;
-    }
-
-    public static ObservableList<SimpleStringProperty> getNamesOfColumns3(Table table){
-        ObservableList<SimpleStringProperty> observableList = FXCollections.observableArrayList();
-
-        try{
-            String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
-            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
-                observableList.add(new SimpleStringProperty(resultSet.getString("COLUMN_NAME")));
-
-            }
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return observableList;
-    }
-
-    public static ObservableList<ObjectProperty> getNamesOfColumns4(Table table){
-        ObservableList<ObjectProperty> observableList = FXCollections.observableArrayList();
-
-        try{
-            String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
-            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
-                observableList.add(new SimpleObjectProperty(resultSet.getString("COLUMN_NAME")));
-
-            }
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return observableList;
-    }
-
     public static ObservableList<String> getNamesOfTables(){
 
         ObservableList<String> observableList = FXCollections.observableArrayList();
@@ -355,7 +296,7 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
                     case SOCCORSI:
                         observableList.add(new Soccorsi(resultSet.getInt("CodSoccorso"), resultSet.getTime("Orario_inizio"), resultSet.getTime("Orario_fine")));
                         break;
-                    case TORRE_CONTROLLO:
+                    case TORRE_DI_CONTROLLO:
                         observableList.add(new TorreControllo(resultSet.getInt("CodTorre"), resultSet.getInt("Num_dipendenti"), resultSet.getInt("Num_Aerei_in_comunicazione"),
                                 resultSet.getTime("Orario_inizio"), resultSet.getTime("Orario_fine")));
                         break;
@@ -365,7 +306,7 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
                                 resultSet.getString("Aeroporto_destinazione"), resultSet.getTime("Ora_partenza"),
                                 resultSet.getTime("Ora_fine")));
                         break;
-                    case VIA_RULLAGGIO:
+                    case VIA_DI_RULLAGGIO:
                         observableList.add(new ViaRullaggio(resultSet.getInt("CodVia"), resultSet.getInt("Num_Aerei")));
                         break;
                     case VOLO:

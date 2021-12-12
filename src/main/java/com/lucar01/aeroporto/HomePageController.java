@@ -442,13 +442,13 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
                 showTable(Table.SOCCORSI, this.table);
                 break;
             case TORRE_CONTROLLO:
-                showTable(Table.TORRE_CONTROLLO, this.table);
+                showTable(Table.TORRE_DI_CONTROLLO, this.table);
                 break;
             case TRATTA:
                 showTable(Table.TRATTA, this.table);
                 break;
             case VIA_RULLAGGIO:
-                showTable(Table.VIA_RULLAGGIO, this.table);
+                showTable(Table.VIA_DI_RULLAGGIO, this.table);
                 break;
             case VOLO:
                 showTable(Table.VOLO, this.table);
@@ -655,13 +655,13 @@ exampleTable.setItems(filteredData);
                 createTextFields(Table.SOCCORSI, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             case TORRE_CONTROLLO:
-                createTextFields(Table.TORRE_CONTROLLO, this.addAnchorPane, this.textFields, 0, 40, 98, 40, "#7b1417", 5);
+                createTextFields(Table.TORRE_DI_CONTROLLO, this.addAnchorPane, this.textFields, 0, 40, 98, 40, "#7b1417", 5);
                 break;
             case TRATTA:
                 createTextFields(Table.TRATTA, this.addAnchorPane, this.textFields, 0, 40, 103, 40, "#7b1417", 7);
                 break;
             case VIA_RULLAGGIO:
-                createTextFields(Table.VIA_RULLAGGIO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
+                createTextFields(Table.VIA_DI_RULLAGGIO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             case VOLO:
                 createTextFields(Table.VOLO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
@@ -775,16 +775,16 @@ exampleTable.setItems(filteredData);
                 createTextFields(Table.SOCCORSI, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case TORRE_CONTROLLO:
-                showTable(Table.TORRE_CONTROLLO, this.editTable);
-                createTextFields(Table.TORRE_CONTROLLO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                showTable(Table.TORRE_DI_CONTROLLO, this.editTable);
+                createTextFields(Table.TORRE_DI_CONTROLLO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case TRATTA:
                 showTable(Table.TRATTA, this.editTable);
                 createTextFields(Table.TRATTA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case VIA_RULLAGGIO:
-                showTable(Table.VIA_RULLAGGIO, this.editTable);
-                createTextFields(Table.VIA_RULLAGGIO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                showTable(Table.VIA_DI_RULLAGGIO, this.editTable);
+                createTextFields(Table.VIA_DI_RULLAGGIO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
                 break;
             case VOLO:
                 showTable(Table.VOLO, this.editTable);

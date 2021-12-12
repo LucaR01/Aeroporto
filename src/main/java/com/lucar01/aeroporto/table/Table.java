@@ -20,9 +20,9 @@ public enum Table {
     SERVIZIO_CLIENTI("servizio_clienti"),
     SOCCORSI("soccorsi"),
     TERMINAL("terminal"),
-    TORRE_CONTROLLO("torre_di_controllo"),
+    TORRE_DI_CONTROLLO("torre_di_controllo"),
     TRATTA("tratta"),
-    VIA_RULLAGGIO("via_di_rullaggio"),
+    VIA_DI_RULLAGGIO("via_di_rullaggio"),
     VOLO("volo");
 
     private final String tableName;
