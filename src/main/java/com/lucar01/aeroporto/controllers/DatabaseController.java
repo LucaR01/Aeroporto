@@ -212,6 +212,7 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
         return true;
     }
 
+    //TODO: next time use Reflection.
     public static ObservableList<Tables> getTableData(Table tableName){
         ObservableList<Tables> observableList = FXCollections.observableArrayList();
 

@@ -1,10 +1,12 @@
 package com.lucar01.aeroporto;
 
+import com.lucar01.aeroporto.controllers.DataController;
 import com.lucar01.aeroporto.controllers.DatabaseController;
 import com.lucar01.aeroporto.save.Data;
 import com.lucar01.aeroporto.table.Table;
 import com.lucar01.aeroporto.table.Tables;
 import com.mysql.cj.conf.StringProperty;
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -576,7 +578,7 @@ exampleTable.setItems(filteredData);
     }*/
 
     @FXML
-    void handleSearchBar(KeyEvent event) { //TODO: fix, questo viene chiamato rispetto al primo.
+    void handleSearchBar(KeyEvent event) throws NoSuchFieldException { //TODO: fix, questo viene chiamato rispetto al primo.
         System.out.println("searchbar2"); //TODO: remove
         this.table.getItems().stream().filter(item -> Objects.equals(item.toString(), this.searchField.getText())).findAny().ifPresent(item -> {
             this.table.getSelectionModel().select(item);
@@ -589,7 +591,57 @@ exampleTable.setItems(filteredData);
                 tableItems.add(data.get(i));
 
                 break;*/
+
+        DataController dataController = new DataController(); // DataController<Tables>
+
+        final ObservableList observableList = dataController.getTableData(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()));
+
+        System.out.println("DataController.getTableData: " + observableList); //TODO: remove
+        System.out.println("DataController.getTableData: " + Arrays.toString(observableList.getClass().getFields())); //TODO: remove
+        System.out.println("DataController.getTableData: " + observableList.size()); //TODO: remove
     }
+
+    /*private void initFilter() {
+
+        //searchField = TextFields.createSearchField();
+        //searchField.setPromptText("Filter");
+
+        searchField.textProperty().addListener(new InvalidationListener() {
+
+            @Override
+            public void invalidated(javafx.beans.Observable observable) {
+
+                if (searchField.textProperty().get().isEmpty()) {
+
+                    table.setItems(data);
+                    //handleTableSelection(); //TODO: richiamare un metodo, in cui metto
+                    //TODO: lo switch di handleTableSelection() e lo richiamo anche lì.
+                    return;
+
+                }
+
+                ObservableList<Tables> tableItems = FXCollections.observableArrayList();
+                ObservableList<TableColumn<Tables, ?>> cols = table.getColumns();
+
+                for (int i = 0; i < data.size(); i++) {
+                    for (int j = 0; j < cols.size(); j++) {
+
+                        TableColumn col = cols.get(j);
+                        String cellValue = col.getCellData(data.get(i)).toString();
+                        cellValue = cellValue.toLowerCase();
+
+                        if (cellValue.contains(searchField.textProperty().get().toLowerCase())) {
+
+                            tableItems.add(data.get(i));
+
+                            break;
+                        }
+                    }
+                }
+                table.setItems(tableItems); //TODO: handleTableSelection()
+            }
+        });
+    }*/
 
     @FXML
     void handleAddTableSelection(ActionEvent event) {
