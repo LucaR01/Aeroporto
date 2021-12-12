@@ -31,7 +31,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `assicurazione` WRITE;
 /*!40000 ALTER TABLE `assicurazione` DISABLE KEYS */;
-INSERT INTO `assicurazione` VALUES (1,'Assicurazioni srl','08177334210',NULL,NULL);
+INSERT INTO `assicurazione` VALUES (1,'Assicurazioni srl','08177334210','08:00:00','12:00:00');
 /*!40000 ALTER TABLE `assicurazione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,18 +51,18 @@ UNLOCK TABLES;
 
 LOCK TABLES `cargo` WRITE;
 /*!40000 ALTER TABLE `cargo` DISABLE KEYS */;
-INSERT INTO `cargo` VALUES (1,25,1,1,NULL,NULL);
+INSERT INTO `cargo` VALUES (1,25,1,1,'08:00:00','17:00:00');
 /*!40000 ALTER TABLE `cargo` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `centro_controllo_aerea`
+-- Dumping data for table `centro_controllo_area`
 --
 
-LOCK TABLES `centro_controllo_aerea` WRITE;
-/*!40000 ALTER TABLE `centro_controllo_aerea` DISABLE KEYS */;
-INSERT INTO `centro_controllo_aerea` VALUES (1,250,'08:00:00','16:00:00');
-/*!40000 ALTER TABLE `centro_controllo_aerea` ENABLE KEYS */;
+LOCK TABLES `centro_controllo_area` WRITE;
+/*!40000 ALTER TABLE `centro_controllo_area` DISABLE KEYS */;
+INSERT INTO `centro_controllo_area` VALUES (1,250,'08:00:00','16:00:00');
+/*!40000 ALTER TABLE `centro_controllo_area` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -71,7 +71,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `compagnia_aerea` WRITE;
 /*!40000 ALTER TABLE `compagnia_aerea` DISABLE KEYS */;
-INSERT INTO `compagnia_aerea` VALUES (1,'OTA Airlines','08133357826',250,75,1,NULL,NULL);
+INSERT INTO `compagnia_aerea` VALUES (1,'OTA Airlines','08133357826',250,75,1,'09:00:00','00:00:00');
 /*!40000 ALTER TABLE `compagnia_aerea` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +121,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `logistica` WRITE;
 /*!40000 ALTER TABLE `logistica` DISABLE KEYS */;
-INSERT INTO `logistica` VALUES (1,'Logistics srl',32,'Kerosene',200,1,NULL,NULL);
+INSERT INTO `logistica` VALUES (1,'Logistics srl',32,'Kerosene',200,1,'12:00:00','23:00:00');
 /*!40000 ALTER TABLE `logistica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +131,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `mantenimento` WRITE;
 /*!40000 ALTER TABLE `mantenimento` DISABLE KEYS */;
-INSERT INTO `mantenimento` VALUES (1,1,1,NULL,NULL);
+INSERT INTO `mantenimento` VALUES (1,1,1,'00:01:00','00:00:00');
 /*!40000 ALTER TABLE `mantenimento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,4 +254,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-04 22:10:49
+-- Dump completed on 2021-12-12 22:19:08
