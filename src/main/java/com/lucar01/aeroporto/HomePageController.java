@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -911,7 +912,7 @@ exampleTable.setItems(filteredData);
         switch(language.getLanguage()){
             case "Italiano":
 
-                Image imgLanguageIt = new Image("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/icons/icons8_italy_48px_1.png");
+                Image imgLanguageIt = new Image(Objects.requireNonNull(getClass().getResource("/com/lucar01/icons/icons8_italy_48px_1.png")).toExternalForm());
 
                 this.imgViewLanguage.setImage(imgLanguageIt);
 
@@ -936,7 +937,7 @@ exampleTable.setItems(filteredData);
 
             default:
             case "English":
-                Image imgLanguageEng = new Image("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/icons/icons8_great_britain_48px.png");
+                Image imgLanguageEng = new Image(Objects.requireNonNull(getClass().getResource("/com/lucar01/icons/icons8_great_britain_48px.png")).toExternalForm());
                 this.imgViewLanguage.setImage(imgLanguageEng);
 
                 this.lblLanguage.setText("Language");
@@ -1085,13 +1086,9 @@ exampleTable.setItems(filteredData);
         }
     }
 
-    private void setLightTheme() throws IOException, URISyntaxException {
+    private void setLightTheme() {
 
         this.comboTheme.getSelectionModel().select(Settings.Theme.LIGHT.getTheme());
-
-        //scene.getStylesheets().add("file:///E:/csse2002-7023/src/csse2002/block/world/main.css"); // REFERENCE
-
-        // Paths.get("E","csse2002-7023","src","csse2002","block","world","main.css").toUri().toString()) // REFERENCE 2
 
         this.vBoxRoot.getStylesheets().clear();
 
@@ -1102,25 +1099,20 @@ exampleTable.setItems(filteredData);
 
         this.hBoxTitleBar.getStylesheets().clear();
 
+        this.vBoxRoot.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/light/style.css")).toExternalForm());
 
-        //File fileStyle = new File("/resources/com/lucar01/css/light/style.css");
-        //this.vBoxRoot.getStylesheets().add("../css/light/style.css");
-        //this.vBoxRoot.getStylesheets().add(fileStyle.toURI().toString());
+        this.paneOverview.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/light/table_style.css")).toExternalForm());
+        this.paneAddTable.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/light/add_table_style.css")).toExternalForm());
+        this.paneUpdateTable.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/light/edit_table_style.css")).toExternalForm());
+        this.paneSettings.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/light/settings_style.css")).toExternalForm());
 
-        this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/style.css");
+        this.hBoxTitleBar.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/light/title_bar_style.css")).toExternalForm());
 
-        this.paneOverview.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/table_style.css");
-        this.paneAddTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/add_table_style.css");
-        this.paneUpdateTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/edit_table_style.css");
-        this.paneSettings.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/settings_style.css");
-
-        this.hBoxTitleBar.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/light/title_bar_style.css");
-
-        Image imgTheme = new Image("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/icons/icons8_haze_40px.png");
+        Image imgTheme = new Image(Objects.requireNonNull(getClass().getResource("/com/lucar01/icons/icons8_haze_40px.png")).toExternalForm());
         this.imgViewTheme.setImage(imgTheme);
     }
 
-    private void setDarkTheme() throws IOException {
+    private void setDarkTheme() {
 
         this.comboTheme.getSelectionModel().select(Settings.Theme.DARK.getTheme());
 
@@ -1134,16 +1126,16 @@ exampleTable.setItems(filteredData);
         this.hBoxTitleBar.getStylesheets().clear();
 
 
-        this.vBoxRoot.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_style.css");
+        this.vBoxRoot.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/dark/dark_style.css")).toExternalForm());
 
-        this.paneOverview.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_table_style.css");
-        this.paneAddTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_add_table_style.css");
-        this.paneUpdateTable.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_edit_table_style.css");
-        this.paneSettings.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_settings_style.css");
+        this.paneOverview.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/dark/dark_table_style.css")).toExternalForm());
+        this.paneAddTable.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/dark/dark_add_table_style.css")).toExternalForm());
+        this.paneUpdateTable.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/dark/dark_edit_table_style.css")).toExternalForm());
+        this.paneSettings.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/dark/dark_settings_style.css")).toExternalForm());
 
-        this.hBoxTitleBar.getStylesheets().add("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/css/dark/dark_title_bar_style.css");
+        this.hBoxTitleBar.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/lucar01/css/dark/dark_title_bar_style.css")).toExternalForm());
 
-        Image imgTheme = new Image("file:///D:/Documenti/IntelliJ-workspace/Aeroporto/src/main/resources/com/lucar01/icons/icons8_night_40px.png");
+        Image imgTheme = new Image(Objects.requireNonNull(getClass().getResource("/com/lucar01/icons/icons8_night_40px.png")).toExternalForm());
         this.imgViewTheme.setImage(imgTheme);
 
 
