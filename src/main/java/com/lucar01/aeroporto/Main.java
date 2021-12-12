@@ -17,7 +17,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("homepage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/lucar01/fxml/homepage.fxml"));
         Scene scene = new Scene(fxmlLoader.load()); // 320, 240
 
         scene.setOnMousePressed(event -> {
