@@ -15,8 +15,6 @@ module com.lucar01.aeroporto {
     requires json.simple;
 
     opens com.lucar01.aeroporto to javafx.fxml;
-    // opens controllers;
-    // opens table;
     opens test.com.lucar01.aeroporto;
 
     exports com.lucar01.aeroporto;
