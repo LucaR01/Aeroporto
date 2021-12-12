@@ -34,15 +34,15 @@ public class CompagniaAerea implements Tables{
         return nome;
     }
 
-    public String getPartitaIva() {
+    public String getPartita_Iva() {
         return partitaIva;
     }
 
-    public int getNumPersonale() {
+    public int getNum_Personale() {
         return numPersonale;
     }
 
-    public int getNumAerei() {
+    public int getNum_Aerei() {
         return numAerei;
     }
 
@@ -50,11 +50,11 @@ public class CompagniaAerea implements Tables{
         return codAssicurazione;
     }
 
-    public Time getOraInizio() {
+    public Time getOra_inizio() {
         return oraInizio;
     }
 
-    public Time getOraFine() {
+    public Time getOra_fine() {
         return oraFine;
     }
 }

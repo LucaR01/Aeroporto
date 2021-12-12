@@ -41,7 +41,7 @@ public class Aereo implements Tables{
         return this.nome;
     }
 
-    public int getNumEquipaggio() {
+    public int getNum_Equipaggio() {
         return this.numEquipaggio;
     }
 
@@ -53,11 +53,11 @@ public class Aereo implements Tables{
         return this.tipologia;
     }
 
-    public int getNumPasseggeri() {
+    public int getNum_Passeggeri() {
         return this.numPasseggeri;
     }
 
-    public int getNumMerci() {
+    public int getNum_Merci() {
         return this.numMerci;
     }
 

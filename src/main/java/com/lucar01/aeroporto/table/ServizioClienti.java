@@ -18,11 +18,11 @@ public class ServizioClienti implements Tables{
         return codServizio;
     }
 
-    public Time getOraInzio() {
+    public Time getOrario_inizio() {
         return oraInzio;
     }
 
-    public Time getOraFine() {
+    public Time getOrario_fine() {
         return oraFine;
     }
 }

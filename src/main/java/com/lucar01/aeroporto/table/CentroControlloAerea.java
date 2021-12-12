@@ -21,15 +21,15 @@ public class CentroControlloAerea implements Tables{
         return codCentro;
     }
 
-    public int getNumPersonale() {
+    public int getNum_Personale() {
         return numPersonale;
     }
 
-    public Time getOraInizio() {
+    public Time getOrario_inizio() {
         return oraInizio;
     }
 
-    public Time getOraFine() {
+    public Time getOrario_fine() {
         return oraFine;
     }
 }

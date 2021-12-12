@@ -26,7 +26,7 @@ public class Cargo implements Tables{
         return codCargo;
     }
 
-    public int getNumDipendenti() {
+    public int getNum_dipendenti() {
         return numDipendenti;
     }
 
@@ -38,11 +38,11 @@ public class Cargo implements Tables{
         return codLogistica;
     }
 
-    public Time getOraInizio() {
+    public Time getOra_inizio() {
         return oraInizio;
     }
 
-    public Time getOraFine() {
+    public Time getOra_fine() {
         return oraFine;
     }
 }

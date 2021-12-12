@@ -14,7 +14,7 @@ public class Hangar implements Tables{
         return codHangar;
     }
 
-    public int getNumAerei() {
+    public int getNum_aerei() {
         return numAerei;
     }
 }

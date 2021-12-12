@@ -14,7 +14,7 @@ public class ViaRullaggio implements Tables{
         return codVia;
     }
 
-    public int getNumAerei() {
+    public int getNum_Aerei() {
         return numAerei;
     }
 }

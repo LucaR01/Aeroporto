@@ -16,7 +16,8 @@ public class GroundSupportEquipment implements Tables{
         return codMacchinario;
     }
 
-    public int getQuantity() {
+    // Metto quantità con l'accento soltanto perchè così l'ho scritto nel database e se non lo scrivo uguale, non riesce a prendermi i dati e metterli nella colonna della tableView.
+    public int getQuantità() {
         return quantity;
     }
 

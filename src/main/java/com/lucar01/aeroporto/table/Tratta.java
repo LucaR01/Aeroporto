@@ -10,8 +10,8 @@ public class Tratta implements Tables{
     private final String aeroportoPartenza;
     private final String aeroportoDestinazione;
 
-    private final Time oraPartenza;
     private final Time oraFine;
+    private final Time oraPartenza;
 
     public Tratta(int codTratta, String cittaPartenza, String cittaDestinazione, String aeroportoPartenza, String aeroportoDestinazione, Time oraPartenza, Time oraFine) {
         this.codTratta = codTratta;
@@ -27,27 +27,29 @@ public class Tratta implements Tables{
         return codTratta;
     }
 
-    public String getCittaPartenza() {
+    // Metto la lettera con l'accento soltanto perchè così l'ho scritto nel database e se non lo scrivo uguale, non riesce a prendermi i dati e metterli nella colonna della tableView.
+    public String getCittà_partenza() {
         return cittaPartenza;
     }
 
-    public String getCittaDestinazione() {
+    // Metto la lettera con l'accento soltanto perchè così l'ho scritto nel database e se non lo scrivo uguale, non riesce a prendermi i dati e metterli nella colonna della tableView.
+    public String getCittà_destinazione() {
         return cittaDestinazione;
     }
 
-    public String getAeroportoPartenza() {
+    public String getAeroporto_partenza() {
         return aeroportoPartenza;
     }
 
-    public String getAeroportoDestinazione() {
+    public String getAeroporto_destinazione() {
         return aeroportoDestinazione;
     }
 
-    public Time getOraPartenza() {
-        return oraPartenza;
+    public Time getOra_fine() {
+        return oraFine;
     }
 
-    public Time getOraFine() {
-        return oraFine;
+    public Time getOra_partenza() {
+        return oraPartenza;
     }
 }

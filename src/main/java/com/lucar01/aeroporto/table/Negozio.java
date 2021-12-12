@@ -29,11 +29,11 @@ public class Negozio implements Tables{
         return prodotti;
     }
 
-    public Time getOraInizio() {
+    public Time getOrario_inizio() {
         return oraInizio;
     }
 
-    public Time getOraFine() {
+    public Time getOrario_fine() {
         return oraFine;
     }
 

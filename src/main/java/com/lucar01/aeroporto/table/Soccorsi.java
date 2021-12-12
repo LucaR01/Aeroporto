@@ -18,11 +18,11 @@ public class Soccorsi implements Tables{
         return codSoccorso;
     }
 
-    public Time getOrarioInizio() {
+    public Time getOrario_inizio() {
         return orarioInizio;
     }
 
-    public Time getOrarioFine() {
+    public Time getOrario_fine() {
         return orarioFine;
     }
 }

@@ -64,7 +64,7 @@ public class Persona implements Tables{
         return cognome;
     }
 
-    public int getAge() {
+    public int getEtà() {
         return age;
     }
 
@@ -72,11 +72,11 @@ public class Persona implements Tables{
         return ruolo;
     }
 
-    public Time getOraInizio() {
+    public Time getOra_inizio() {
         return oraInizio;
     }
 
-    public Time getOraFine() {
+    public Time getOra_fine() {
         return oraFine;
     }
 

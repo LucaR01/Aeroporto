@@ -1,15 +1,19 @@
 package com.lucar01.aeroporto.controllers;
 
+import com.dlsc.formsfx.view.controls.SimpleDateControl;
 import com.lucar01.aeroporto.Database;
 import com.lucar01.aeroporto.table.*;
+import com.mysql.cj.conf.StringProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Optional;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.SimpleTimeZone;
 
 public class DatabaseController {  //TODO: generalizzare questi metodi, altrimenti ci metterei troppo tempo e farei troppi metodi per fare la stessa cosa!
     //TODO: metodi generali: getTable(String tableName), getNumberOfColumns(String tableName), getNamesOfColumns(String tableName);
@@ -66,6 +70,65 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 observableList.add(resultSet.getString("COLUMN_NAME"));
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return observableList;
+    }
+
+    public static ObservableList<StringProperty> getNamesOfColumns2(Table table){
+        ObservableList<StringProperty> observableList = FXCollections.observableArrayList();
+
+        try{
+            String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
+            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                //observableList.add(resultSet.getString("COLUMN_NAME"));
+                //observableList.add(new StringProperty().setValue(resultSet.getString("COLUMN_NAME")));
+                //StringProperty stringProperty = new SimpleStringProperty(this, resultSet.getString("COLUMN_NAME"), "");
+                //observableList.add(stringProperty);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return observableList;
+    }
+
+    public static ObservableList<SimpleStringProperty> getNamesOfColumns3(Table table){
+        ObservableList<SimpleStringProperty> observableList = FXCollections.observableArrayList();
+
+        try{
+            String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
+            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                observableList.add(new SimpleStringProperty(resultSet.getString("COLUMN_NAME")));
+
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return observableList;
+    }
+
+    public static ObservableList<ObjectProperty> getNamesOfColumns4(Table table){
+        ObservableList<ObjectProperty> observableList = FXCollections.observableArrayList();
+
+        try{
+            String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
+            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                observableList.add(new SimpleObjectProperty(resultSet.getString("COLUMN_NAME")));
+
             }
 
         }catch(Exception e){
@@ -238,11 +301,11 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
                                 resultSet.getInt("CodHangar"), resultSet.getInt("CodVia")));
                         break;
                     case COMPONENTE_AEREO:
-                        observableList.add(new ComponenteAereo(resultSet.getInt("CodComponente"), resultSet.getString("Nome"), Integer.parseInt(resultSet.getString("Quantità")), resultSet.getBoolean("Funzionante"),
+                        observableList.add(new ComponenteAereo(resultSet.getInt("CodComponente"), resultSet.getString("Nome"), resultSet.getInt("Quantità"), resultSet.getBoolean("Funzionante"),
                                 resultSet.getString("Tipologia"), resultSet.getInt("CodAereo"))); //TODO: fix
                         break;
                     case ASSICURAZIONE:
-                        observableList.add(new Assicurazione(resultSet.getInt("CodAssicurazione"),resultSet.getString("Nome"), resultSet.getString("Partita_IVA"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine"))); //TODO: fix
+                        observableList.add(new Assicurazione(resultSet.getInt("CodAssicurazione"), resultSet.getString("Nome"), resultSet.getString("Partita_IVA"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine"))); //TODO: fix
                         break;
                     case CARGO:
                         observableList.add(new Cargo(resultSet.getInt("CodCargo"), resultSet.getInt("Num_dipendenti"), resultSet.getInt("CodAereo"),

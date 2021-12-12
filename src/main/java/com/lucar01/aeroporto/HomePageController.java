@@ -4,6 +4,11 @@ import com.lucar01.aeroporto.controllers.DatabaseController;
 import com.lucar01.aeroporto.save.Data;
 import com.lucar01.aeroporto.table.Table;
 import com.lucar01.aeroporto.table.Tables;
+import com.mysql.cj.conf.StringProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -456,12 +461,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     private void createTable(final int numOfColumns, final ObservableList<String> columnsName, TableView<Tables> tableView){
 
-        for(int i = 0; i < columnsName.size(); i++){
+        /*for(int i = 0; i < columnsName.size(); i++){
             columnsName.set(i, columnsName.get(i).replaceAll("_", ""));
             columnsName.set(i, columnsName.get(i).replaceAll("[^\\p{ASCII}]", "")); // Per rimuovere gli accenti (però toglie tutta la lettera non solo l'accento).
-        }
+        }*/
 
-        System.out.println("columnsName senza _ e accenti: " + columnsName); //TODO: remove
+        //System.out.println("columnsName senza _ e accenti: " + columnsName); //TODO: remove
 
         for(int i = 0; i < numOfColumns; i++){
             TableColumn<Tables, String> column = new TableColumn<>();
@@ -470,6 +475,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             tableView.getColumns().add(column);
         }
     }
+
+    // I NOMI DEI GETTERS DEVONO COMBACIARE CON QUELLI DEL DATABASE!
 
     private void showTable(final Table table, TableView<Tables> tableView){
         tableView.getColumns().clear();
@@ -591,7 +598,7 @@ exampleTable.setItems(filteredData);
 
         switch(this.combo_add_table.getSelectionModel().getSelectedItem()){
             case PERSONA:
-                createTextFields(Table.PERSONA, this.addAnchorPane, this.textFields, 0, 30, 73, 30, "#7b1417", 6);
+                createTextFields(Table.PERSONA, this.addAnchorPane, this.textFields, 0, 25, 83, 25, "#7b1417", 9);
                 break;
             case BAGAGLIO:
                 createTextFields(Table.BAGAGLIO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 10);
@@ -600,64 +607,64 @@ exampleTable.setItems(filteredData);
                 createTextFields(Table.TERMINAL, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 10);
                 break;
             case AEREO:
-                createTextFields(Table.AEREO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.AEREO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             case ASSICURAZIONE:
-                createTextFields(Table.ASSICURAZIONE, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.ASSICURAZIONE, this.addAnchorPane, this.textFields, 0, 40, 93, 40, "#7b1417", 5);
                 break;
             case CARGO:
-                createTextFields(Table.CARGO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.CARGO, this.addAnchorPane, this.textFields, 0, 40, 93, 40, "#7b1417", 5);
                 break;
             case CENTRO_CONTROLLO_AREA:
-                createTextFields(Table.CENTRO_CONTROLLO_AREA, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.CENTRO_CONTROLLO_AREA, this.addAnchorPane, this.textFields, 0, 40, 83, 40, "#7b1417", 5);
                 break;
             case COMPAGNIA_AEREA:
-                createTextFields(Table.COMPAGNIA_AEREA, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.COMPAGNIA_AEREA, this.addAnchorPane, this.textFields, 0, 40, 93, 40, "#7b1417", 8);
                 break;
             case COMPONENTE_AEREO:
-                createTextFields(Table.COMPONENTE_AEREO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.COMPONENTE_AEREO, this.addAnchorPane, this.textFields, 0, 40, 93, 40, "#7b1417", 5);
                 break;
             case GATE:
-                createTextFields(Table.GATE, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.GATE, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             case GROUND_SUPPORT_EQUIPMENT:
-                createTextFields(Table.GROUND_SUPPORT_EQUIPMENT, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.GROUND_SUPPORT_EQUIPMENT, this.addAnchorPane, this.textFields, 0, 40, 88, 40, "#7b1417", 5);
                 break;
             case HANGAR:
-                createTextFields(Table.HANGAR, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.HANGAR, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             case LOGISTICA:
-                createTextFields(Table.LOGISTICA, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.LOGISTICA, this.addAnchorPane, this.textFields, 0, 40, 88, 40, "#7b1417", 8);
                 break;
             case MANTENIMENTO:
-                createTextFields(Table.MANTENIMENTO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.MANTENIMENTO, this.addAnchorPane, this.textFields, 0, 40, 93, 40, "#7b1417", 5);
                 break;
             case NEGOZIO:
-                createTextFields(Table.NEGOZIO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.NEGOZIO, this.addAnchorPane, this.textFields, 0, 40, 83, 40, "#7b1417", 5);
                 break;
             case PISTA:
-                createTextFields(Table.PISTA, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.PISTA, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             case RADAR:
-                createTextFields(Table.RADAR, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.RADAR, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             case SERVIZIO_CLIENTI:
-                createTextFields(Table.SERVIZIO_CLIENTI, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.SERVIZIO_CLIENTI, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             case SOCCORSI:
-                createTextFields(Table.SOCCORSI, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.SOCCORSI, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             case TORRE_CONTROLLO:
-                createTextFields(Table.TORRE_CONTROLLO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.TORRE_CONTROLLO, this.addAnchorPane, this.textFields, 0, 40, 98, 40, "#7b1417", 5);
                 break;
             case TRATTA:
-                createTextFields(Table.TRATTA, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.TRATTA, this.addAnchorPane, this.textFields, 0, 40, 103, 40, "#7b1417", 7);
                 break;
             case VIA_RULLAGGIO:
-                createTextFields(Table.VIA_RULLAGGIO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.VIA_RULLAGGIO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             case VOLO:
-                createTextFields(Table.VOLO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5); //TODO: fix
+                createTextFields(Table.VOLO, this.addAnchorPane, this.textFields, 0, 40, 73, 40, "#7b1417", 5);
                 break;
             default:
                 this.addAnchorPane.getChildren().clear();
@@ -859,22 +866,13 @@ exampleTable.setItems(filteredData);
         }
 
         System.out.println("editOldData: " + editOldData); //TODO: remove
-
-
-        //TODO: Devo prendere i dati dalla row e metterli negli editTextFields
-        //TODO: tenere in memoria i vecchi dati perchè credo che servano per la query
-        //TODO: quando poi preme submit dell'edit allora:
-        //TODO: pulire gli editTextFields e aggiornare i dati nella tabella (potrei o mettere il simbolo per il refresh oppure direttamente chiamare .refresh() sulla table).
-        //TODO: salvare i nuovi dati e alterare la table con una query.
     }
 
     @FXML
-    void handleThemeSelection(ActionEvent event) throws IOException, URISyntaxException {
-        //TODO: devo settare i vari style in base alla scelta.
+    void handleThemeSelection(ActionEvent event) {
 
         switch(this.comboTheme.getSelectionModel().getSelectedItem()){
             case "Light":
-                //this.comboTheme.getScene().getRoot().getStylesheets().add(getClass().getResource("").toString()); //TODO: aggiungere path
                 this.isLightTheme = true;
 
                 setLightTheme();
@@ -889,9 +887,8 @@ exampleTable.setItems(filteredData);
 
     @FXML
     void handleLanguageSelection(ActionEvent event) throws IOException {
-        //TODO: faccio uno switch ed in base alla lingua scelta cambio i vari labels con setText.
 
-        switch(this.comboLanguage.getSelectionModel().getSelectedItem()){ //TODO: metterlo dentro ad un altro metodo, così lo chiamo anche all'inizio, remove.
+        switch(this.comboLanguage.getSelectionModel().getSelectedItem()){
             case "Italiano":
                 setLanguageSetting(Settings.Languages.ITALIANO);
                 break;
@@ -904,9 +901,7 @@ exampleTable.setItems(filteredData);
 
     }
 
-    //TODO: potrei usare Internationalization dependency oppure uso direttamente i setText.
     private void setLanguageSetting(Settings.Languages language) throws IOException {
-        //TODO: faccio uno switch ed in base alla lingua scelta cambio i vari labels con setText.
         this.comboLanguage.getSelectionModel().select(language.getLanguage());
 
         switch(language.getLanguage()){

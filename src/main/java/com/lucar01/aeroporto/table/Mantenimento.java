@@ -32,11 +32,11 @@ public class Mantenimento implements Tables{
         return codMacchinario;
     }
 
-    public Time getOraInizio() {
+    public Time getOra_inizio() {
         return oraInizio;
     }
 
-    public Time getOraFine() {
+    public Time getOra_fine() {
         return oraFine;
     }
 }

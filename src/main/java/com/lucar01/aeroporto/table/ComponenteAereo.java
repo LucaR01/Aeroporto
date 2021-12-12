@@ -1,5 +1,8 @@
 package com.lucar01.aeroporto.table;
 
+import com.mysql.cj.conf.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class ComponenteAereo implements Tables{
 
     private final int codComponenteAereo;
@@ -19,7 +22,7 @@ public class ComponenteAereo implements Tables{
         this.codAereo = codAereo;
     }
 
-    public int getCodComponenteAereo() {
+    public int getCodComponente() {
         return codComponenteAereo;
     }
 
@@ -27,11 +30,12 @@ public class ComponenteAereo implements Tables{
         return nome;
     }
 
-    public int getQuantity() {
+    // Metto quantità con l'accento soltanto perchè così l'ho scritto nel database e se non lo scrivo uguale, non riesce a prendermi i dati e metterli nella colonna della tableView.
+    public int getQuantità() {
         return quantity;
     }
 
-    public boolean isWorking() {
+    public boolean isFunzionante() {
         return isWorking;
     }
 

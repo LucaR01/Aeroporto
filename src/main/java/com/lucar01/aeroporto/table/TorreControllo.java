@@ -23,19 +23,19 @@ public class TorreControllo implements Tables{
         return codTorre;
     }
 
-    public int getNumDipendenti() {
+    public int getNum_dipendenti() {
         return numDipendenti;
     }
 
-    public int getNumAereiInComunicazione() {
+    public int getNum_Aerei_in_comunicazione() {
         return numAereiInComunicazione;
     }
 
-    public Time getOrarioInizio() {
+    public Time getOrario_inizio() {
         return orarioInizio;
     }
 
-    public Time getOrarioFine() {
+    public Time getOrario_fine() {
         return orarioFine;
     }
 }

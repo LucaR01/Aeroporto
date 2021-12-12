@@ -34,7 +34,7 @@ public class Logistica implements Tables{
         return nome;
     }
 
-    public int getNumPersonale() {
+    public int getNum_Personale() {
         return numPersonale;
     }
 
@@ -42,7 +42,8 @@ public class Logistica implements Tables{
         return materiali;
     }
 
-    public int getQuantity() {
+    // Metto quantità con l'accento soltanto perchè così l'ho scritto nel database e se non lo scrivo uguale, non riesce a prendermi i dati e metterli nella colonna della tableView.
+    public int getQuantità() {
         return quantity;
     }
 
@@ -50,11 +51,11 @@ public class Logistica implements Tables{
         return codCompagnia;
     }
 
-    public Time getOraInizio() {
+    public Time getOra_inizio() {
         return oraInizio;
     }
 
-    public Time getOraFine() {
+    public Time getOra_fine() {
         return oraFine;
     }
 }
