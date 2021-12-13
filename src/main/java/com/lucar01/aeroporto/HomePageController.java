@@ -911,11 +911,13 @@ public class HomePageController implements Initializable {
 
         switch(this.comboLanguage.getSelectionModel().getSelectedItem()){
             case "Italiano":
+                this.isEnglish = false;
                 setLanguageSetting(Settings.Languages.ITALIANO);
                 break;
 
             default:
             case "English":
+                this.isEnglish = true;
                 setLanguageSetting(Settings.Languages.ENGLISH);
                 break;
         }
@@ -1006,7 +1008,9 @@ public class HomePageController implements Initializable {
     @FXML
     void submitResetSettings(ActionEvent event) {
         this.comboTheme.getSelectionModel().select(Settings.Theme.LIGHT.getDefaultTheme());
+        this.isLightTheme = true;
         this.comboLanguage.getSelectionModel().select(Settings.Languages.ENGLISH.getDefaultLanguage());
+        this.isEnglish = true;
     }
 
     /**
