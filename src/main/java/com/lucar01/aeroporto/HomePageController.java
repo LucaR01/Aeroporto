@@ -321,9 +321,11 @@ public class HomePageController implements Initializable {
                 }
 
                 Optional<ButtonType> quitResult = quitAlert.showAndWait();
-                if(quitResult.get() == ButtonType.OK){
-                    javafx.application.Platform.exit();
-                }
+                quitResult.ifPresent(q -> {
+                    if(q == ButtonType.OK){
+                        javafx.application.Platform.exit();
+                    }
+                });
             }
         }
     }
@@ -1067,47 +1069,49 @@ public class HomePageController implements Initializable {
 
         Optional<ButtonType> deleteResult = deleteConfirmation.showAndWait();
 
-        if(deleteResult.get() == ButtonType.OK){
-            final int index = this.table.getSelectionModel().getSelectedIndex();
+        deleteResult.ifPresent(d -> {
+            if(d == ButtonType.OK){
+                final int index = this.table.getSelectionModel().getSelectedIndex();
 
-            final int numOfColumns = DatabaseController.getNumberOfColumns(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()));
+                final int numOfColumns = DatabaseController.getNumberOfColumns(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()));
 
-            ObservableList<String> dataToDelete = FXCollections.observableArrayList();
+                ObservableList<String> dataToDelete = FXCollections.observableArrayList();
 
-            for(int i = 0; i < numOfColumns; i++){
-                dataToDelete.add(this.table.getColumns().get(i).getCellData(index).toString());
+                for(int i = 0; i < numOfColumns; i++){
+                    dataToDelete.add(this.table.getColumns().get(i).getCellData(index).toString());
+                }
+
+                final boolean hasDeleted = DatabaseController.deleteTableData(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()), dataToDelete);
+
+                final Alert deleteAlertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                final Alert deleteAlertError = new Alert(Alert.AlertType.ERROR);
+
+                if(this.isEnglish){
+                    deleteAlertSuccess.setTitle("Delete");
+                    deleteAlertSuccess.setHeaderText("Delete Data");
+                    deleteAlertSuccess.setContentText("Data successfully deleted"); // Operation delete successfully executed
+
+                    deleteAlertError.setTitle("Delete Error");
+                    deleteAlertError.setHeaderText("Delete Data Error");
+                    deleteAlertError.setContentText("Data has not been deleted. Error has occurred"); // Operation delete failed. An error has occurred
+                } else {
+                    deleteAlertSuccess.setTitle("Cancella");
+                    deleteAlertSuccess.setHeaderText("Cancella Dati");
+                    deleteAlertSuccess.setContentText("Operazione di cancellazione eseguita con successo");
+
+                    deleteAlertError.setTitle("Cancella Errore");
+                    deleteAlertError.setHeaderText("Cancella Dati Errore");
+                    deleteAlertError.setContentText("Operazione di cancellazione non eseguita. Un errore è capitato");
+                }
+
+                if(hasDeleted){
+                    this.table.refresh();
+                    deleteAlertSuccess.show();
+                } else {
+                    deleteAlertError.show();
+                }
             }
-
-            final boolean hasDeleted = DatabaseController.deleteTableData(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()), dataToDelete);
-
-            final Alert deleteAlertSuccess = new Alert(Alert.AlertType.INFORMATION);
-            final Alert deleteAlertError = new Alert(Alert.AlertType.ERROR);
-
-            if(this.isEnglish){
-                deleteAlertSuccess.setTitle("Delete");
-                deleteAlertSuccess.setHeaderText("Delete Data");
-                deleteAlertSuccess.setContentText("Data successfully deleted"); // Operation delete successfully executed
-
-                deleteAlertError.setTitle("Delete Error");
-                deleteAlertError.setHeaderText("Delete Data Error");
-                deleteAlertError.setContentText("Data has not been deleted. Error has occurred"); // Operation delete failed. An error has occurred
-            } else {
-                deleteAlertSuccess.setTitle("Cancella");
-                deleteAlertSuccess.setHeaderText("Cancella Dati");
-                deleteAlertSuccess.setContentText("Operazione di cancellazione eseguita con successo");
-
-                deleteAlertError.setTitle("Cancella Errore");
-                deleteAlertError.setHeaderText("Cancella Dati Errore");
-                deleteAlertError.setContentText("Operazione di cancellazione non eseguita. Un errore è capitato");
-            }
-
-            if(hasDeleted){
-                this.table.refresh();
-                deleteAlertSuccess.show();
-            } else {
-                deleteAlertError.show();
-            }
-        }
+        });
 
     }
 
