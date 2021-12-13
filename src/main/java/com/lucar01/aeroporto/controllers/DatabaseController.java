@@ -1,34 +1,25 @@
 package com.lucar01.aeroporto.controllers;
 
-import com.dlsc.formsfx.view.controls.SimpleDateControl;
 import com.lucar01.aeroporto.Database;
 import com.lucar01.aeroporto.table.*;
-import com.mysql.cj.conf.StringProperty;
-import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.SimpleTimeZone;
 
-public class DatabaseController {  //TODO: generalizzare questi metodi, altrimenti ci metterei troppo tempo e farei troppi metodi per fare la stessa cosa!
-    //TODO: metodi generali: getTable(String tableName), getNumberOfColumns(String tableName), getNamesOfColumns(String tableName);
-    //TODO: al posto di una stringa per il table name posso usare un enum.
-    //TODO: oppure potrei direttamente mettere nell'enum il numero di colonne, i loro nomi, e la loro tipologia ecc..
+public class DatabaseController {
 
     //TODO: prossima volta usare per ottenere il numero di colonne resultSet.getMetaData().getColumnCount();
 
     private final static Connection CONNECTION = Database.getConnection();
 
-    public static int getNumberOfColumns(Table table){
+    public static int getNumberOfColumns(final Table table){
         int numberOfColumns = 0;
 
         try{
-            String query = "SELECT COUNT(*) AS NUM_OF_COLUMNS FROM information_schema.columns WHERE TABLE_NAME = '" + table.getTableName() + "'";
+            final String query = "SELECT COUNT(*) AS NUM_OF_COLUMNS FROM information_schema.columns WHERE TABLE_NAME = '" + table.getTableName() + "'";
             PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -41,31 +32,11 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
         return numberOfColumns;
     }
 
-    public static ObservableList<String> getNamesOfColumnsAndDataTypes(Table table){
+    public static ObservableList<String> getNamesOfColumns(final Table table){
         ObservableList<String> observableList = FXCollections.observableArrayList();
 
         try{
-            String query = "SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
-            PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            //TODO: for number of column put column_name.
-            while(resultSet.next()){
-                observableList.add(resultSet.getString("COLUMN_NAME"));
-                observableList.add(resultSet.getString("DATA_TYPE"));
-            }
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return observableList;
-    }
-
-    public static ObservableList<String> getNamesOfColumns(Table table){
-        ObservableList<String> observableList = FXCollections.observableArrayList();
-
-        try{
-            String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
+            final String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + table.getTableName() + "'";
             PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
@@ -84,7 +55,7 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
         ObservableList<String> observableList = FXCollections.observableArrayList();
 
         try{
-            String query = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = 'aeroporto' ";
+            final String query = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = 'aeroporto' ";
             PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -95,13 +66,11 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
             e.printStackTrace();
         }
 
-        System.out.println("name of tables: " + observableList);
-
         return observableList;
     }
 
-    private static StringBuilder getNamesOfColumnsInString(Table table){
-        ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
+    private static StringBuilder getNamesOfColumnsInString(final Table table){
+        final ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
 
         StringBuilder namesOfColumnsString = new StringBuilder();
 
@@ -116,41 +85,24 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
         return namesOfColumnsString;
     }
 
-    public static boolean addDataToTable(Table table, ObservableList<String> data){
+    public static boolean addDataToTable(final Table table, final ObservableList<String> data){
 
-        /*ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
-
-        StringBuilder namesOfColumnsString = new StringBuilder();
-
-        for(int i = 0; i < namesOfColumns.size(); i++){ //TODO: chiamare getNamesOfColumnsInString
-            if(i == namesOfColumns.size() - 1){
-                namesOfColumnsString.append(namesOfColumns.get(i));
-            } else {
-                namesOfColumnsString.append(namesOfColumns.get(i)).append(", ");
-            }
-        }
-
-        System.out.println("namesOfColumnsString: " + namesOfColumnsString);*/ //TODO: remove
-
-        StringBuilder namesOfColumnsString = getNamesOfColumnsInString(table);
+        final StringBuilder namesOfColumnsString = getNamesOfColumnsInString(table);
 
         StringBuilder dataString = new StringBuilder();
 
         for(int i = 0; i < data.size(); i++){
             if(i == data.size() - 1){
-                dataString.append(data.get(i));
+                dataString.append(" '").append(data.get(i)).append("' "); // aggiungo '' altrimenti le stringhe non mi vanno.
             } else {
-                dataString.append(data.get(i)).append(", ");
+                dataString.append(" '").append(data.get(i)).append("', "); // aggiungo '' altrimenti le stringhe non mi vanno.
             }
         }
 
-        System.out.println("dataString: " + dataString); //TODO: remove
-
         try {
-            String query = "INSERT INTO " + table.getTableName() + " ( " + namesOfColumnsString + " )" + " VALUES ( " + dataString + " ) ";
-            System.out.println("query add data table: " + query); //TODO: remove
+            final String query = "INSERT INTO " + table.getTableName() + " ( " + namesOfColumnsString + " )" + " VALUES ( " + dataString + " ) ";
             PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
-            preparedStatement.execute(); //TODO: return .execute(); al posto di mettere true e false sotto. (in realtà non va se lo metto qui, forse perchè è dentro al try ).
+            preparedStatement.execute();
         }catch(Exception e){
             e.printStackTrace();
             return false;
@@ -159,32 +111,26 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
         return true;
     }
 
-    public static boolean editTableData(Table table, ObservableList<String> oldData, ObservableList<String> newData){
+    public static boolean editTableData(final Table table, final ObservableList<String> oldData, final ObservableList<String> newData){
 
-        //TODO: devo prendere l'id dell'oldData e per il resto modificare con la newData.
-        //StringBuilder stringBuilder = getNamesOfColumnsInString(table); //TODO: remove
-
-        ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
+        final ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
 
         StringBuilder namesOfColumnsString = new StringBuilder();
 
-        for(int i = 0; i < namesOfColumns.size(); i++){ //TODO: alla fine non penso ci sia nemmeno il bisogno di usare il for per ottenere tutti i dati, uso solo il get(0); (guardare deleteTableData come reference)
+        for(int i = 0; i < namesOfColumns.size(); i++){
             if(i == namesOfColumns.size() - 1){
                 namesOfColumnsString.append(namesOfColumns.get(i));
-                namesOfColumnsString.append(" = '").append(newData.get(i)).append("' "); //TODO: aggiungo '' altrimenti le stringhe non mi vanno.
+                namesOfColumnsString.append(" = '").append(newData.get(i)).append("' "); // aggiungo '' altrimenti le stringhe non mi vanno.
             } else {
                 namesOfColumnsString.append(namesOfColumns.get(i));
-                namesOfColumnsString.append(" = '").append(newData.get(i)).append("', "); //TODO: aggiungo '' altrimenti le stringhe non mi vanno.
+                namesOfColumnsString.append(" = '").append(newData.get(i)).append("', "); // aggiungo '' altrimenti le stringhe non mi vanno.
             }
         }
 
-        System.out.println("namesOfColumnsString: " + namesOfColumnsString); //TODO: remove
-
-        String condition = "WHERE " + namesOfColumns.get(0) + " = " + oldData.get(0); // Metto 0 perchè voglio soltanto l'id, che si trova come primo elemento.
+        final String condition = "WHERE " + namesOfColumns.get(0) + " = " + oldData.get(0); // Metto 0 perchè voglio soltanto l'id, che si trova come primo elemento.
 
         try {
-            String query = "UPDATE " + table.getTableName() + " SET " + namesOfColumnsString + " " + condition; // ho aggiunto il \n prima del where, ma in realtà non cambia niente
-            System.out.println("query edit table: " + query); //TODO: remove
+            final String query = "UPDATE " + table.getTableName() + " SET " + namesOfColumnsString + " " + condition; // ho aggiunto il \n prima del where, ma in realtà non cambia niente
             PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
             preparedStatement.execute(); // se metto il return qui non va.
         }catch(Exception e){
@@ -194,15 +140,14 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
         return true;
     }
 
-    public static boolean deleteTableData(Table table, ObservableList<String> dataToDelete){
+    public static boolean deleteTableData(final Table table, final ObservableList<String> dataToDelete){
 
         final ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
 
         final String condition = namesOfColumns.get(0) + " = '" + dataToDelete.get(0) + "'"; // Faccio 0 perchè mi basta l'ID.
 
         try {
-            String query = "DELETE FROM " + table.getTableName() + " WHERE " + condition;
-            System.out.println("delete query: " + query); //TODO: remove
+            final String query = "DELETE FROM " + table.getTableName() + " WHERE " + condition;
             PreparedStatement preparedStatement = CONNECTION.prepareStatement(query);
             preparedStatement.execute();
         }catch(Exception e){
@@ -213,11 +158,11 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
     }
 
     //TODO: next time use Reflection.
-    public static ObservableList<Tables> getTableData(Table tableName){
+    public static ObservableList<Tables> getTableData(final Table tableName){
         ObservableList<Tables> observableList = FXCollections.observableArrayList();
 
         try {
-            String query = "SELECT * FROM " + tableName.getTableName();
+            final String query = "SELECT * FROM " + tableName.getTableName();
             PreparedStatement ps = CONNECTION.prepareStatement(query);
             ResultSet resultSet = ps.executeQuery();
 
@@ -244,14 +189,14 @@ public class DatabaseController {  //TODO: generalizzare questi metodi, altrimen
                         break;
                     case COMPONENTE_AEREO:
                         observableList.add(new ComponenteAereo(resultSet.getInt("CodComponente"), resultSet.getString("Nome"), resultSet.getInt("Quantità"), resultSet.getBoolean("Funzionante"),
-                                resultSet.getString("Tipologia"), resultSet.getInt("CodAereo"))); //TODO: fix
+                                resultSet.getString("Tipologia"), resultSet.getInt("CodAereo")));
                         break;
                     case ASSICURAZIONE:
-                        observableList.add(new Assicurazione(resultSet.getInt("CodAssicurazione"), resultSet.getString("Nome"), resultSet.getString("Partita_IVA"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine"))); //TODO: fix
+                        observableList.add(new Assicurazione(resultSet.getInt("CodAssicurazione"), resultSet.getString("Nome"), resultSet.getString("Partita_IVA"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine")));
                         break;
                     case CARGO:
                         observableList.add(new Cargo(resultSet.getInt("CodCargo"), resultSet.getInt("Num_dipendenti"), resultSet.getInt("CodAereo"),
-                                resultSet.getInt("CodLogistica"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine"))); //TODO: fix
+                                resultSet.getInt("CodLogistica"), resultSet.getTime("Ora_inizio"), resultSet.getTime("Ora_fine")));
                         break;
                     case CENTRO_CONTROLLO_AREA:
                         observableList.add(new CentroControlloAerea(resultSet.getInt("CodCentro"), resultSet.getInt("Num_Personale"), resultSet.getTime("Orario_inizio"), resultSet.getTime("Orario_fine")));
