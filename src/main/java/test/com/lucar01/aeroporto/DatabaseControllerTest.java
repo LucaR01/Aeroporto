@@ -5,8 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.Test;
 
-//import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DatabaseControllerTest {
@@ -18,7 +16,7 @@ public class DatabaseControllerTest {
         assertEquals(numberOfColumns, com.lucar01.aeroporto.controllers.DatabaseController.getNumberOfColumns(Table.BAGAGLIO));
 
         final ObservableList<String> namesOfColumnsList = FXCollections.observableArrayList();
-        namesOfColumnsList.addAll("CodBagaglio", "Peso", "CodiceFiscale");
+        namesOfColumnsList.addAll("CodBagaglio", "CodiceFiscale", "Peso");
 
         assertEquals(namesOfColumnsList, com.lucar01.aeroporto.controllers.DatabaseController.getNamesOfColumns(Table.BAGAGLIO));
 

@@ -1,7 +1,6 @@
 package test.com.lucar01.aeroporto;
 
 import com.lucar01.aeroporto.save.Data;
-//import org.junit.jupiter.api.Test;
 
 import org.junit.Test;
 
