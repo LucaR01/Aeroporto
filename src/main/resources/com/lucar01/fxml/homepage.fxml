@@ -40,7 +40,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleButtonsClick" prefHeight="52.0" prefWidth="229.0" style="-fx-cursor: hand;" text="Overview" textFill="WHITE">
+            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleMenuButtons" prefHeight="52.0" prefWidth="229.0" style="-fx-cursor: hand;" text="Overview" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -52,7 +52,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnAddTable" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleButtonsClick" prefHeight="52.0" prefWidth="229.0" style="-fx-cursor: hand;" text="Add Table" textFill="WHITE">
+            <Button fx:id="btnAddTable" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleMenuButtons" prefHeight="52.0" prefWidth="229.0" style="-fx-cursor: hand;" text="Add Table" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -63,7 +63,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnUpdateTable" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleButtonsClick" prefHeight="52.0" prefWidth="229.0" style="-fx-cursor: hand;" text="Edit Table" textFill="WHITE">
+            <Button fx:id="btnUpdateTable" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleMenuButtons" prefHeight="52.0" prefWidth="229.0" style="-fx-cursor: hand;" text="Edit Table" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -75,7 +75,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleButtonsClick" prefHeight="52.0" prefWidth="229.0" style="-fx-cursor: hand;" text="Settings" textFill="WHITE">
+            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleMenuButtons" prefHeight="52.0" prefWidth="229.0" style="-fx-cursor: hand;" text="Settings" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -87,7 +87,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnQuit" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleButtonsClick" prefHeight="52.0" prefWidth="229.0" style="-fx-cursor: hand;" text="Quit" textFill="WHITE">
+            <Button fx:id="btnQuit" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleMenuButtons" prefHeight="52.0" prefWidth="229.0" style="-fx-cursor: hand;" text="Quit" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
