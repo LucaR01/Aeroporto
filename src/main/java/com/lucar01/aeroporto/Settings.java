@@ -21,7 +21,7 @@ public enum Settings {
             return this.theme;
         }
 
-        public String getDefaultTheme(){ //TODO: forse è meglio usare un static final, perchè così anche la DARK avrebbe un suo defaultTheme che comunque è sempre il light.
+        public String getDefaultTheme(){ // forse è meglio usare un static final, perchè così anche la DARK avrebbe un suo defaultTheme che comunque è sempre il light.
             return LIGHT.getTheme();
         }
 
