@@ -1,16 +1,6 @@
 package com.lucar01.aeroporto.table;
 
-import com.dlsc.formsfx.view.controls.SimpleDateControl;
-import com.mysql.cj.conf.StringProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.SimpleTimeZone;
-import java.util.TimeZone;
 
 public class Assicurazione implements Tables{
 

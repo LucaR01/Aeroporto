@@ -1,7 +1,6 @@
 package com.lucar01.aeroporto.table;
 
 import java.sql.Time;
-import java.util.Optional;
 
 public class Logistica implements Tables{
 

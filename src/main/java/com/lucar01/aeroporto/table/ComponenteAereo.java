@@ -1,8 +1,5 @@
 package com.lucar01.aeroporto.table;
 
-import com.mysql.cj.conf.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-
 public class ComponenteAereo implements Tables{
 
     private final int codComponenteAereo;
