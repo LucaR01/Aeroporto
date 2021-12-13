@@ -1,20 +1,12 @@
 package com.lucar01.aeroporto;
 
-import com.lucar01.aeroporto.controllers.DataController;
 import com.lucar01.aeroporto.controllers.DatabaseController;
 import com.lucar01.aeroporto.save.Data;
 import com.lucar01.aeroporto.table.Table;
 import com.lucar01.aeroporto.table.Tables;
-import com.mysql.cj.conf.StringProperty;
 import javafx.beans.InvalidationListener;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,25 +18,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.Time;
 import java.util.*;
 
-public class HomePageController implements Initializable { //TODO: mettere nel package controllers, add javadoc.
+public class HomePageController implements Initializable {
 
     private static final String PERSONA = "PERSONA";
     private static final String BAGAGLIO = "BAGAGLIO";
@@ -70,8 +53,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     private static final String VIA_RULLAGGIO = "VIA_DI_RULLAGGIO";
     private static final String VOLO = "VOLO";
 
-    @FXML
-    private StackPane root;
+    /*@FXML
+    private StackPane root;*/
 
     @FXML
     private Button btnAddTable;
@@ -97,14 +80,14 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private Label lblStatusTitle;
 
-    @FXML
-    private ImageView btnMaximize; //TODO: i don't even need to work with the image view, i believe.
+    /*@FXML
+    private ImageView btnMaximize;
 
     @FXML
     private ImageView btnMinimize;
 
     @FXML
-    private ImageView btnClose;
+    private ImageView btnClose;*/
 
     @FXML
     private GridPane paneAddTable;
@@ -118,10 +101,7 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private GridPane paneSettings;
 
-    //TODO: le cose riguardanti la tabella sono da mettere in un altro controller
-
     @FXML
-    //private TableView<Persona> table; //TODO: da modificare e mostrare diversi dati.
     private TableView<Tables> table;
 
     @FXML
@@ -133,11 +113,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private TextField searchField;
 
-    //private final static String PERSONA = "PERSONA"; //TODO: remove
-
-    @FXML
-    //ObservableList<Persona> personaObservableList;
-    ObservableList<Tables> personaObservableList; //TODO: rename
+    /*@FXML
+    ObservableList<Tables> personaObservableList;*/
 
     @FXML
     private AnchorPane addAnchorPane;
@@ -145,13 +122,13 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private ComboBox<String> combo_add_table;
 
-    @FXML
-    private Button btnSubmitAddTable;
+    /*@FXML
+    private Button btnSubmitAddTable;*/
 
     @FXML
     private Button btnAddSelectedTable;
 
-    private ObservableList<TextField> textFields = FXCollections.observableArrayList();
+    private final ObservableList<TextField> textFields = FXCollections.observableArrayList();
 
     @FXML
     private TableView<Tables> editTable;
@@ -159,8 +136,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private ComboBox<String> comboEditTable;
 
-    @FXML
-    private Button btnSubmitEdit;
+    /*@FXML
+    private Button btnSubmitEdit;*/
 
     @FXML
     private Button btnEditSelectedTable;
@@ -168,9 +145,9 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private AnchorPane editAnchorPane;
 
-    private ObservableList<TextField> editTextFields = FXCollections.observableArrayList();
+    private final ObservableList<TextField> editTextFields = FXCollections.observableArrayList();
 
-    private ObservableList<String> editOldData = FXCollections.observableArrayList();
+    private final ObservableList<String> editOldData = FXCollections.observableArrayList();
 
     @FXML
     private ComboBox<String> comboLanguage;
@@ -178,8 +155,8 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private ComboBox<String> comboTheme;
 
-    @FXML
-    private Button btnDeleteRow;
+    /*@FXML
+    private Button btnDeleteRow;*/
 
     @FXML
     private ImageView imgViewLanguage;
@@ -214,31 +191,28 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
     @FXML
     private HBox hBoxTitleBar;
 
-    private HashMap<String, String> settingsMap = Data.loadSettings();
+    private final HashMap<String, String> settingsMap = Data.loadSettings();
 
-    private boolean isLightTheme = Objects.equals(this.settingsMap.get(Data.THEME_STRING), Settings.Theme.LIGHT.getTheme()); //TODO: caricare da file
-    private boolean isEnglish = Objects.equals(this.settingsMap.get(Data.LANG_STRING), Settings.Languages.ENGLISH.getLanguage()); //TODO: rename in isLanguageEnglish o isInEnglish, caricare dal file
+    private boolean isLightTheme = Objects.equals(this.settingsMap.get(Data.THEME_STRING), Settings.Theme.LIGHT.getTheme());
+    private boolean isEnglish = Objects.equals(this.settingsMap.get(Data.LANG_STRING), Settings.Languages.ENGLISH.getLanguage());
 
 
+    /**
+     *
+     * @param url : url.
+     * @param resourceBundle : resourceBundle.
+     */
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { //TODO: aggiungere pulsante per eliminare dati tabella
-        ObservableList<String> tablesList = DatabaseController.getNamesOfTables();
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        final ObservableList<String> tablesList = DatabaseController.getNamesOfTables();
         this.combo_tables.setItems(tablesList);
         this.combo_add_table.setItems(tablesList);
         this.comboEditTable.setItems(tablesList);
 
-        ObservableList<String> themesList = Settings.Theme.LIGHT.getThemes();
-        ObservableList<String> languagesList = Settings.Languages.ENGLISH.getLanguages();
+        final ObservableList<String> themesList = Settings.Theme.LIGHT.getThemes();
+        final ObservableList<String> languagesList = Settings.Languages.ENGLISH.getLanguages();
         this.comboTheme.setItems(themesList);
         this.comboLanguage.setItems(languagesList);
-
-        //TODO: verrà caricata la scelta dal file del salvataggio dei dati.
-        /*this.comboLanguage.getSelectionModel().select(this.settingsMap.get(Data.LANG_STRING)); //TODO: salvare in un file.
-        this.comboTheme.getSelectionModel().select(this.settingsMap.get(Data.THEME_STRING));*/
-
-        System.out.println("settingsMap: " + this.settingsMap); //TODO: remove
-        System.out.println("isLightTheme: " + this.isLightTheme); //TODO: remove
-        System.out.println("isEnglish: " + this.isEnglish); //TODO: remove
 
         try {
             if(this.isLightTheme){
@@ -256,15 +230,15 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             e.printStackTrace();
         }
 
-        //TODO: searchData();
-        //searchData();
-
-        //TODO: settare l'icona della lingua dall'inizio del programma?.
     }
 
+    /**
+     *
+     * @param event : event.
+     * This method handles the click of the menu buttons: Overview, Add, Update, Settings, Quit.
+     */
     @FXML
-    private void handleButtonsClick(ActionEvent event){ //TODO: rename in handleMenuButtons?
-        //TODO: try to use a switch if possible
+    private void handleMenuButtons(ActionEvent event){
         if(event.getSource() == this.btnOverview){
             if(this.isEnglish){
                 this.lblStatusTitle.setText("Overview");
@@ -346,8 +320,6 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
                     quitAlert.setContentText("Sei sicuro di voler uscire?");
                 }
 
-                //quitAlert.show();
-
                 Optional<ButtonType> quitResult = quitAlert.showAndWait();
                 if(quitResult.get() == ButtonType.OK){
                     javafx.application.Platform.exit();
@@ -356,32 +328,47 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
-    //TODO: fix icons positions when stage is set fullscreen
+    /**
+     *
+     * @param event : event.
+     * This method handles the click of the close icon on the top right of the GUI.
+     */
     @FXML
     private void handleCloseButton(MouseEvent event){
-        /*if(event.getSource() == btnClose){ //TODO: either keep this one or the other.
-            System.exit(0);
-        }*/
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //TODO: this one is faster than the first way
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
-
-        //javafx.application.Platform.exit(); //TODO: or keep this one
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the window maximize when the icon on the top right of the GUI is clicked.
+     */
     @FXML
     private void handleMaximizeButton(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setFullScreen(!stage.isFullScreen());
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the window minimize when the icon on the top right of the GUI is clicked.
+     */
     @FXML
     private void handleMinimizeButton(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the combo box of the table view.
+     * Based on which table in the combo box is selected, it will be showed in the table view.
+     */
     @FXML
-    private void handleTableSelection(ActionEvent event) { //TODO: or just call it selectTables?
+    private void handleTableSelection(ActionEvent event) {
         String selectedTable = this.combo_tables.getSelectionModel().getSelectedItem();
         this.btnSelectedTable.setText(selectedTable);
 
@@ -461,44 +448,57 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
+    /**
+     *
+     * @param numOfColumns : number of columns in the selected table.
+     * @param columnsName : names of the columns in the selected table.
+     * @param tableView : in which table should the table be created in.
+     * This method creates the columns and add them to the specified table view.
+     */
     private void createTable(final int numOfColumns, final ObservableList<String> columnsName, TableView<Tables> tableView){
-
-        /*for(int i = 0; i < columnsName.size(); i++){
-            columnsName.set(i, columnsName.get(i).replaceAll("_", ""));
-            columnsName.set(i, columnsName.get(i).replaceAll("[^\\p{ASCII}]", "")); // Per rimuovere gli accenti (però toglie tutta la lettera non solo l'accento).
-        }*/
-
-        //System.out.println("columnsName senza _ e accenti: " + columnsName); //TODO: remove
 
         for(int i = 0; i < numOfColumns; i++){
             TableColumn<Tables, String> column = new TableColumn<>();
             column.setText(columnsName.get(i).toUpperCase());
-            column.setCellValueFactory(new PropertyValueFactory<>(columnsName.get(i))); // Non riesce a leggere gli underscores _ ?
+            column.setCellValueFactory(new PropertyValueFactory<>(columnsName.get(i)));
             tableView.getColumns().add(column);
         }
     }
 
     // I NOMI DEI GETTERS DEVONO COMBACIARE CON QUELLI DEL DATABASE!
 
+    /**
+     *
+     * @param table : which table has been selected.
+     * @param tableView : which table should be showed.
+     * This method add the items to the specified table view.
+     */
     private void showTable(final Table table, TableView<Tables> tableView){
         tableView.getColumns().clear();
 
         final ObservableList<String> namesOfColumnsList = DatabaseController.getNamesOfColumns(table);
         final int numOfColumns = DatabaseController.getNumberOfColumns(table);
-        final ObservableList<Tables> tableDataList = DatabaseController.getTableData(table); //TODO: <String>?, tableDataList è vuoto, questo è il problema!
+        final ObservableList<Tables> tableDataList = DatabaseController.getTableData(table);
 
-        //final ObservableList<String> data = FXCollections.observableArrayList("Ciao", "Yee"); //TODO: remove
-
-        System.out.println("numOfColumns: " + numOfColumns); //TODO: remove
-        System.out.println("tableDataList: " + tableDataList); //TODO: remove
         createTable(numOfColumns, namesOfColumnsList, tableView);
 
         tableView.setItems(tableDataList);
-        //tableView.setItems(data); //TODO: remove
     }
 
+    /**
+     *
+     * @param table : which table has been selected in the combo box.
+     * @param anchorPane : in which AnchorPane should be showed.
+     * @param textFieldObservableList : which list of textFields should be used.
+     * @param xLabel : at which x coordinates should the label be showed.
+     * @param yLabel : at which y coordinates should the label be showed.
+     * @param xTextField : at which x coordinates should the text field be showed.
+     * @param yTextField : at which y coordinates should the label be showed.
+     * @param color : a color in hex form e.g. #7b1417.
+     * @param limitTextFields : at which number should the textfields and labels be showed in another column of the GUI.
+     */
     private void createTextFields(final Table table, AnchorPane anchorPane, ObservableList<TextField> textFieldObservableList,
-                                   final int xLabel, final int yLabel, final int xTextField, final int yTextField, final String color, final int limitTextFields){ //TODO: aggiungere boolean se non voglio i labels.
+                                   final int xLabel, final int yLabel, final int xTextField, final int yTextField, final String color, final int limitTextFields){
         textFieldObservableList.clear();
         anchorPane.getChildren().clear();
 
@@ -524,6 +524,11 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the input in the search bar and search for the data.
+     */
     @FXML
     void handleSearchBar(KeyEvent event) {
         searchDataFilter();
@@ -548,16 +553,15 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
                 ObservableList<Tables> tableItems = FXCollections.observableArrayList();
                 ObservableList<TableColumn<Tables, ?>> cols = table.getColumns();
 
-                for (int i = 0; i < data.size(); i++) {
-                    for (int j = 0; j < cols.size(); j++) {
+                for (Tables datum : data) {
+                    for (TableColumn<Tables, ?> col : cols) {
 
-                        TableColumn col = cols.get(j);
-                        String cellValue = col.getCellData(data.get(i)).toString();
+                        String cellValue = col.getCellData(datum).toString();
                         cellValue = cellValue.toLowerCase();
 
                         if (cellValue.contains(searchField.textProperty().get().toLowerCase())) {
 
-                            tableItems.add(data.get(i));
+                            tableItems.add(datum);
 
                             break;
                         }
@@ -568,6 +572,11 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         });
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the selected table in the add combo box and create the text fields of that table.
+     */
     @FXML
     void handleAddTableSelection(ActionEvent event) {
         String selectedTable = this.combo_add_table.getSelectionModel().getSelectedItem();
@@ -649,26 +658,53 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
+    /**
+     *
+     * @param event
+     * This method handles when the user click the submit button in the Add Tab.
+     * The method addDataToTable() is called which creates and execute a query to add the values in the table.
+     */
     @FXML
     private void submitAddTable(ActionEvent event) {
-        this.textFields.forEach(n -> System.out.println(n.getText() + " nome_tabella: " + this.combo_add_table.getSelectionModel().getSelectedItem().toLowerCase())); //TODO: remove
-        System.out.println(Table.valueOf(this.combo_add_table.getSelectionModel().getSelectedItem())); //TODO: remove
 
         ObservableList<String> data = FXCollections.observableArrayList();
         this.textFields.forEach( t -> data.add(t.getText()));
-        System.out.println("data: " + data); //TODO: remove
 
         final boolean hasAddedTable = DatabaseController.addDataToTable(Table.valueOf(this.combo_add_table.getSelectionModel().getSelectedItem()), data);
 
-        //TODO: se l'operazione è stata eseguita con successo si dovrà mostrare una notifica.
-        //TODO: magari quella sorta di notifica che viene su dal basso, di colore verde se è andata a buon fine, in rosso altrimenti.
-        if(hasAddedTable){
-            System.out.println("operazione add table eseguita con successo."); //TODO: remove
+        final Alert addAlertSuccess = new Alert(Alert.AlertType.INFORMATION);
+        final Alert addAlertError = new Alert(Alert.AlertType.ERROR);
+
+        if(this.isEnglish){
+            addAlertSuccess.setTitle("Add");
+            addAlertSuccess.setHeaderText("Add Data");
+            addAlertSuccess.setContentText("Data successfully added");
+
+            addAlertError.setTitle("Add Error");
+            addAlertError.setHeaderText("Add Data Error");
+            addAlertError.setContentText("Add data failed. An error has occurred");
         } else {
-            System.out.println("operazione add table non eseguita."); //TODO: remove
+            addAlertSuccess.setTitle("Aggiungi");
+            addAlertSuccess.setHeaderText("Aggiungi Dati");
+            addAlertSuccess.setContentText("Dati aggiunti correttamente");
+
+            addAlertError.setTitle("Aggiungi Errore");
+            addAlertError.setHeaderText("Aggiungi Dati Errore");
+            addAlertError.setContentText("Dati non aggiunti. Un errore si è presentato");
+        }
+
+        if(hasAddedTable){
+            addAlertSuccess.show();
+        } else {
+            addAlertError.show();
         }
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the selected table in the edit combo box and show that table and create text fields to modify the data.
+     */
     @FXML
     void handleEditTableSelection(ActionEvent event) {
         String selectedTable = this.comboEditTable.getSelectionModel().getSelectedItem();
@@ -689,83 +725,83 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
                 break;
             case AEREO:
                 showTable(Table.AEREO, this.editTable);
-                createTextFields(Table.AEREO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.AEREO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case ASSICURAZIONE:
                 showTable(Table.ASSICURAZIONE, this.editTable);
-                createTextFields(Table.ASSICURAZIONE, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.ASSICURAZIONE, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case CARGO:
                 showTable(Table.CARGO, this.editTable);
-                createTextFields(Table.CARGO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.CARGO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case CENTRO_CONTROLLO_AREA:
                 showTable(Table.CENTRO_CONTROLLO_AREA, this.editTable);
-                createTextFields(Table.CENTRO_CONTROLLO_AREA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.CENTRO_CONTROLLO_AREA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case COMPAGNIA_AEREA:
                 showTable(Table.COMPAGNIA_AEREA, this.editTable);
-                createTextFields(Table.COMPAGNIA_AEREA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.COMPAGNIA_AEREA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case COMPONENTE_AEREO:
                 showTable(Table.COMPONENTE_AEREO, this.editTable);
-                createTextFields(Table.COMPONENTE_AEREO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.COMPONENTE_AEREO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case GATE:
                 showTable(Table.GATE, this.editTable);
-                createTextFields(Table.GATE, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.GATE, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case GROUND_SUPPORT_EQUIPMENT:
                 showTable(Table.GROUND_SUPPORT_EQUIPMENT, this.editTable);
-                createTextFields(Table.GROUND_SUPPORT_EQUIPMENT, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.GROUND_SUPPORT_EQUIPMENT, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case HANGAR:
                 showTable(Table.HANGAR, this.editTable);
-                createTextFields(Table.HANGAR, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.HANGAR, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case LOGISTICA:
                 showTable(Table.LOGISTICA, this.editTable);
-                createTextFields(Table.LOGISTICA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.LOGISTICA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case MANTENIMENTO:
                 showTable(Table.MANTENIMENTO, this.editTable);
-                createTextFields(Table.MANTENIMENTO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.MANTENIMENTO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case NEGOZIO:
                 showTable(Table.NEGOZIO, this.editTable);
-                createTextFields(Table.NEGOZIO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.NEGOZIO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case PISTA:
                 showTable(Table.PISTA, this.editTable);
-                createTextFields(Table.PISTA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.PISTA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case RADAR:
                 showTable(Table.RADAR, this.editTable);
-                createTextFields(Table.RADAR, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.RADAR, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case SERVIZIO_CLIENTI:
                 showTable(Table.SERVIZIO_CLIENTI, this.editTable);
-                createTextFields(Table.SERVIZIO_CLIENTI, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.SERVIZIO_CLIENTI, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case SOCCORSI:
                 showTable(Table.SOCCORSI, this.editTable);
-                createTextFields(Table.SOCCORSI, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.SOCCORSI, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case TORRE_CONTROLLO:
                 showTable(Table.TORRE_DI_CONTROLLO, this.editTable);
-                createTextFields(Table.TORRE_DI_CONTROLLO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.TORRE_DI_CONTROLLO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case TRATTA:
                 showTable(Table.TRATTA, this.editTable);
-                createTextFields(Table.TRATTA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.TRATTA, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case VIA_RULLAGGIO:
                 showTable(Table.VIA_DI_RULLAGGIO, this.editTable);
-                createTextFields(Table.VIA_DI_RULLAGGIO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.VIA_DI_RULLAGGIO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             case VOLO:
                 showTable(Table.VOLO, this.editTable);
-                createTextFields(Table.VOLO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99); //TODO: fix
+                createTextFields(Table.VOLO, this.editAnchorPane, this.editTextFields, 0, 30, 73, 30, "#0e401c", 99);
                 break;
             default:
                 this.editTable.getColumns().clear();
@@ -774,6 +810,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
+    /**
+     *
+     * @param event
+     * This method handles when the user click the submit button in the edit tab.
+     * It calls the editTableData() method to create and execute a query to edit the data of the specified column of the table.
+     */
     @FXML
     void submitEditTable(ActionEvent event) {
         ObservableList<String> newData = FXCollections.observableArrayList();
@@ -784,13 +826,10 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             newData.add(this.editTextFields.get(i).getText());
         }
 
-        System.out.println("New data: " + newData);
+        final boolean hasUpdated = DatabaseController.editTableData(Table.valueOf(this.comboEditTable.getSelectionModel().getSelectedItem()), this.editOldData, newData);
 
-        //TODO: Chiamare metodo nel DatabaseController
-        final boolean hasUpdated = DatabaseController.editTableData(Table.valueOf(this.comboEditTable.getSelectionModel().getSelectedItem()), this.editOldData, newData); //TODO: uncomment.
-
-        Alert updateAlertSuccess = new Alert(Alert.AlertType.INFORMATION);
-        Alert updateAlertError = new Alert(Alert.AlertType.ERROR);
+        final Alert updateAlertSuccess = new Alert(Alert.AlertType.INFORMATION);
+        final Alert updateAlertError = new Alert(Alert.AlertType.ERROR);
 
         if(this.isEnglish){
             updateAlertSuccess.setTitle("Update");
@@ -811,59 +850,62 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
 
         if(hasUpdated){
-            System.out.println("operazione eseguita con successo"); //TODO: remove
             updateAlertSuccess.show();
             this.editTable.refresh(); // Questo non funziona, o meglio non mi refresha i dati in tempo reale.
         } else {
             updateAlertError.show();
-            System.out.println("operazione fallita"); //TODO: remove
         }
 
     }
 
+    /**
+     *
+     * @param event
+     * This method handles when the user select a row in the table view and retrieve its data.
+     */
     @FXML
-    void rowSelected(MouseEvent event) throws NoSuchMethodException, ClassNotFoundException, InvocationTargetException, IllegalAccessException {
+    void rowSelected(MouseEvent event) {
         // Quando una nuova riga viene selezionata, devo svuotare i vecchi dati.
         this.editOldData.clear();
-        //this.editTextFields.clear(); //TODO: remove?
 
-        Tables selectedRow = this.editTable.getSelectionModel().getSelectedItem(); //TODO: remove
         int index = this.editTable.getSelectionModel().getSelectedIndex();
 
-        System.out.println("index: " + index);
-
         final int numOfColumns = DatabaseController.getNumberOfColumns(Table.valueOf(this.comboEditTable.getSelectionModel().getSelectedItem()));
-        System.out.println("numOfColumns: " + numOfColumns); //TODO: remove
 
         for(int i = 0; i < numOfColumns; i++){
             this.editOldData.add(this.editTable.getColumns().get(i).getCellData(index).toString());
-            //this.editTextFields.get(i).setText(this.editOldData.get(i)); //TODO: potrei anche mettere la stessa roba che ho messo in editOldData
             this.editTextFields.get(i).setText(this.editTable.getColumns().get(i).getCellData(index).toString());
-            System.out.println("editTextFields: " + editTextFields.get(i).getText()); //TODO: remove
         }
 
-        System.out.println("editOldData: " + editOldData); //TODO: remove
     }
 
+    /**
+     *
+     * @param event
+     * This method handles when the user select a theme in the theme combo box of the Settings Tab.
+     */
     @FXML
     void handleThemeSelection(ActionEvent event) {
 
         switch(this.comboTheme.getSelectionModel().getSelectedItem()){
             case "Light":
                 this.isLightTheme = true;
-
                 setLightTheme();
                 break;
             case "Dark":
                 this.isLightTheme = false;
-
                 setDarkTheme();
                 break;
         }
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the language selection when the user select a language in the "language combo box" in the "Settings Tab".
+     */
     @FXML
-    void handleLanguageSelection(ActionEvent event) throws IOException {
+    void handleLanguageSelection(ActionEvent event) {
 
         switch(this.comboLanguage.getSelectionModel().getSelectedItem()){
             case "Italiano":
@@ -878,7 +920,12 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     }
 
-    private void setLanguageSetting(Settings.Languages language) throws IOException {
+    /**
+     *
+     * @param language : an enum with the selected language.
+     * This method update the language icon and the labels with the selected language.
+     */
+    private void setLanguageSetting(Settings.Languages language) {
         this.comboLanguage.getSelectionModel().select(language.getLanguage());
 
         switch(language.getLanguage()){
@@ -933,8 +980,13 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the swap of the language when the user click the language icon.
+     */
     @FXML
-    void swapLanguage(MouseEvent event) throws IOException {
+    void swapLanguage(MouseEvent event) {
         this.isEnglish = !this.isEnglish;
 
         if(this.isEnglish){
@@ -944,13 +996,22 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the reset of the settings when it's clicked it set the DEFAULT language and theme in the combo boxes.
+     */
     @FXML
     void submitResetSettings(ActionEvent event) {
-        //TODO: settare nei combo i valori di default (il salvataggio lo faccio nella submitSaveSettings());
         this.comboTheme.getSelectionModel().select(Settings.Theme.LIGHT.getDefaultTheme());
         this.comboLanguage.getSelectionModel().select(Settings.Languages.ENGLISH.getDefaultLanguage());
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the saving of the settings data in a file.
+     */
     @FXML
     void submitSaveSettings(ActionEvent event) {
 
@@ -984,6 +1045,11 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the data deletion when the user select a row of the table and then click the delete button.
+     */
     @FXML
     private void submitDeleteRow(ActionEvent event) {
 
@@ -1012,12 +1078,10 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
                 dataToDelete.add(this.table.getColumns().get(i).getCellData(index).toString());
             }
 
-            System.out.println("dataToDelete: " + dataToDelete); //TODO: remove
-
             final boolean hasDeleted = DatabaseController.deleteTableData(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()), dataToDelete);
 
-            Alert deleteAlertSuccess = new Alert(Alert.AlertType.INFORMATION);
-            Alert deleteAlertError = new Alert(Alert.AlertType.ERROR);
+            final Alert deleteAlertSuccess = new Alert(Alert.AlertType.INFORMATION);
+            final Alert deleteAlertError = new Alert(Alert.AlertType.ERROR);
 
             if(this.isEnglish){
                 deleteAlertSuccess.setTitle("Delete");
@@ -1038,18 +1102,22 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
             }
 
             if(hasDeleted){
-                System.out.println("Operazione cancellazione eseguita con successo."); //TODO: remove
+                this.table.refresh();
                 deleteAlertSuccess.show();
             } else {
-                System.out.println("Operazione cancellazione failed."); //TODO: remove
                 deleteAlertError.show();
             }
         }
 
     }
 
+    /**
+     *
+     * @param event
+     * This method handles the swap of the theme when the user click the 'theme icon'.
+     */
     @FXML
-    void swapTheme(MouseEvent event) throws IOException, URISyntaxException {
+    void swapTheme(MouseEvent event) {
         this.isLightTheme = !this.isLightTheme;
         if(this.isLightTheme){
             setLightTheme();
@@ -1058,6 +1126,9 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         }
     }
 
+    /**
+     * This method set the light theme in the "theme combo box", change the theme icon to light and changes all the styles in light theme styles.
+     */
     private void setLightTheme() {
 
         this.comboTheme.getSelectionModel().select(Settings.Theme.LIGHT.getTheme());
@@ -1084,6 +1155,9 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
         this.imgViewTheme.setImage(imgTheme);
     }
 
+    /**
+     * This method set the dark theme in the "theme combo box", change the theme icon to dark and changes all the styles in dark theme styles.
+     */
     private void setDarkTheme() {
 
         this.comboTheme.getSelectionModel().select(Settings.Theme.DARK.getTheme());
