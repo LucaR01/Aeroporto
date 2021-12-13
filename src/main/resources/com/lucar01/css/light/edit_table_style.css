@@ -19,9 +19,7 @@
 }
 
 .label {
-    -fx-text-fill:  #0e401c; /* forse qui è -fx-text-fill: colore */
-    /* align: center */
-    /* forse qui è -fx-font-size: size */
+    -fx-text-fill:  #0e401c;
 }
 
 .table-view {

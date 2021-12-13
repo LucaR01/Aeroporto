@@ -5,13 +5,13 @@
 }
 
 .label {
-    -fx-text-fill: #380b5a; /* forse qui è -fx-text-fill: colore */
-    -fx-font-size: 24px; /* forse qui è -fx-font-size: size */
+    -fx-text-fill: #380b5a;
+    -fx-font-size: 24px;
 }
 
 .button {
     -fx-background-color: #380b5a;
-    -fx-text-fill: white; /* forse qui è -fx-text-fill: colore */
+    -fx-text-fill: white;
     -fx-cursor: hand;
 }
 
