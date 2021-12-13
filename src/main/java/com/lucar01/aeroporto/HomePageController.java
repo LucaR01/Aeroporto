@@ -524,89 +524,16 @@ public class HomePageController implements Initializable { //TODO: mettere nel p
 
     }
 
-    /*private void searchData(){ //TODO: uncomment and fix
-        FilteredList<Tables> filteredDataList = new FilteredList<>(DatabaseController.getTableData(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem())), b -> true); // primo parametro data
-        this.searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredDataList.setPredicate(e -> {
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if(getFirstName().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                    return true;
-                } else if(getQualcosaltro().to.blabla != -1){
-                    return true;
-                }
-                else if(getAltro().bla.bla.come.sopra != -1){
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
-        SortedList<Tables> sortedDataList = new SortedList<>(filteredDataList);
-        sortedDataList.comparatorProperty().bind(this.table.comparatorProperty());
-        this.table.setItems(sortedDataList);
-    }*/
-
-    /*searchBox.textProperty().addListener((observable, oldValue, newValue) ->
-            exampleTable.setItems(filterList(orders, newValue))
-            );
-
-    FilteredList<Order> filteredData = new FilteredList<>(FXCollections.observableList(orders));
-exampleTable.setItems(filteredData);
-
-    private Predicate<Order> createPredicate(String searchText){
-        return order -> {
-            if (searchText == null || searchText.isEmpty()) return true;
-            return searchFindsOrder(order, searchText);
-        };
-    }
-
-    searchBox.textProperty().addListener((observable, oldValue, newValue) ->
-            filteredData.setPredicate(createPredicate(newValue))
-            );*/
-
-    /*@FXML
-    void handleSearchBar(InputMethodEvent event) { //TODO: fix
-        System.out.println("searchbar"); //TODO: remove
-        this.table.getItems().stream().filter(item -> Objects.equals(item, this.searchField.getText())).findAny().ifPresent(item -> {
-            this.table.getSelectionModel().select(item);
-            this.table.scrollTo(item);
-        });
-    }*/
-
     @FXML
-    void handleSearchBar(KeyEvent event) throws NoSuchFieldException { //TODO: fix, questo viene chiamato rispetto al primo.
-        System.out.println("searchbar2"); //TODO: remove
-        this.table.getItems().stream().filter(item -> Objects.equals(item.toString(), this.searchField.getText())).findAny().ifPresent(item -> {
-            this.table.getSelectionModel().select(item);
-            this.table.scrollTo(item);
-        });
-
-        /*if(this.table.getColumns().get().getCellData()) //TODO: fix
-            if(cellValue.contains(txtField.textProperty().get().toLowerCase())) {
-
-                tableItems.add(data.get(i));
-
-                break;*/
-
-        DataController dataController = new DataController(); // DataController<Tables>
-
-        final ObservableList observableList = dataController.getTableData(Table.valueOf(this.combo_tables.getSelectionModel().getSelectedItem()));
-
-        System.out.println("DataController.getTableData: " + observableList); //TODO: remove
-        System.out.println("DataController.getTableData: " + Arrays.toString(observableList.getClass().getFields())); //TODO: remove
-        System.out.println("DataController.getTableData: " + observableList.size()); //TODO: remove
+    void handleSearchBar(KeyEvent event) {
+        searchDataFilter();
     }
 
-    /*private void initFilter() {
-
-        //searchField = TextFields.createSearchField();
-        //searchField.setPromptText("Filter");
+    private void searchDataFilter() {
 
         searchField.textProperty().addListener(new InvalidationListener() {
+
+            final ObservableList<Tables> data = DatabaseController.getTableData(Table.valueOf(combo_tables.getSelectionModel().getSelectedItem()));
 
             @Override
             public void invalidated(javafx.beans.Observable observable) {
@@ -614,8 +541,6 @@ exampleTable.setItems(filteredData);
                 if (searchField.textProperty().get().isEmpty()) {
 
                     table.setItems(data);
-                    //handleTableSelection(); //TODO: richiamare un metodo, in cui metto
-                    //TODO: lo switch di handleTableSelection() e lo richiamo anche lì.
                     return;
 
                 }
@@ -638,10 +563,10 @@ exampleTable.setItems(filteredData);
                         }
                     }
                 }
-                table.setItems(tableItems); //TODO: handleTableSelection()
+                table.setItems(tableItems);
             }
         });
-    }*/
+    }
 
     @FXML
     void handleAddTableSelection(ActionEvent event) {
