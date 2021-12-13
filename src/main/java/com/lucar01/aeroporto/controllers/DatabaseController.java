@@ -15,6 +15,11 @@ public class DatabaseController {
 
     private final static Connection CONNECTION = Database.getConnection();
 
+    /**
+     *
+     * @param table : the selected table
+     * @return : an integer with the number of columns in the table.
+     */
     public static int getNumberOfColumns(final Table table){
         int numberOfColumns = 0;
 
@@ -32,6 +37,11 @@ public class DatabaseController {
         return numberOfColumns;
     }
 
+    /**
+     *
+     * @param table : the selected table.
+     * @return : an ObservableList<String> with the names of the columns in the table.
+     */
     public static ObservableList<String> getNamesOfColumns(final Table table){
         ObservableList<String> observableList = FXCollections.observableArrayList();
 
@@ -50,6 +60,10 @@ public class DatabaseController {
         return observableList;
     }
 
+    /**
+     *
+     * @return : an ObservableList<String> with the names of the tables in the database.
+     */
     public static ObservableList<String> getNamesOfTables(){
 
         ObservableList<String> observableList = FXCollections.observableArrayList();
@@ -69,6 +83,11 @@ public class DatabaseController {
         return observableList;
     }
 
+    /**
+     *
+     * @param table : the selected table.
+     * @return : a StringBuilder with the names of the columns set up.
+     */
     private static StringBuilder getNamesOfColumnsInString(final Table table){
         final ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
 
@@ -85,6 +104,12 @@ public class DatabaseController {
         return namesOfColumnsString;
     }
 
+    /**
+     *
+     * @param table : the selected table.
+     * @param data : the data to add to the table
+     * @return : a boolean whether the operation has been executed successfully or not.
+     */
     public static boolean addDataToTable(final Table table, final ObservableList<String> data){
 
         final StringBuilder namesOfColumnsString = getNamesOfColumnsInString(table);
@@ -111,6 +136,13 @@ public class DatabaseController {
         return true;
     }
 
+    /**
+     *
+     * @param table : the selected table.
+     * @param oldData : the old data of the table that we want to edit.
+     * @param newData : the new data of the table that we want to edit.
+     * @return : a boolean whether the operation has been executed successfully or not.
+     */
     public static boolean editTableData(final Table table, final ObservableList<String> oldData, final ObservableList<String> newData){
 
         final ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
@@ -140,6 +172,12 @@ public class DatabaseController {
         return true;
     }
 
+    /**
+     *
+     * @param table : the selected table.
+     * @param dataToDelete : the data that we want to delete.
+     * @return : a boolean whether the operation has been executed successfully or not.
+     */
     public static boolean deleteTableData(final Table table, final ObservableList<String> dataToDelete){
 
         final ObservableList<String> namesOfColumns = DatabaseController.getNamesOfColumns(table);
@@ -158,6 +196,12 @@ public class DatabaseController {
     }
 
     //TODO: next time use Reflection.
+
+    /**
+     *
+     * @param tableName : the selected table.
+     * @return : an ObservableList<Tables> with the data of the selected table in the combo box.
+     */
     public static ObservableList<Tables> getTableData(final Table tableName){
         ObservableList<Tables> observableList = FXCollections.observableArrayList();
 
