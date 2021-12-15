@@ -22,6 +22,6 @@ buildNumber.properties
 *.toc
 *.out
 *.idx
-*.syntex
+*.synctex.gz
 *.log
 *.pdf
