@@ -95,7 +95,7 @@
 	\hline
 	\textsf{\small 01} & \textsf{\small Registrare un nuovo passeggero} & \textsf{\small $5000/\text{giorno}$} \\ % 200.000 / 30 = 6666.6 (-1000)
 	\hline
-	\textsf{\small 02} & \textsf{\small Controllare un passeggero} & \textsf{\small $ 1000 / \text{giorno} $} \\
+	\textsf{\small 02} & \textsf{\small  Numero totale di componenti non funzionanti in un aereo.} & \textsf{\small $  $} \\ %TODO: aggiungere
 	\hline
 	\textsf{\small 03} & \textsf{\small Voli in partenza} & \textsf{\small $ 1000 / \text{mese} $} \\
 	% Voli in partenza:
@@ -197,10 +197,11 @@
 
 \vspace{.6cm}
 
-% OP 2 | Controllare un passeggero
+% OP 2 | Numero totale di componenti non funzionanti in un aereo.
 
-\textbf{\small OP 2 | Controllare un passeggero}\\
-\textsf{\small Tra le migliaia di persone giornaliere, non vengono necessariamente controllate tutte, ma solo quelle di cui si ha dei sospetti o si vogliono fare ulteriori accertamenti. (con controllo non intendo il check-in).}\break
+\textbf{\small OP 2 | Numero totale di componenti non funzionanti in un aereo.}\\
+%TODO: fix
+%\textsf{\small Tra le migliaia di persone giornaliere, non vengono necessariamente controllate tutte, ma solo quelle di cui si ha dei sospetti o si vogliono fare ulteriori accertamenti. (con controllo non intendo il check-in).}\break
 
 \begin{tabular}{ c c c c} %TODO: aggiungere le altre entitò e relazioni per il controllo di un passeggero
 	%\textbf{\small OP 2 | Controllare un passeggero} & & & \\
@@ -676,11 +677,40 @@
 %TODO: da fare riguardante lo schema relazionale/logico finale
 %TODO: farlo dopo aver fatto quello.
 
+\centering
+\textsf{\small \textbf{PRIMARY KEY} : \underline{sottolineata una volta}}
+\textsf{\small \textbf{FOREIGN KEY} : \underline{\underline{sottolineata due volte}}}\\
+
+%\underline{}
+%\underline{\underline{}}
+
 \begin{itemize}
-	\item \textbf{\small } \textsf{\small ()}
-	\item \textbf{\small } \textsf{\small ()}
-	\item \textbf{\small } \textsf{\small ()}
+	\item \textbf{\small Aereo} \textsf{\small (\underline{CodAereo}, Nome, Num\_Equipaggio, Peso, Tipologia, Num\_Merci, Commerciale, \underline{\underline{CodPista}}, \underline{\underline{CodHangar}}, \underline{\underline{CodVia}})}
+	\item \textbf{\small Assicurazione} \textsf{\small (\underline{CodAssicurazione}, Nome, Partita\_IVA, Ora\_inizio, Ora\_fine)}
+	\item \textbf{\small Bagaglio} \textsf{\small (\underline{CodiceBagaglio}, Peso, \underline{\underline{CodiceFiscale}})}
+	\item \textbf{\small Cargo} \textsf{\small (\underline{CodCargo}, Num\_dipendenti, Ora\_inizio, Ora\_fine, \underline{\underline{CodAereo}}, \underline{\underline{CodLogistica}})}
+	\item \textbf{\small Centro\_Controllo\_Area} \textsf{\small (\underline{CodCentro}, Num\_Personale, Orario\_inizio, Orario\_fine)}
+	\item \textbf{\small Compagnia\_Aerea} \textsf{\small (\underline{CodCompagnia}, Nome, Partita\_Iva, Num\_Personale, Num\_Aerei, Ora\_inizio, Ora\_fine, \underline{\underline{CodAssicurazione}})}
+	\item \textbf{\small Componente\_Aereo} \textsf{\small (\underline{CodComponente}, Nome, Quantità, Funzionante, Tipologia, \underline{\underline{CodAereo}})}
+	\item \textbf{\small Gate} \textsf{\small (\underline{CodGate}, \underline{\underline{CodTerminal}})}
+	\item \textbf{\small Ground\_Support\_Equipment} \textsf{\small (\underline{CodMacchinario}, Quantità, Tipologia)}
+	\item \textbf{\small Hangar} \textsf{\small (\underline{CodHangar}, Num\_Aerei)}
+	\item \textbf{\small Logistica} \textsf{\small (\underline{CodLogistica}, Nome, Num\_Personale, Materiali, Quantità, Ora\_inizio, Ora\_fine, \underline{\underline{CodCompagnia}})}
+	\item \textbf{\small Mantenimento} \textsf{\small (\underline{CodMantenimento}, Ora\_inizio, Ora\_fine, \underline{\underline{CodAereo}}, \underline{\underline{CodMacchinario}})}
+	\item \textbf{\small Negozio} \textsf{\small (\underline{CodNegozio}, Prodotti, Orario\_inizio, Orario\_fine, Tipologia, \underline{\underline{CodCompagnia}})}
+	\item \textbf{\small Persona} \textsf{\small (\underline{CodiceFiscale}, Nome, Cognome, Età, Ruolo, Ora\_inizio, Ora\_fine, \underline{\underline{CodCentro}}, \underline{\underline{CodLogistica}}, \underline{\underline{CodMantenimento}}, \underline{\underline{CodNegozio}}, \underline{\underline{CodServizio}}, \underline{\underline{CodTerminal}}, \underline{\underline{CodTorre}}, \underline{\underline{CodVolo}}, \underline{\underline{CodCompagnia}}, \underline{\underline{CodAereo}}, \underline{\underline{CodRadar}}, \underline{\underline{CodSoccorso}})}
+	\item \textbf{\small Pista} \textsf{\small (\underline{CodPista})}
+	\item \textbf{\small Radar} \textsf{\small (\underline{CodRadar}, Raggio, Frequenza, Altitudine, Tipologia, \underline{\underline{CodAereo}})}
+	\item \textbf{\small Servizio\_Clienti} \textsf{\small (\underline{CodServizio}, Orario\_inizio, Orario\_fine)}
+	\item \textbf{\small Soccorsi} \textsf{\small (\underline{CodSoccorso}, Orario\_inizio, Orario\_fine)}
+	\item \textbf{\small Terminal} \textsf{\small (\underline{CodTerminal})}
+	\item \textbf{\small Torre\_di\_Controllo} \textsf{\small (\underline{CodTorre}, Num\_dipendenti, Num\_Aerei\_in\_comunicazione, Orario\_inizio, Orario\_fine)}
+	\item \textbf{\small Tratta} \textsf{\small (\underline{CodTratta}, Città\_partenza, Città\_destinazione, Aeroporto\_partenza, Aeroporto\_destinazione, Ora\_partenza, Ora\_fine)}
+	\item \textbf{\small Via\_di\_Rullaggio} \textsf{\small (\underline{CodVia}, Num\_Aerei)}
+	\item \textbf{\small Volo} \textsf{\small (\underline{CodVolo}, Nome, \underline{\underline{CodTratta}}, \underline{\underline{CodAereo}})}
 \end{itemize}
+
+\flushleft
 
 % --------------- SCHEMA RELAZIONALE FINALE ------------------------------------
 
@@ -688,7 +718,23 @@
 
 \subsection{Schema relazionale finale} % logico
 
-%TODO: aggiungere l'immagine dello schema logico finale.
+\newgeometry{left = .9mm, right = .9mm, top = .9mm, bottom = .9mm} %TODO: o .6 o .9, top = .6, bottom = .6
+
+%\begin{comment}
+\begin{sidewaysfigure}[H]
+	\includegraphics[width=1.2\textwidth]{./img/Schema_Logico/Schema_Logico1.png} %TODO: 1 o 1.1 o 1.2, con 1.2 perdiamo delle informazioni, ma si vedo meglio
+	%\caption{}
+	\label{fig:logico1}
+\end{sidewaysfigure}
+%\end{comment}
+
+\begin{sidewaysfigure}[H]
+	\includegraphics[width=1.2\textwidth]{./img/Schema_Logico/Schema_Logico2.png}
+	%\caption{}
+	\label{fig:logico2}
+\end{sidewaysfigure}
+
+\restoregeometry
 
 % --------------- TRASFORMAZIONE DELLE OPERAZIONI IN QUERY SQL -----------------
 
@@ -700,8 +746,215 @@
 % OP 1 | Registrare un nuovo passeggero
 
 \textbf{\small OP 1 | Registrare un nuovo passeggero}
-%TODO: usare package per i linguaggi di programmazione, in questo caso SQL
 
-%TODO: aggiungere le altre operazioni.
+%\begin{comment}
+	
+\begin{lstlisting}[language=SQL]
+INSERT INTO aeroporto.persona (CodiceFiscale, CodBagaglio, Nome, Cognome, Età, CodVolo) VALUES(?, ?, ?, ?, ?, ?); 
+\end{lstlisting} %TODO: fix Eta in Età
 
-% OP 2 |Controllare un passeggero
+%\end{comment}
+% OP 2 | Numero totale di componenti non funzionanti in un aereo.
+
+\textbf{\small OP 2 | Numero totale di componenti non funzionanti in un aereo.}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT COUNT(Funzionante) AS Num_Componenti_Non_Funzionanti
+FROM aeroporto.aereo A JOIN aeroporto.componente_aereo CA ON A.CodAereo = CA.CodAereo
+WHERE A.CodAereo = ?
+AND CA.Funzionante = ?;
+\end{lstlisting}
+
+% OP 3 | Voli in partenza
+
+\textbf{\small OP 3 | Voli in partenza}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT volo.CodTratta, CodVolo, Nome, Città_partenza, Città_destinazione, Aeroporto_partenza, Aeroporto_destinazione, Ora_partenza, Ora_fine
+FROM aeroporto.volo, aeroporto.tratta 
+WHERE aeroporto.volo.CodTratta = aeroporto.tratta.CodTratta
+AND aeroporto.tratta.Aeroporto_partenza = ?
+AND Ora_Partenza = ?;
+\end{lstlisting}
+
+% OP 4 | Voli in arrivo
+
+\textbf{\small OP 4 | Voli in arrivo}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT volo.CodTratta, CodVolo, Nome, Città_partenza, Città_destinazione, Aeroporto_partenza, Aeroporto_destinazione, Ora_partenza, Ora_fine
+FROM aeroporto.volo, aeroporto.tratta
+WHERE aeroporto.volo.CodTratta = aeroporto.tratta.CodTratta
+AND aeroporto.tratta.Aeroporto_destinazione = ?
+AND Ora_fine = ?;	
+\end{lstlisting}
+
+% OP 5 | Manutenzione di un aereo
+
+\textbf{\small OP 5 | Manutenzione di un aereo}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT CodMantenimento, CodMacchinario, aeroporto.mantenimento.CodAereo
+FROM aeroporto.mantenimento, aeroporto.aereo
+WHERE aeroporto.mantenimento.CodAereo = aeroporto.aereo.CodAereo;	
+\end{lstlisting}
+
+% OP 6 | Comunicazioni tra controllori e membri dell'equipaggio di un aereo
+
+\textbf{\small OP 6 | Comunicazioni tra controllori e membri dell'equipaggio di un aereo}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT Num_Aerei_in_comunicazione
+FROM aeroporto.torre_di_controllo
+WHERE CodTorre = ?; 	
+\end{lstlisting}
+
+% OP 7 | Rifornimento di un aereo
+
+%TODO: dalla 7 alla 14, scrivere qualche cosa.
+
+\newpage %\pagebreak
+
+\textbf{\small OP 7 | Rifornimento di un aereo}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT *
+FROM aeroporto.logistica, aeroporto.cargo
+WHERE logistica.CodLogistica = cargo.CodLogistica
+AND logistica.Materiali = ?;	
+\end{lstlisting}
+
+% OP 8 | Assunzione di nuovi addetti
+
+\textbf{\small OP 8 | Assunzione di nuovi addetti}\\
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO aeroporto.persona (CodiceFiscale, Nome, Cognome, Età, Ruolo, Ora_inizio, Ora_fine) VALUES (?, ?, ?, ?, ?, ?, ?);	
+\end{lstlisting}
+
+% OP 9 | 
+
+\textbf{\small OP 9 | Operazioni di check-in }\\ %TODO: da finire
+
+\begin{lstlisting}[language=SQL]
+	
+\end{lstlisting}
+
+% OP 10 | 
+
+\textbf{\small OP 10 | Aerei in pista}\\ %TODO: riguardarsela
+
+\begin{lstlisting}[language=SQL]
+SELECT Num_Aerei
+FROM aeroporto.via_di_rullaggio
+WHERE CodVia = ?;	
+\end{lstlisting}
+
+% OP 11 | Acquirenti ai negozi
+
+\textbf{\small OP 11 | Acquirenti ai negozi}\\ %TODO: rimettere Persone che comprano prodotti ai negozi (o nei negozi).
+
+\begin{lstlisting}[language=SQL]
+SELECT COUNT(P.CodiceFiscale) AS Num_Clienti
+FROM aeroporto.negozio N JOIN aeroporto.persona P on P.CodNegozio = N.CodNegozio
+WHERE P.CodNegozio = ?;
+\end{lstlisting}
+
+% OP 12 | Passeggeri che si recano al Terminal
+%TODO: meglio Persone o Passeggeri, teoricamente è più corretto Passeggeri.
+
+\textbf{\small OP 12 | Persone che si recano al Terminal}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT COUNT(P.CodiceFiscale) AS Persone_Al_Terminal
+FROM aeroporto.terminal T JOIN aeroporto.persona P ON T.CodTerminal = P.CodTerminal
+WHERE P.CodTerminal = ?;
+\end{lstlisting}
+
+% OP 13 | Nuovi membri dell'equipaggio assunti da una compagnia
+
+\textbf{\small OP 13 | Nuovi membri dell'equipaggio assunti da una compagnia}\\
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO aeroporto.persona ( CodiceFiscale, Nome, Cognome, Età, Ruolo, Ora_Inizio, Ora_fine, CodAereo )
+VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )	
+\end{lstlisting}
+
+% OP 14  | Inserimento di aerei stazionati negli Hangar
+
+\textbf{\small OP 14 | Inserimento di aerei stazionati negli Hangar}\\
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO aeroporto.aereo (CodAereo, CodPista, Nome, Num_Equipaggio, Peso, Tipologia, CodHangar) VALUES( ?, ?, ?, ?, ?, ?);	
+\end{lstlisting}
+
+% OP 15 | Calcolare l'età media dei passeggeri
+
+\textbf{\small OP 15 | Calcolare l'età media dei passeggeri}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT AVG(Età) AS Media_Età
+FROM aeroporto.persona
+WHERE Ruolo = "Passeggero";	
+\end{lstlisting}
+
+% OP 16  | Ottenere il numero di aerei di una compagnia aerea
+
+\textbf{\small OP 16 | Ottenere il numero di aerei di una compagnia aerea}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT Num_Aerei
+FROM aeroporto.compagnia_aerea
+WHERE CodCompagnia = ?;	
+\end{lstlisting}
+
+% OP 17  | Numero di controllori in una Torre di Controllo
+
+\textbf{\small OP 17 | Numero di controllori in una Torre di Controllo}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT Num_dipendenti
+FROM aeroporto.torre_di_controllo
+WHERE CodTorre = ?;	
+\end{lstlisting}
+
+% OP 18  | Numero di macchinari presenti nell'Aeroporto
+
+\textbf{\small OP 18 | Numero di macchinari presenti nell'Aeroporto}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT SUM(Quantità) AS Num_Totale_Macchinari
+FROM aeroporto.ground_support_equipment;	
+\end{lstlisting}
+
+% OP 19  | Approvvigionamento dell'aereo
+
+\textbf{\small OP 19 | Approvvigionamento dell'aereo}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT CodiceFiscale, Nome, Cognome, Età, CodTorre, CodCentro, Ora_inizio, Ora_fine
+FROM aeroporto.persona
+WHERE Ruolo = "Controllore"
+AND Ora_inizio >= CAST(? AS TIME)
+AND Ora_fine <= CAST(? AS TIME)
+GROUP BY Cognome;	
+\end{lstlisting}
+
+% OP 20  | Numero aerei commerciali di una compagnia aerea
+
+\textbf{\small OP 20 | Numero aerei commerciali di una compagnia aerea}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT COUNT(Commerciale) AS Num_Aerei_Commerciali
+FROM aeroporto.aereo
+WHERE Commerciale = ?;
+\end{lstlisting}
+
+% OP 21  | Quantità di merci trasportate in media da un aereo commerciale
+
+\textbf{\small OP 21 | Quantità di merci trasportate in media da un aereo commerciale}\\
+
+\begin{lstlisting}[language=SQL]
+SELECT AVG(Num_Merci) AS Media_Merci_Trasportate
+FROM aeroporto.aereo;	
+\end{lstlisting}
