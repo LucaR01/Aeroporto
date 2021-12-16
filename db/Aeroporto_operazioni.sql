@@ -89,7 +89,7 @@ AND logistica.Materiali = "Kerosene";
 
 -- TODO: uncomment, ma non testata
 -- INSERT INTO aeroporto.persona (CodiceFiscale, Nome, Cognome, Età, Ruolo, Ora_inizio, Ora_fine)
--- VALUES (?, ?, ?, ?, ?);
+-- VALUES (?, ?, ?, ?, "Addetto di scalo", ?, ?);
 
 -- OP. 9 Operazioni di check-in
 -- E' come l'operazione 2, o tolgo questa o tolgo l'operazione 2. Forse è meglio togliere
@@ -126,7 +126,7 @@ WHERE P.CodTerminal = 1; -- TODO: qui inserire ?
 -- può averne uno solo, ma in realtà ce ne sono tanti.
 -- TODO: UNCOMMENT, PER0' NON L'HO TESTATA!
 -- INSERT INTO aeroporto.persona ( CodiceFiscale, Nome, Cognome, Età, Ruolo, Ora_Inizio, Ora_fine, CodAereo )
--- VALUES ( ?, ?, ?, ?, ?, ? )
+-- VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
 
 -- OP. 14 Inserimento degli aerei stazionati negli hangar
 -- TODO: UNCOMMENT, MA NON L'HO TESTATA
