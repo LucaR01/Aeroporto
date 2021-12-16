@@ -153,7 +153,7 @@
 
 \tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
 
-\usepackage{subfig} % serve per avere immagini una accanto all'altra
+%\usepackage{subfig} % serve per avere immagini una accanto all'altra
 
 \usepackage{cancel} 
 
@@ -194,6 +194,8 @@
 
 \usepackage{rotating} % per le figure sideways
 
+%\usepackage[formats]{listings} % serve per il codice SQL
+
 \hypersetup{
 	colorlinks=true,
 	linkcolor=black, %blue
@@ -203,6 +205,48 @@
 	bookmarks=true,
 	pdfpagemode=FullScreen,
 }
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{HTML}{C42043}
+\definecolor{backcolour}{HTML}{F2F2F2}
+\definecolor{bookColor}{cmyk}{0,0,0,0.90}
+
+\lstdefinestyle{mystyle}{
+	inputencoding = utf8,  % Input encoding
+	extendedchars = true,  % Extended ASCII
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{codepurple},
+	%numberstyle=\numberstyle,
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=10pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	literate      =        % Support additional characters
+	{á}{{\'a}}1  {é}{{\'e}}1  {í}{{\'i}}1 {ó}{{\'o}}1  {ú}{{\'u}}1
+	{Á}{{\'A}}1  {É}{{\'E}}1  {Í}{{\'I}}1 {Ó}{{\'O}}1  {Ú}{{\'U}}1
+	{à}{{\`a}}1  {è}{{\`e}}1  {ì}{{\`i}}1 {ò}{{\`o}}1  {ù}{{\`u}}1
+	{À}{{\`A}}1  {È}{{\'E}}1  {Ì}{{\`I}}1 {Ò}{{\`O}}1  {Ù}{{\`U}}1
+	{ä}{{\"a}}1  {ë}{{\"e}}1  {ï}{{\"i}}1 {ö}{{\"o}}1  {ü}{{\"u}}1
+	{Ä}{{\"A}}1  {Ë}{{\"E}}1  {Ï}{{\"I}}1 {Ö}{{\"O}}1  {Ü}{{\"U}}1
+	{â}{{\^a}}1  {ê}{{\^e}}1  {î}{{\^i}}1 {ô}{{\^o}}1  {û}{{\^u}}1
+	{Â}{{\^A}}1  {Ê}{{\^E}}1  {Î}{{\^I}}1 {Ô}{{\^O}}1  {Û}{{\^U}}1
+	{œ}{{\oe}}1  {Œ}{{\OE}}1  {æ}{{\ae}}1 {Æ}{{\AE}}1  {ß}{{\ss}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1  {å}{{\r a}}1 {Å}{{\r A}}1
+	{ñ}{{\~n}}1  {Ñ}{{\~N}}1  {¿}{{?`}}1  {¡}{{!`}}1
+	% ¿ and ¡ are not correctly displayed if inconsolata font is used
+	% together with the lstlisting environment. Consider typing code in
+	% external files and using \lstinputlisting to display them instead. 
+}
+\lstset{style=mystyle}
 
 
 % --- FINE USEPACKAGES ---
@@ -216,52 +260,27 @@
 % ============= FINE CUSTOM COMMANDS ============================================
 
 \makeindex
-% sembra che con il documentclass: report non vada, mentre con article si!
-\renewcommand{\headrulewidth}{0pt}
-\fancyhead[L]{}
-\fancyhead[C]{ % o fancyhead o fancyfoot
-	\includegraphics[width=5cm]{alma_mater_studiorum_cesena_logo.png}
-}
-\pagestyle{plain}
 
 \begin{document}
 	
-	\definecolor{blackbackground}{RGB}{45,45,45}
-	\definecolor{greybackground}{RGB}{60,60,60}
-	%\pagecolor{black!30!white}
-	%\pagecolor{gray!30}
-	%\pagecolor{blackbackground}
-	%\pagecolor{greybackground}
-	%\pagecolor{white!50!gray}
-	%\pagecolor{white!10!gray}
-	%\pagecolor{white!20!gray}
-	%\pagecolor{white!30!gray}
-	
-	\begin{comment}
-	\pretitle{\begin{center}
-			\includegraphics[width=2in,height=2in]{alma_mater_studiorum_cesena_logo.jpg}\LARGE\\}
-	\posttitle{\end{center}}
-	\end{comment}
-	
-	%\begin{comment}
-	\title{%
-	\huge Relazione per il corso di Basi di dati \\
-	A.A 2019/2020 \\
-	\large Progetto di una base di dati per la gestione di un Aeroporto\\
-	%\flushright \normalsize Luca Rengo \\
-	%Matricola: 0000936177 \\
-	%7, Maggio 2021
-	}
-
+	\title{Relazione per il corso di Basi di dati}
 	\author{Luca Rengo}
-	
-	\date{Maggio | Giugno | Luglio | Agosto 2021} % se non metto niente, mi rimuove la data di default
-	%\end{comment}
-	\maketitle
-	
-	\thispagestyle{fancy}
-	
-	\pagebreak
+	\date{Maggio | Giugno | Luglio | Agosto 2021}
+		
+	\makeatletter
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[width=0.7\linewidth]{img/alma_mater_studiorum_cesena_logo.png}\\[4ex]
+			{\Huge  \@title }\\[1ex] 
+			\textbf{\LARGE Progetto di una base di dati per la gestione di un Aeroporto}\\[2ex] 
+			%\Large A.A 2019/2020 \\
+			{\large  \@author}\\[2ex] 
+			{\large \@date}
+		\end{center}
+	\end{titlepage}
+
+	\makeatother
+	\thispagestyle{empty}
 	
 	% INIZIO: TABLEOFCONTENTS
 	
@@ -293,9 +312,8 @@
 	
 	\input{Relazione_Basi_di_Dati_Applicativo}
 	
-	%TODO: \input{Relazione_Basi_di_Dati_Guida_all_Utilizzo}
-	% una lista delle cose per eseguire il programma.
-	% tipo aprire mysql, creare il database con il .sql, ecc..
-	% Modificare nel codice Java l'utente e la password.
+	\input{Relazione_Basi_di_Dati_Guida_all_Utilizzo}
+	
+	\input{Relazione_Basi_di_Dati_Conclusione}
 	
 \end{document}
