@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `aeroporto` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `aeroporto`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: aeroporto
@@ -75,7 +77,7 @@ CREATE TABLE `bagaglio` (
   PRIMARY KEY (`CodBagaglio`),
   KEY `FKAPPARTENERE` (`CodiceFiscale`),
   CONSTRAINT `FKAPPARTENERE` FOREIGN KEY (`CodiceFiscale`) REFERENCES `persona` (`CodiceFiscale`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,13 +103,13 @@ CREATE TABLE `cargo` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `centro_controllo_aerea`
+-- Table structure for table `centro_controllo_area`
 --
 
-DROP TABLE IF EXISTS `centro_controllo_aerea`;
+DROP TABLE IF EXISTS `centro_controllo_area`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `centro_controllo_aerea` (
+CREATE TABLE `centro_controllo_area` (
   `CodCentro` int NOT NULL,
   `Num_Personale` int NOT NULL,
   `Orario_inizio` time NOT NULL,
@@ -309,7 +311,7 @@ CREATE TABLE `persona` (
   CONSTRAINT `FKCOMUNICAZIONE` FOREIGN KEY (`CodTorre`) REFERENCES `torre_di_controllo` (`CodTorre`),
   CONSTRAINT `FKCONTATTARE` FOREIGN KEY (`CodSoccorso`) REFERENCES `soccorsi` (`CodSoccorso`),
   CONSTRAINT `FKINFORMARE` FOREIGN KEY (`CodRadar`) REFERENCES `radar` (`CodRadar`),
-  CONSTRAINT `FKINTERVENIRE` FOREIGN KEY (`CodCentro`) REFERENCES `centro_controllo_aerea` (`CodCentro`),
+  CONSTRAINT `FKINTERVENIRE` FOREIGN KEY (`CodCentro`) REFERENCES `centro_controllo_area` (`CodCentro`),
   CONSTRAINT `FKMANTENERE` FOREIGN KEY (`CodAereo`) REFERENCES `aereo` (`CodAereo`),
   CONSTRAINT `FKPRENDERE` FOREIGN KEY (`CodVolo`) REFERENCES `volo` (`CodVolo`),
   CONSTRAINT `FKRECARSI` FOREIGN KEY (`CodTerminal`) REFERENCES `terminal` (`CodTerminal`),
@@ -348,7 +350,7 @@ CREATE TABLE `radar` (
   `Tipologia` varchar(50) NOT NULL,
   `CodAereo` int DEFAULT NULL,
   PRIMARY KEY (`CodRadar`),
-  KEY `FKRILEVAZIONE` (`CodAereo`),
+  KEY `FKRILEVAZIONE_idx` (`CodAereo`),
   CONSTRAINT `FKRILEVAZIONE` FOREIGN KEY (`CodAereo`) REFERENCES `aereo` (`CodAereo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -475,4 +477,4 @@ CREATE TABLE `volo` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-04 22:09:36
+-- Dump completed on 2021-12-17 19:31:24
