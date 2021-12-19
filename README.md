@@ -10,8 +10,8 @@ Il progetto verte sulla progettazione di una base di dati riguardante una infras
 
 ## Installation
 
-- Run _aeroportoDbCreation.sql_ on **MySQL Workbench**.
-- Run _aeroportoDbData.sql_ on **MySQL Workbench**.
+- Run _aeroportoDbCreation.sql_ in the `db` directory on **MySQL Workbench**.
+- Run _aeroportoDbData.sql_ in the `db` directory on **MySQL Workbench**.
 - If they don't work, modify the _charset_ and _collate_.
 
 ## Configuration Options
