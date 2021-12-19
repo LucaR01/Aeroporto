@@ -19,7 +19,7 @@ Il progetto verte sulla progettazione di una base di dati riguardante una infras
 - `databaseUser`
 - `databasePassword`
 
-<!-- ![alt text for screen readers](database.png "Text to show on mouseover") -->
+![Database Class](database.png "Update user and password")
 
 
 ## Usage
