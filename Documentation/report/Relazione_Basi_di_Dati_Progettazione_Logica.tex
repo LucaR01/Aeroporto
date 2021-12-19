@@ -4,86 +4,84 @@
 
 \enlargethispage{1\linewidth}
 
-\section{Progettazione Logica} %TODO: riguardarsi tutta questa parte.
+\section{Progettazione Logica} 
 
 \subsection{Stima del volume di dati}
 
-\begin{tabular}{ | c  c  c | c  c  c | } %TODO: sistemare, alcune vuote sono per separare, altre perchè manca. (aggiungere quelle che mancano)
-	%TODO: aggiungere i numeri del volume.
+\begin{tabular}{ | c  c  c | c  c  c | }
 	\hline
-	\textbf{Concetto} & \textbf{Tipo} & \textbf{Volume} & \textbf{Concetto} & \textbf{Tipo} & \textbf{Volume}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Tipo} & \textbf{\color{white}Volume} & \textbf{\color{white}Concetto} & \textbf{\color{white}Tipo} & \textbf{\color{white}Volume}\\
 	\hline
-	\textsf{\small Passeggero} & \textsf{\small E} & \textsf{\small $ 200.000$} & \textsf{\small Aereo} & \textsf{\small E} & \textsf{\small $ $}\\
+	\textsf{\small Passeggero} & \textsf{\small E} & \textsf{\small $ 200.000$} & \textsf{\small Aereo} & \textsf{\small E} & \textsf{\small $ 24.000 $}\\
 	\hline
-	\textsf{\small Terminal} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small Membro dell'equipaggio} & \textsf{\small E} & \textsf{\small $ $}\\
+	\textsf{\small Terminal} & \textsf{\small E} & \textsf{\small $ 3 $} & \textsf{\small Membro dell'equipaggio} & \textsf{\small E} & \textsf{\small $ 288.000 $}\\
 	\hline
-	\textsf{\small Recarsi} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small Pilotare} & \textsf{\small R} & \textsf{\small $ $}\\
+	\textsf{\small Recarsi} & \textsf{\small R} & \textsf{\small $ 200.000 $} & \textsf{\small Pilotare} & \textsf{\small R} & \textsf{\small $ 24.000 $}\\
 	\hline
-	\textsf{\small Negozio} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small Pista} & \textsf{\small E} & \textsf{\small $ $}\\
+	\textsf{\small Negozio} & \textsf{\small E} & \textsf{\small $ 50 $} & \textsf{\small Pista} & \textsf{\small E} & \textsf{\small $ 7 $}\\
 	\hline
-	\textsf{\small Visitare} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small Avvio} & \textsf{\small R} & \textsf{\small $ $}\\
+	\textsf{\small Visitare} & \textsf{\small R} & \textsf{\small $ 50.000 $} & \textsf{\small Avviarsi} & \textsf{\small R} & \textsf{\small $ 24.000 $}\\
 	\hline
-	\textsf{\small Addetto di Scalo} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small Via di rullaggio} & \textsf{\small E} & \textsf{\small $ $}\\
+	\textsf{\small Addetto di Scalo} & \textsf{\small E} & \textsf{\small $ 5.000 $} & \textsf{\small Via di rullaggio} & \textsf{\small E} & \textsf{\small $ 30 $}\\
 	\hline
-	\textsf{\small Interagire} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small Ground Support Equipment} & \textsf{\small E} & \textsf{\small $ $}\\
+	\textsf{\small Interagire} & \textsf{\small R} & \textsf{\small $ 50.000 $} & \textsf{\small Ground Support Equipment} & \textsf{\small E} & \textsf{\small $ 300$}\\
 	\hline
-	\textsf{\small Addetto alla sicurezza} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small Eseguire} & \textsf{\small R} & \textsf{\small $ $}\\
+	\textsf{\small Addetto alla sicurezza} & \textsf{\small E} & \textsf{\small $ 500 $} & \textsf{\small Eseguire} & \textsf{\small R} & \textsf{\small $ 24.000 $}\\
 	\hline
-	\textsf{\small Controllare} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Controllare} & \textsf{\small R} & \textsf{\small $ 200.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Aiutante per disabili} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Aiutante per disabili} & \textsf{\small E} & \textsf{\small $ 50 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Aiutare} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Aiutare} & \textsf{\small R} & \textsf{\small $ 2.400 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Volo} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Volo} & \textsf{\small E} & \textsf{\small $ 24.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Prendere} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Prendere} & \textsf{\small R} & \textsf{\small $ 12.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Aereo} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Comporre} & \textsf{\small R} & \textsf{\small $ 1.200.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Comporre} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
-	\hline
-	\textsf{\small Componente Aereo} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Componente Aereo} & \textsf{\small E} & \textsf{\small $ 1.200.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
 	\textsf{\small } & \textsf{\small } & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $} \\
 	\hline
-	\textsf{\small Controllore} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Controllore} & \textsf{\small E} & \textsf{\small $ 30 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Controllo} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Controllo} & \textsf{\small R} & \textsf{\small $ 5.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Torre di Controllo} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Torre di Controllo} & \textsf{\small E} & \textsf{\small $ 1 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Radar} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Radar} & \textsf{\small E} & \textsf{\small $ 5 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Informare} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Informare} & \textsf{\small R} & \textsf{\small $ 6.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Comunicazione} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Comunicazione} & \textsf{\small R} & \textsf{\small $ 6.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Rilevazione} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
-	\hline
-	\textsf{\small } & \textsf{\small } & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
-	\hline
-	\textsf{\small Compagnia Aerea} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
-	\hline
-	\textsf{\small Manutenzione} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Rilevazione} & \textsf{\small R} & \textsf{\small $ 12.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
 	\textsf{\small } & \textsf{\small } & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Fornitori} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Compagnia Aerea} & \textsf{\small E} & \textsf{\small $ 30 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Rifornire} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Manutenzione} & \textsf{\small E} & \textsf{\small $ 50 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Logistica} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small } & \textsf{\small } & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Cargo} & \textsf{\small E} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Fornitori} & \textsf{\small E} & \textsf{\small $ 50 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Fornire} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Rifornire} & \textsf{\small R} & \textsf{\small $ 5.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Mantenere} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Logistica} & \textsf{\small E} & \textsf{\small $ 50 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Caricare} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Cargo} & \textsf{\small E} & \textsf{\small $ 50 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
-	\textsf{\small Possedere} & \textsf{\small R} & \textsf{\small $ $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\textsf{\small Fornire} & \textsf{\small R} & \textsf{\small $ 5.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\hline
+	\textsf{\small Mantenere} & \textsf{\small R} & \textsf{\small $ 6.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\hline
+	\textsf{\small Caricare} & \textsf{\small R} & \textsf{\small $ 6.000 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
+	\hline
+	\textsf{\small Possedere} & \textsf{\small R} & \textsf{\small $ 300 $} & \textsf{\small } & \textsf{\small } & \textsf{\small $ $}\\
 	\hline
 \end{tabular}
 
@@ -93,17 +91,16 @@
 
 \subsection{Descrizione delle operazioni principale e stima della loro frequenza}
 
-%TODO: modificare alcune operazioni per, per esempio, trovare non so, quanti dipendenti hanno età > 20; oppure quanti litri di carburante sono rimasti all'aereo.
-
 \textsf{\small Si fornisce, di seguito, una tabella riportante la descrizione e la relativa frequenza delle operazioni principali nell'Aeroporto.}\\
 
-\begin{tabular}{ | c c c |} %TODO: aggiungere operazioni mancanti
+\begin{tabular}{ | c c c |} 
 	\hline
-	\textbf{Codice} & \textbf{Operazione} & \textbf{Frequenza} \\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Codice} & \textbf{\color{white}Operazione} & \textbf{\color{white}Frequenza} \\
 	\hline
 	\textsf{\small 01} & \textsf{\small Registrare un nuovo passeggero} & \textsf{\small $5000/\text{giorno}$} \\ % 200.000 / 30 = 6666.6 (-1000)
 	\hline
-	\textsf{\small 02} & \textsf{\small  Numero totale di componenti non funzionanti in un aereo.} & \textsf{\small $ 1/\text{mese} $} \\ %TODO: aggiungere
+	\textsf{\small 02} & \textsf{\small  Numero totale di componenti non funzionanti in un aereo.} & \textsf{\small $ 1/\text{mese} $} \\ 
 	\hline
 	\textsf{\small 03} & \textsf{\small Voli in partenza} & \textsf{\small $ 1000 / \text{mese} $} \\
 	% Voli in partenza:
@@ -145,12 +142,12 @@
 	\hline
 	\textsf{\small 10} & \textsf{\small Aerei nella Via di Rullaggio} & \textsf{\small $ 2000 / \text{mese}$} \\
 	\hline
-	\textsf{\small 11} & \textsf{\small Persone che comprano prodotti ai negozi} & \textsf{\small $ 1000 / \text{giorno} $} \\ %TODO: Scrivere Acquirenti ai negozi? però non ho un'entità Acquirente.
+	\textsf{\small 11} & \textsf{\small Persone che comprano prodotti ai negozi} & \textsf{\small $ 1000 / \text{giorno} $} \\
 	% Persone != Passeggeri e quindi le persone potrebbero essere di più dei passeggeri, però non tuti vanno per i negozi e ancora di meno sono quelli che comprano. Quindi quelli che visitano i negozi diciamo che sono 2000/giorno, ma quelli che comprano sono diciamo circa 1000/giorno o anche meno, magari 500.
 	\hline
 	\textsf{\small 12} & \textsf{\small Persone che si recano al Terminal} & \textsf{\small $ 5000 / \text{giorno} $} \\
 	\hline
-	\textsf{\small 13} & \textsf{\small Nuovi membri dell'equipaggio assunti da una compagnia} & \textsf{\small $ 500 / \text{anno}$} \\ %TODO: se gli addetti sono 1000 all'anno, questi saranno un po' di meno, immagino, diventare piloti richiede tempo.
+	\textsf{\small 13} & \textsf{\small Nuovi membri dell'equipaggio assunti da una compagnia} & \textsf{\small $ 500 / \text{anno}$} \\ % se gli addetti sono 1000 all'anno, questi saranno un po' di meno, immagino, diventare piloti richiede tempo.
 	\hline
 	\textsf{\small 14} & \textsf{\small Inserimento di aerei stazionati negli hangar} & \textsf{\small $ 500 / \text{mese} $} \\ % (Quite big) Boeing 747 : 5600 square feet, quite big hangar : 317000 square feet.
 	% 317000 / 5600 = 56,6 -> 57
@@ -172,12 +169,9 @@
 	\hline
 	\textsf{\small 21} & \textsf{\small Quantità di merci trasportate in media da un aereo commerciale} & \textsf{\small $ 1/ \text{mese} $} \\
 	\hline
-	%TODO: add Numero di aerei di linea di una compagnia aerea ?
 \end{tabular}
 
 % ----- SCHEMI DI NAVIGAZIONE E TABELLE DEGLI ACCESSI --------------------------
-
-%TODO: ragionarla in termini di SQL. Per questo serviranno accedere ad altre relazioni,ecc...
 
 \newpage
 
@@ -187,41 +181,44 @@
 
 \textsf{\small Dopo aver stimato il volume dei dati ed elencato le principali operazioni, vengono riportati qui i loro relativi schemi di navigazione. \emph{Si considerino di doppio peso gli accessi in scrittura rispetto a quelli in lettura}.}\break
 
-
-%TODO: sistemare le varie opzioni e ricontrollare se basta una sola scrittura/lettura o servono di più.
-
-%TODO: remove
-
 %\textsf{\small } & \textsf{\small } & \textsf{\small } &  \textsf{\small }\\
 %\hline
 
 % OP 1 | Registrare un nuovo passeggero
 
+%\centering
+
 \textbf{\small OP 1 | Registrare un nuovo passeggero}\\
+
+\textsf{\small Un passeggero diventa tale quando compra un biglietto, altrimenti viene considerato semplicemente una persona.}\break
 
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 1 | Registrare un nuovo passeggero} & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Passeggero} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small S}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1S $\rightarrow 10000$/giorno} \textsf{\small } & \textsf{\small }\\ % 2 * 5000/giorno = 10000/giorno
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1S $\rightarrow 10000$/giorno} \textsf{\small } & \textsf{\small }\\ % 2 * 5000/giorno = 10000/giorno
 	\hline
-\end{tabular} %TODO: Persona al posto di passeggero?
+\end{tabular}
 
 \vspace{.6cm}
 
 % OP 2 | Numero totale di componenti non funzionanti in un aereo.
 
 \textbf{\small OP 2 | Numero totale di componenti non funzionanti in un aereo}\\
-%TODO: fix
 %\textsf{\small Tra le migliaia di persone giornaliere, non vengono necessariamente controllate tutte, ma solo quelle di cui si ha dei sospetti o si vogliono fare ulteriori accertamenti. (con controllo non intendo il check-in).}\break
 
-\begin{tabular}{ c c c c} %TODO: aggiungere le altre entitò e relazioni per il controllo di un passeggero
+\textsf{\small Ai fini della manutenzione degli aeromobili è necessario assicurarsi che tutte le componenti siano correttamente presenti e funzionanti.}\break
+
+\begin{tabular}{ c c c c}
 	%\textbf{\small OP 2 | Numero totale di componenti non funzionanti in un aereo.} & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Aereo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
@@ -229,7 +226,8 @@
 	\hline
 	\textsf{\small Componente Aereo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 3L$\rightarrow 3$/mese} \textsf{\small } & \textsf{\small }\\ 
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 3L$\rightarrow 3$/mese} \textsf{\small } & \textsf{\small }\\ 
 	\hline
 \end{tabular}
 
@@ -239,10 +237,11 @@
 
 \textbf{\small OP 3 | Voli in partenza}\\
 
-\begin{tabular}{ c c c c} %TODO: aggiungere TRATTA
+\begin{tabular}{ c c c c} 
 	%\textbf{\small OP 3 | Voli in partenza} & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Volo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
@@ -250,7 +249,8 @@
 	\hline
 	\textsf{\small Tratta} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 3L$\rightarrow 3000$/mese} \textsf{\small } & \textsf{\small }\\ %2000 * 3 / mese, anzi 1000 * 3 = 3000
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 3L$\rightarrow 3000$/mese} \textsf{\small } & \textsf{\small }\\ %2000 * 3 / mese, anzi 1000 * 3 = 3000
 	\hline
 \end{tabular}
 
@@ -260,10 +260,11 @@
 
 \textbf{\small OP 4 | Voli in arrivo}\\
 
-\begin{tabular}{ c c c c} %TODO: aggiungere TRATTA e VOLO
+\begin{tabular}{ c c c c}
 	%\textbf{\small OP 4 | Voli in arrivo} & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Volo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
@@ -271,7 +272,8 @@
 	\hline
 	\textsf{\small Tratta} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 3L$\rightarrow 3000$/mese } \textsf{\small } & \textsf{\small }\\ % 2000 * 3 / mese = 6000 / mese
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 3L$\rightarrow 3000$/mese } \textsf{\small } & \textsf{\small }\\ % 2000 * 3 / mese = 6000 / mese
 	\hline
 \end{tabular}
 
@@ -281,10 +283,13 @@
 
 \textbf{\small OP 5 | Manutenzione di un aereo}\\
 
-\begin{tabular}{ c c c c} %TODO: aggiungere aereo?
+\textsf{\small Il controllo periodico degli aerei è importante per le sicurezza di tutte le persone a bordo.}\break
+
+\begin{tabular}{ c c c c} 
 	%\textbf{\small OP 5 | Manutenzione di un aereo} & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Mantenimento} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
@@ -292,7 +297,8 @@
 	\hline
 	\textsf{\small Aereo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 3L $\rightarrow 6000$/mese} \textsf{\small } & \textsf{\small }\\ % 2000 * 3 = 6000 / mese
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 3L $\rightarrow 6000$/mese} \textsf{\small } & \textsf{\small }\\ % 2000 * 3 = 6000 / mese
 	\hline
 \end{tabular}
 
@@ -300,16 +306,22 @@
 
 % OP 6 | Comunicazioni tra controllori e membri dell'equipaggio di un aereo
 
+\pagebreak
+
 \textbf{\small OP 6 | Comunicazioni tra controllori e membri dell'equipaggio di un aereo}\\
 
-\begin{tabular}{ c c c c} %TODO: aggiungere Torre di Controllo, Controllore ed membro dell'equipaggio (non membro, ma VOLO e magari AEREO)
+\textsf{\small La comunicazione tra torre di controllo, ovvero controllori e piloti è di vitale importanza per un volo regolare.}\break
+
+\begin{tabular}{ c c c c}
 	%\textbf{\small OP 6 | Comunicazioni tra controllori e membri dell'equipaggio di un aereo} & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Torre di Controllo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1L$\rightarrow 1000$/giorno } \textsf{\small } & \textsf{\small }\\ 
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1L$\rightarrow 1000$/giorno } \textsf{\small } & \textsf{\small }\\ 
 	\hline
 \end{tabular}
 
@@ -317,16 +329,17 @@
 
 % OP 7 | Rifornimento di un aereo
 
-%TODO: dalla 7 alla 14, scrivere qualche cosa.
-
-\newpage %\pagebreak
+%\newpage %\pagebreak
 
 \textbf{\small OP 7 | Rifornimento di un aereo}\\
+
+\textsf{\small Rifornire l'aereo di varie risorse di primaria importanza per il suo funzionamento, non soltanto del carburante, ma anche di cibo, acqua, servizi di catering,ecc.. per il normale svolgimento delle operazioni e per il soddisfacimento dei bisogni dei passeggeri.}\break
 
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 7 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Logistica} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
@@ -334,7 +347,8 @@
 	\hline
 	\textsf{\small Cargo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 3L$\rightarrow 6000$/mese } \textsf{\small } & \textsf{\small }\\ % 2000 * 3 = 6000/mese
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 3L$\rightarrow 6000$/mese } \textsf{\small } & \textsf{\small }\\ % 2000 * 3 = 6000/mese
 	\hline
 \end{tabular}
 
@@ -347,11 +361,13 @@
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 8 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Addetto di Scalo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small S}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1S$\rightarrow 2000$/anno } \textsf{\small } & \textsf{\small }\\ % 2 * 1000 = 2000
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1S$\rightarrow 2000$/anno } \textsf{\small } & \textsf{\small }\\ % 2 * 1000 = 2000
 	\hline
 \end{tabular}
 
@@ -361,14 +377,18 @@
 
 \textbf{\small OP 9 | Controllare numero di radar presenti all'aeroporto }\\
 
-\begin{tabular}{ c c c c} %TODO: Aggiungere Addetto di Scalo.
+\textsf{\small Allo scopo di mantenere sicure le operazioni aeroportuali è necessario un controllo periodico dei radar presenti nell'aeroporto.}\break
+
+\begin{tabular}{ c c c c} 
 	%\textbf{\small OP 9 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Radar} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1L$\rightarrow 1$/giorno } \textsf{\small } & \textsf{\small }\\
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1L$\rightarrow 1$/giorno } \textsf{\small } & \textsf{\small }\\
 	\hline
 \end{tabular}
 
@@ -378,27 +398,32 @@
 
 \textbf{\small OP 10 | Aerei nella Via di Rullaggio}\\
 
-\begin{tabular}{ c c c c} %TODO: Aggiungere Aereo e relazione con pista
+\begin{tabular}{ c c c c} 
 	%\textbf{\small OP 10 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Via di Rullaggio} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1L$\rightarrow 2000$/mese } \textsf{\small } & \textsf{\small }\\
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1L$\rightarrow 2000$/mese } \textsf{\small } & \textsf{\small }\\
 	\hline
 \end{tabular}
 
 \vspace{.6cm}
 
+\pagebreak
+
 % OP 11 | Acquirenti ai negozi
 
-\textbf{\small OP 11 | Acquirenti ai negozi}\\ %TODO: rimettere Persone che comprano prodotti ai negozi (o nei negozi).
+\textbf{\small OP 11 | Acquirenti ai negozi}\\
 
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 11 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Persona} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
@@ -406,29 +431,32 @@
 	\hline
 	\textsf{\small Negozio} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 3L$\rightarrow 3000$/giorno } \textsf{\small } & \textsf{\small }\\ % 1000 * 3 = 3000
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 3L$\rightarrow 3000$/giorno } \textsf{\small } & \textsf{\small }\\ % 1000 * 3 = 3000
 	\hline
 \end{tabular}
 
 \vspace{.6cm}
 
 % OP 12 | Passeggeri che si recano al Terminal
-%TODO: meglio Persone o Passeggeri, teoricamente è più corretto Passeggeri.
 
 \textbf{\small OP 12 | Persone che si recano al Terminal}\\
 
-\begin{tabular}{ c c c c} %TODO: aggiungere Terminal
+\begin{tabular}{ c c c c}
 	%\textbf{\small OP 12 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Passeggero} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
 	\textsf{\small Recarsi} & \textsf{\small R} & \textsf{\small 1} &  \textsf{\small L}\\
+	\hline
 	\textsf{\small Terminal} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 3L$\rightarrow 15000$/giorno } \textsf{\small } & \textsf{\small }\\ % 2 * 5000 = 10000, 5000 * 3 = 15000/giorno
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 3L$\rightarrow 15000$/giorno } \textsf{\small } & \textsf{\small }\\ % 2 * 5000 = 10000, 5000 * 3 = 15000/giorno
 	\hline
 \end{tabular}
 
@@ -438,14 +466,16 @@
 
 \textbf{\small OP 13 | Nuovi membri dell'equipaggio assunti da una compagnia}\\
 
-\begin{tabular}{ c c c c} %TODO: Aggiungere relazione Assumere e Membro dell'equipaggio.
+\begin{tabular}{ c c c c} 
 	%\textbf{\small OP 13 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Membro dell'Equipaggio} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small S}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1S$\rightarrow 1000$/anno } \textsf{\small } & \textsf{\small }\\ % 2 * 500 = 1000
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1S$\rightarrow 1000$/anno } \textsf{\small } & \textsf{\small }\\ % 2 * 500 = 1000
 	\hline
 \end{tabular}
 
@@ -458,11 +488,13 @@
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 14 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Aereo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small S}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1S$\rightarrow 1000$/mese } \textsf{\small } & \textsf{\small }\\ % 2 * 500 == 1000
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1S$\rightarrow 1000$/mese } \textsf{\small } & \textsf{\small }\\ % 2 * 500 == 1000
 	\hline
 \end{tabular}
 
@@ -472,16 +504,22 @@
 
 \textbf{\small OP 15 | Calcolare l'età media dei passeggeri}\\
 
+%\flushleft
+
 \textsf{\small Ai fini statistici, per capire quali persone viaggiano di più, a che età e dove, ecc.. Viene registrata e calcolata l'età media delle persone e vari altri dati.}\break
+
+%\centering
 
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 15 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Passeggero} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1L$\rightarrow 1$/mese } \textsf{\small } & \textsf{\small }\\
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1L$\rightarrow 1$/mese } \textsf{\small } & \textsf{\small }\\
 	\hline
 \end{tabular}
 
@@ -494,15 +532,19 @@
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 16 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Compagnia Aerea} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1l$\rightarrow 1$/anno } \textsf{\small } & \textsf{\small }\\
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1l$\rightarrow 1$/anno } \textsf{\small } & \textsf{\small }\\
 	\hline
 \end{tabular}
 
 \vspace{.6cm}
+
+\pagebreak
 
 % OP 17  | Numero di controllori in una Torre di Controllo
 
@@ -511,11 +553,13 @@
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 17 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Torre di Controllo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1L$\rightarrow 1$/anno } \textsf{\small } & \textsf{\small }\\
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1L$\rightarrow 1$/anno } \textsf{\small } & \textsf{\small }\\
 	\hline
 \end{tabular}
 
@@ -530,11 +574,13 @@
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 18 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Ground Support Equipment } & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1L$\rightarrow 1$/mese } \textsf{\small } & \textsf{\small }\\
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1L$\rightarrow 1$/mese } \textsf{\small } & \textsf{\small }\\
 	\hline
 \end{tabular}
 
@@ -544,16 +590,16 @@
 
 \textbf{\small OP 19 | Mostrare i controllori che erano in servizio dalle 08:00 alle 13:00}\\
 
-\textsf{\small Rifornire l'aereo di varie risorse di primaria importanza per il suo funzionamento, non soltanto del carburante, ma anche di cibo, acqua, servizi di catering,ecc.. per il normale svolgimento delle operazioni e per il soddisfacimento dei bisogni dei passeggeri.}\break
-
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 19 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Controllore} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1L$\rightarrow 1$/ mese} \textsf{\small } & \textsf{\small }\\
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1L$\rightarrow 1$/ mese} \textsf{\small } & \textsf{\small }\\
 	\hline
 \end{tabular}
 
@@ -566,11 +612,13 @@
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 20 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Aereo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1L$\rightarrow 1$/mese } \textsf{\small } & \textsf{\small }\\
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1L$\rightarrow 1$/mese } \textsf{\small } & \textsf{\small }\\
 	\hline
 \end{tabular}
 
@@ -585,13 +633,17 @@
 \begin{tabular}{ c c c c}
 	%\textbf{\small OP 21 | } & & & \\
 	\hline
-	\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accesi} & \textbf{Tipo}\\
+	\rowcolor{airforceblue}
+	\textbf{\color{white}Concetto} & \textbf{\color{white}Costrutto} & \textbf{\color{white}Accesi} & \textbf{\color{white}Tipo}\\
 	\hline
 	\textsf{\small Aereo} & \textsf{\small E} & \textsf{\small 1} &  \textsf{\small L}\\
 	\hline
-	\textsf{\small } & \textsf{\small } & \textbf{Totale: 1L$\rightarrow 1$/mese } \textsf{\small } & \textsf{\small }\\
+	\rowcolor{airforceblue}
+	\textsf{\small } & \textsf{\small } & \textbf{\color{white}Totale: 1L$\rightarrow 1$/mese } \textsf{\small } & \textsf{\small }\\
 	\hline
 \end{tabular}
+
+%\flushleft
 
 % --------------- RAFFINAMENTO DELLO SCHEMA ------------------------------------
 
@@ -601,21 +653,13 @@
 
 %\subsubsection{Eliminazione gerarchie}
 \textbf{Eliminazione delle gerarchie}\\
-%TODO: quel superflue è corretto metterlo? o sarebbe da mettere nelle Ridondanze?
-\textsf{\small Per quanto riguarda l'eliminazione delle gerarchie, ho deciso di adottare il collasso verso l'alto per la maggior parte di esse, come soluzione del problema, mentre per altre il collasso verso il basso.}\break 
+\textsf{\small Per quanto riguarda l'eliminazione delle gerarchie, ho deciso di adottare il collasso verso l'alto, come soluzione del problema.}\break 
 
 % Collasso verso l'alto: Accorpare le entità figlie nel genitore
 
 % Collasso verso il basso: Accorpare il genitore nelle entità figlie
 
-\textsf{\small Ho individuato 8 gerarchie che ho collassato verso l'alto e aggiunto loro gli attributi \emph{Tipologia} o \emph{Ruolo}, ovvero \emph{Componente dell'aereo}, \emph{Membro dell'equipaggio}, \emph{Radar}, \emph{Controllore}, \emph{Addetto di scalo}, \emph{Negozio}, \emph{Ground Support Equipment},\emph{Tratta}.}\\
-
-%TODO: Verso l'alto anche per Persona.
-%TODO: Verso il basso solo per Terminal
-\textsf{\small Per quanto riguarda \emph{Persona} invece ho ritenuto più opportuno adottare il collasso verso il basso, in quanto gli accessi alle entità figlie sono distinti.}\break
-%TODO: collasso verso l'alto anche per Persona?
-
-%TODO: metterlo nei ridondanti?
+\textsf{\small Ho individuato 9 gerarchie che ho collassato verso l'alto e aggiunto loro gli attributi \emph{Tipologia} o \emph{Ruolo}, ovvero \emph{Componente dell'aereo}, \emph{Membro dell'equipaggio}, \emph{Radar}, \emph{Controllore}, \emph{Addetto di scalo}, \emph{Negozio}, \emph{Ground Support Equipment},\emph{Tratta}, \emph{Persone}.}\\
 
 \textbf{Eliminazione degli attributi compositi}
 
@@ -629,13 +673,11 @@
 
 \textsf{\small A seguito delle analisi compiute è stato determinato di rimuovere le seguenti relazioni:}\\ %deciso
 
-% SOLO RELAZIONI
-\begin{itemize} %TODO: forse alcune sono superflue, perchè le ho già cambiate nello schema.
-	%TODO: rimuovere hangar e aereo, non nello schema, ma qui, aereo e via di rullaggio. 
+
+\begin{itemize} 
 	%\item \textsf{\small Relazione \emph{appartenere} tra \textbf{PASSEGGERO} e \textbf{BAGAGLIO}, importando \emph{Num. Bagagli} in \textbf{PASSEGGERO}.} %TODO: attributo numero valigie al posto delle relazione PASSEGGERO e BAGAGLIO (o VALIGIA)
-	\item \textsf{\small Relazione \emph{appartenere} tra \textbf{Passeggero} e \textbf{Bagaglio}, importando \emph{CodBagaglio} in \textbf{Persona}.}
+	%\item \textsf{\small Relazione \emph{appartenere} tra \textbf{Passeggero} e \textbf{Bagaglio}, importando \emph{CodBagaglio} in \textbf{Persona}.}
 	%\item \textsf{\small Associazione \emph{disporre} tra \textbf{AEREO} e \textbf{COMPAGNIA AEREA}, introducendo \emph{Num. Aerei} in \textbf{COMPAGNIA AEREA}.} %TODO: forse questa l'ho già cancellata nello schema?!
-	\item \textsf{\small \emph{Operare} tra \textbf{Controllore} e \textbf{Torre di Controllo}, usando invece un attributo \emph{CodControllore} in \textbf{Torre di Controllo}.}
 	%\item \textsf{\small } %TODO: Tra AEREO e COMPONENTE DELL'AEREO potrei mettere un attributo Num. Componenti
 	%\item \textsf{\small \emph{Operare} tra \textbf{CONTROLLORE} e \textbf{TORRE DI CONTROLLO}, usando invece un attributo \emph{Num. Controllori} in \textbf{TORRE DI CONTROLLO}.} %TODO: questo attributo Num. Controllori ce l'ho già.
 	%\item \textsf{\small \emph{Risiedere} tra \textbf{AEREO} ed \textbf{HANGAR} , usufruendo di un attributo \emph{Hangar[0:1]} in \textbf{AEREO} per sapere se l'aereo si trova nell'hangar e anche in quale.} %TODO: Al posto della relazione RISIEDERE tra AEREO ed HANGAR, magari potrei mettere direttamente un attributo in AEREO per sapere dove risiede e se sta risiedendo lì. tipo [0:1]
@@ -644,35 +686,36 @@
 	%\item \textsf{\small \emph{Assumere} tra \textbf{COMPAGNIA AEREA} e \textbf{MEMBRO DELL'EQUIPAGGIO}, utilizzando un attributo \emph{Num. Dipendenti} o \emph{Num. Personale}.}%TODO: In realtà, ho già questo attributo in COMPAGNIA AEREA.
 	
 	%\item \textsf{\small }%TODO: relazioni OPERATA ed ESEGUITA in una GERARCHIA di MANUTENZIONE, (mah insomma)
-	\item \textsf{\small \emph{Servire} tra \textbf{Persona} e \textbf{Servizio Clienti} importando \emph{Codice Fiscale} in \textbf{Servizio Clienti}.}
-	\item \textsf{\small \emph{Visitare} tra \textbf{Persona} e \textbf{Negozio} importando \emph{Codice Fiscale} in \textbf{Negozio}.}
-	\item \textsf{\small \emph{Recarsi} tra \textbf{Terminal} e \textbf{Persona}, importando \emph{CodiceFiscale} in \textbf{Terminal}.}
-	\item \textsf{\small \emph{Intervenire} tra \textbf{Centro di Controllo d'Aerea} e \textbf{Persona}, importando \emph{CodiceFiscale} in \textbf{Centro di controllo d'Area}.}
+	\item \textsf{\small \emph{Servire} tra \textbf{Persona} e \textbf{Servizio Clienti} importando \emph{CodServizio} in \textbf{Persona}.}
+	\item \textsf{\small \emph{Visitare} tra \textbf{Persona} e \textbf{Negozio} importando \emph{CodNegozio} in \textbf{Persona}.}
+	\item \textsf{\small \emph{Recarsi} tra \textbf{Terminal} e \textbf{Persona}, importando \emph{CodTerminal} in \textbf{Persona}.}
+	\item \textsf{\small \emph{Intervenire} tra \textbf{Centro di Controllo d'Aerea} e \textbf{Persona}, importando \emph{CodCentro} in \textbf{Persona}.}
 	\item \textsf{\small \emph{Informare} tra \textbf{Persona} e \textbf{Radar}, importando \emph{CodRadar} in \textbf{Persona}.}
 	\item \textsf{\small \emph{Contattare} tra \textbf{Persona} e \textbf{Soccorsi}, trasferendo \emph{CodSoccorso} in \textbf{Persona}.}
-	\item \textsf{\small \emph{Appartenere} tra \textbf{Persona} e \textbf{Bagaglio}, trasportando \emph{CodBagaglio} in \textbf{Persona}.}
-	\item \textsf{\small \emph{Accertare} tra \textbf{Persona} e \textbf{Bagaglio}, importando \emph{CodBagaglio} in \textbf{Persona}.} %TODO: Questo serve?
-	\item \textsf{\small \emph{Adempiere} tra \textbf{Persona} e \textbf{Mantenimento}, importando \emph{CodiceFiscale} in \textbf{Mantenimento}. }
-	\item \textsf{\small \emph{Rifornire} tra \textbf{Persona} e \textbf{Logistica}, trasferendo \emph{CodiceFiscale} in \textbf{Logistica}. }
-	\item \textsf{\small \emph{Prendere} tra \textbf{Volo} e \textbf{Persona}, inserendo \emph{CodiceFiscale} in \textbf{Volo}.}
-	\item \textsf{\small \emph{Comunicazione} tra \textbf{Torre di Controllo} e \textbf{Persona}, aggiungendo \emph{CodiceFiscale} in \textbf{Torre di Controllo}.}
-	\item \textsf{\small \emph{Possedere} tra \textbf{Compagnia Aerea} e \textbf{Negozio}, importando \emph{CodNegozio} in \textbf{Compagnia Aerea}.}
+	\item \textsf{\small \emph{Appartenere} tra \textbf{Persona} e \textbf{Bagaglio}, trasportando \emph{CodiceFiscale} in \textbf{Bagaglio}.}
+	\item \textsf{\small \emph{Accertare} tra \textbf{Persona} e \textbf{Bagaglio}, importando \emph{CodiceFiscale} in \textbf{Bagaglio}.}
+	\item \textsf{\small \emph{Adempiere} tra \textbf{Persona} e \textbf{Mantenimento}, importando \emph{CodMantenimento} in \textbf{Persona}. }
+	\item \textsf{\small \emph{Rifornire} tra \textbf{Persona} e \textbf{Logistica}, trasferendo \emph{CodLogistica} in \textbf{Persona}. }
+	\item \textsf{\small \emph{Prendere} tra \textbf{Volo} e \textbf{Persona}, inserendo \emph{CodVolo} in \textbf{Persona}.}
+	\item \textsf{\small \emph{Comunicazione} tra \textbf{Torre di Controllo} e \textbf{Persona}, aggiungendo \emph{CodTorre} in \textbf{Persona}.}
+	\item \textsf{\small \emph{Possedere} tra \textbf{Compagnia Aerea} e \textbf{Negozio}, importando \emph{CodCompagnia} in \textbf{Negozio}.}
 	\item \textsf{\small \emph{Costituire} tra \textbf{Gate} e \textbf{Terminal}, trasferendo \emph{CodTerminal} in \textbf{Gate}.}
 	\item \textsf{\small \emph{Rilevazione} tra \textbf{Radar} e \textbf{Aereo}, inserendo \emph{CodAereo} in \textbf{Radar}.}
-	\item \textsf{\small \emph{Mantenimento} tra \textbf{Ground Support Equipment} e \textbf{Mantenimento}, immettendo \emph{CodMacchinario} in \textbf{Mantenimento}.}
+	\item \textsf{\small \emph{Eseguire} tra \textbf{Ground Support Equipment} e \textbf{Mantenimento}, immettendo \emph{CodMacchinario} in \textbf{Mantenimento}.}
 	\item \textsf{\small \emph{Detenere} tra \textbf{Aereo} e \textbf{Volo}, incorporando \emph{CodAereo} in \textbf{Volo}.}
 	\item \textsf{\small \emph{Servizio} tra \textbf{Tratta} e \textbf{Volo}, allegando \emph{CodTratta} in \textbf{Volo}.}
 	\item \textsf{\small \emph{Preservare} tra \textbf{Aereo} e \textbf{Mantenimento}, conglobando \emph{CodAereo} in \textbf{Mantenimento}.}
-	\item \textsf{\small \emph{Transitare} tra \textbf{Aereo} e \textbf{Via di Rullaggio}, accorpando \emph{CodAereo} in \textbf{Via di Rullaggio}.}
+	\item \textsf{\small \emph{Transitare} tra \textbf{Aereo} e \textbf{Via di Rullaggio}, accorpando \emph{CodVia} in \textbf{Aereo}.}
 	\item \textsf{\small \emph{Avviarsi} tra \textbf{Aereo} e \textbf{Pista},inglobando \emph{CodPista} in \textbf{Aereo}.}
 	\item \textsf{\small \emph{Comporre} tra \textbf{Aereo} e \textbf{Componente dell'aereo}, inserendo \emph{CodAereo} in \textbf{Componente dell'aereo}.} % prima era l'incontrario. ma non si può per via delle cardinalità
 	\item \textsf{\small \emph{Caricare} tra \textbf{Cargo} ed \textbf{Aereo},importando \emph{CodAereo} in \textbf{Cargo}.}
 	\item \textsf{\small \emph{Mantenere} tra \textbf{Persona} e \textbf{Aereo}, aggiungendo \emph{CodAereo} in \textbf{Persona}.}
 	\item \textsf{\small \emph{Risiedere} tra \textbf{Aereo} ed \textbf{Hangar}, trasferendo \emph{CodHangar} in \textbf{Aereo}.}
-	\item \textsf{\small \emph{Tutelare} tra \textbf{Compagnia Aerea} e \textbf{Persona}, importando \emph{CodiceFiscale} in \textbf{Compagnia Aerea}.}
+	\item \textsf{\small \emph{Tutelare} tra \textbf{Compagnia Aerea} e \textbf{Persona}, importando \emph{CodCompagnia} in \textbf{Persona}.}
 	\item \textsf{\small \emph{Fornire} tra \textbf{Logistica} e \textbf{Cargo}, conglobando \emph{CodLogistica} in \textbf{Cargo}.}
 	\item \textsf{\small \emph{Ottenere} tra \textbf{Compagnia Aerea} e \textbf{Logistica}, incorporando \emph{CodCompagnia} in \textbf{Logistica}.}
 	\item \textsf{\small \emph{Assicura} tra \textbf{Compagnia Aerea} e \textbf{Assicurazione}, introducendo \emph{CodAssicurazione} in \textbf{Compagnia Aerea}.}
+	\item \textsf{\small \emph{Operare} tra \textbf{Persona} e \textbf{Torre di Controllo}, usando invece un attributo \emph{CodTorre} in \textbf{Persona}.}
 	%\item \textsf{\small \emph{} tra \textbf{} e \textbf{}, \emph{} in \textbf{}.}
 	%\item \textsf{\small \emph{} tra \textbf{} e \textbf{}, \emph{} in \textbf{}.}
 	%\item \textsf{\small \emph{} tra \textbf{} e \textbf{}, \emph{} in \textbf{}.}
@@ -718,9 +761,6 @@
 
 \subsection{Traduzione di entità ed associazioni in relazioni}
 
-%TODO: da fare riguardante lo schema relazionale/logico finale
-%TODO: farlo dopo aver fatto quello.
-
 \centering
 \textsf{\small \textbf{PRIMARY KEY} : \underline{sottolineata una volta}}
 \textsf{\small \textbf{FOREIGN KEY} : \underline{\underline{sottolineata due volte}}}\\
@@ -760,23 +800,41 @@
 
 \newpage
 
+%\enlargethispage{1\linewidth}
+
 \subsection{Schema relazionale finale} % logico
 
-\newgeometry{left = .9mm, right = .9mm, top = .9mm, bottom = .9mm} %TODO: o .6 o .9, top = .6, bottom = .6
+%\newgeometry{left = .9mm, right = .9mm, top = .9mm, bottom = .9mm} %TODO: o .6 o .9, top = .6, bottom = .6
 
-%\begin{comment}
+\newgeometry{left = .6cm, right = .6cm, top=.1cm, bottom=.1cm}
+
+\begin{comment}
 \begin{sidewaysfigure}[H]
 	\includegraphics[width=1.2\textwidth]{./img/Schema_Logico/Schema_Logico1.png} %TODO: 1 o 1.1 o 1.2, con 1.2 perdiamo delle informazioni, ma si vedo meglio
 	%\caption{}
 	\label{fig:logico1}
 \end{sidewaysfigure}
-%\end{comment}
 
 \begin{sidewaysfigure}[H]
 	\includegraphics[width=1.2\textwidth]{./img/Schema_Logico/Schema_Logico2.png}
 	%\caption{}
 	\label{fig:logico2}
 \end{sidewaysfigure}
+\end{comment}
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=1.2\linewidth, height=1.2\textheight, keepaspectratio]{./img/Schema_Logico/Schema_Logico1.png} 
+	\caption{Schema concettuale Logico 1.}
+	\label{fig:schema_logico1}
+\end{figure}
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=1.2\linewidth, height=1.2\textheight, keepaspectratio]{./img/Schema_Logico/Schema_Logico2.png}
+	\caption{Schema concettuale Logico 2.}
+	\label{fig:schema_logico2}
+\end{figure}
 
 \restoregeometry
 
@@ -796,7 +854,7 @@
 \begin{lstlisting}[language=SQL]
 INSERT INTO aeroporto.persona (CodiceFiscale, Nome, Cognome, Età, Ruolo,  CodVolo )
 VALUES(?, ?, ?, ?, ?, ?); 
-\end{lstlisting} %TODO: fix Eta in Età
+\end{lstlisting} 
 
 %\end{comment}
 % OP 2 | Numero totale di componenti non funzionanti in un aereo.
@@ -856,8 +914,6 @@ WHERE CodTorre = ?;
 
 % OP 7 | Rifornimento di un aereo
 
-%TODO: dalla 7 alla 14, scrivere qualche cosa.
-
 \newpage %\pagebreak
 
 \textbf{\small OP 7 | Rifornimento di un aereo}\\
@@ -879,16 +935,16 @@ INSERT INTO aeroporto.persona (CodiceFiscale, Nome, Cognome, Età, Ruolo, Ora_in
 
 % OP 9 | Controllare numero di radar presenti all'aeroporto
 
-\textbf{\small OP 9 | Controllare numero di radar presenti all'aeroporto}\\ %TODO: da finire
+\textbf{\small OP 9 | Controllare numero di radar presenti all'aeroporto}\\
 
 \begin{lstlisting}[language=SQL]
 SELECT COUNT(CodRadar) AS Num_Radars
 FROM aeroporto.radar;
 \end{lstlisting}
 
-% OP 10 | 
+% OP 10 | Aerei nella Via di Rullaggio
 
-\textbf{\small OP 10 | Aerei in pista}\\ %TODO: riguardarsela
+\textbf{\small OP 10 | Aerei nella Via di Rullaggio}\\
 
 \begin{lstlisting}[language=SQL]
 SELECT Num_Aerei
@@ -898,7 +954,7 @@ WHERE CodVia = ?;
 
 % OP 11 | Acquirenti ai negozi
 
-\textbf{\small OP 11 | Acquirenti ai negozi}\\ %TODO: rimettere Persone che comprano prodotti ai negozi (o nei negozi).
+\textbf{\small OP 11 | Acquirenti ai negozi}\\
 
 \begin{lstlisting}[language=SQL]
 SELECT COUNT(P.CodiceFiscale) AS Num_Clienti
@@ -907,7 +963,6 @@ WHERE P.CodNegozio = ?;
 \end{lstlisting}
 
 % OP 12 | Passeggeri che si recano al Terminal
-%TODO: meglio Persone o Passeggeri, teoricamente è più corretto Passeggeri.
 
 \textbf{\small OP 12 | Persone che si recano al Terminal}\\
 
@@ -946,6 +1001,8 @@ WHERE Ruolo = "Passeggero";
 \end{lstlisting}
 
 % OP 16  | Ottenere il numero di aerei di una compagnia aerea
+
+\pagebreak
 
 \textbf{\small OP 16 | Ottenere il numero di aerei di una compagnia aerea}\\
 
